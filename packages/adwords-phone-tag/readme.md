@@ -28,7 +28,7 @@ First, make sure to include `gtag`:
 Now, in a JavaScript file, install the tracking using this package:
 
 ```javascript
-import { AdwordsPhoneTag } from "@adhawk/adwords-phone-tag";
+import * as AdwordsPhoneTag from "@adhawk/adwords-phone-tag";
 
 const conversionId = "AW-111111111"; // replace with your own conversion id
 const conversionLabel = "xxxxxx--xxxxxxxxxxx"; // replace with your own conversion label
