@@ -15,7 +15,7 @@ Each package has its own `README` and documentation describing usage.
 
 | package           |                                   |                                                                                                                              |
 | ----------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| dom-datset        | [dir](packages/dom-dataset)       | [![ver](https://badge.fury.io/js/%40adhawk%2Fdom-dataset.svg)](https://badge.fury.io/js/%40adhawk%2Fdom-dataset)             |
+| dom-dataset       | [dir](packages/dom-dataset)       | [![ver](https://badge.fury.io/js/%40adhawk%2Fdom-dataset.svg)](https://badge.fury.io/js/%40adhawk%2Fdom-dataset)             |
 | adwords-phone-tag | [dir](packages/adwords-phone-tag) | [![ver](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag.svg)](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag) |
 
 ## License
