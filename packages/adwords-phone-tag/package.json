@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "./lib/adwords-phone-tag.cjs.js",
   "module": "./lib/adwords-phone-tag.esm.js",
+  "unpkg": "./lib/adwords-phone-tag.umd.min.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",

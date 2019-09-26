@@ -26,19 +26,23 @@ export function rollup({ name, input = './src/index.ts', extraGlobals = {} }) {
     return `./lib/${name}.${format}.js`;
   }
 
-  function onwarn(message) {
-    const suppressed = ['UNRESOLVED_IMPORT', 'THIS_IS_UNDEFINED'];
-    if (!suppressed.find(code => message.code === code)) {
-      return console.warn(message.message);
-    }
-  }
+  const minifyPlugin = minify({
+    mangle: {
+      toplevel: true,
+    },
+    compress: {
+      global_defs: {
+        '@process.env.NODE_ENV': JSON.stringify('production'),
+      },
+    },
+  });
 
-  function fromSource(format) {
+  function fromSource(format, out = format, opts = { plugins: [] }) {
     return {
       input,
       external,
       output: {
-        file: outputFile(format),
+        file: outputFile(out),
         format,
         sourcemap: true,
       },
@@ -57,16 +61,16 @@ export function rollup({ name, input = './src/index.ts', extraGlobals = {} }) {
           // where the full error string can be found. See #4519.
           errorCodes: true,
         }),
+        ...opts.plugins,
       ],
-      onwarn,
     };
   }
 
-  function fromESM(toFormat) {
+  function fromESM(toFormat, out = toFormat, opts = { plugins: [] }) {
     return {
       input: outputFile('esm'),
       output: {
-        file: outputFile(toFormat),
+        file: outputFile(out),
         format: 'esm',
         sourcemap: false,
       },
@@ -108,6 +112,7 @@ export function rollup({ name, input = './src/index.ts', extraGlobals = {} }) {
             };
           },
         },
+        ...opts.plugins,
       ],
     };
   }
@@ -115,25 +120,8 @@ export function rollup({ name, input = './src/index.ts', extraGlobals = {} }) {
   return [
     fromSource('esm'),
     fromESM('cjs'),
+    fromESM('cjs', 'cjs.min', { plugins: [minifyPlugin] }),
     fromESM('umd'),
-    {
-      input: outputFile('cjs'),
-      output: {
-        file: outputFile('cjs.min'),
-        format: 'esm',
-      },
-      plugins: [
-        minify({
-          mangle: {
-            toplevel: true,
-          },
-          compress: {
-            global_defs: {
-              '@process.env.NODE_ENV': JSON.stringify('production'),
-            },
-          },
-        }),
-      ],
-    },
+    fromESM('umd', 'umd.min', { plugins: [minifyPlugin] }),
   ];
 }
