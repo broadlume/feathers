@@ -8,6 +8,7 @@
     "postinstall": "npx lerna exec -- npm install --package-lock=false && npx lerna run prepare",
     "build": "npx lerna run build",
     "test": "npx jest --config ./config/jest.config.js --silent",
+    "test:all": "npm run test:cjs && npm run test:umd && npm run test",
     "test:watch": "npx jest --config ./config/jest.config.js --watch",
     "test:coverage": "npx jest --config ./config/jest.config.js --verbose --coverage",
     "test:ci": "npm run test:coverage -- --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
@@ -21,9 +22,6 @@
     "clean": "rm -Rf ./node_modules ./meta && npx lerna exec -- npm run clean"
   },
   "devDependencies": {
-    "@babel/core": "7.6.2",
-    "@babel/plugin-transform-modules-commonjs": "7.6.0",
-    "@babel/plugin-transform-modules-umd": "7.2.0",
     "@types/jest": "24.0.18",
     "bundlesize": "0.18.0",
     "jest": "24.9.0",

@@ -1,4 +1,4 @@
-export class DOMDataset {
+export default class DOMDataset {
   public dataset: DOMStringMap;
 
   constructor(public itemprop: string) {
