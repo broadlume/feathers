@@ -44,6 +44,11 @@
       "name": "dom-dataset",
       "path": "./packages/dom-dataset/lib/dom-dataset.cjs.min.js",
       "maxSize": "200B"
+    },
+    {
+      "name": "adwords-phone-tag",
+      "path": "./packages/adwords-phone-tag/lib/adwords-phone-tag.cjs.min.js",
+      "maxSize": "505B"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "@adhawk/dom-dataset",
-  "description": "Easy access to a DOM dataset",
-  "version": "1.0.1",
+  "name": "@adhawk/adwords-phone-tag",
+  "description": "Easily install AdWords phone call conversion tracking",
+  "version": "1.0.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/dom-dataset.cjs.js",
-  "module": "./lib/dom-dataset.esm.js",
+  "main": "./lib/adwords-phone-tag.cjs.js",
+  "module": "./lib/adwords-phone-tag.esm.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -21,12 +21,13 @@
     "watch": "npx tsc-watch --onSuccess \"npm run postbuild\" -p ./config",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/dom-dataset",
-    "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/dom-dataset --watch",
-    "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/dom-dataset",
-    "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/dom-dataset"
+    "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/adwords-phone-tag",
+    "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/adwords-phone-tag --watch",
+    "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/adwords-phone-tag",
+    "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/adwords-phone-tag"
   },
   "dependencies": {
+    "@adhawk/dom-dataset": "^1.0.1",
     "tslib": "^1.10.0"
   },
   "files": [
