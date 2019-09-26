@@ -1,0 +1,12 @@
+{
+  "extends": "./../../tsconfig-base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "moduleResolution": "node"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts"
+  ]
+}
