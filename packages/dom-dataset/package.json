@@ -1,0 +1,44 @@
+{
+  "name": "@adhawk/dom-dataset",
+  "description": "Easy access to a DOM dataset",
+  "version": "1.0.0",
+  "author": "developers@tryadhawk.com",
+  "license": "MIT",
+  "main": "./lib/dom-dataset.cjs.js",
+  "module": "./lib/dom-dataset.esm.js",
+  "typings": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "@adhawk/feathers"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
+    "prepare": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "npx tsc -p ./config",
+    "postbuild": "npx rollup -c ./config/rollup.config.js",
+    "watch": "npx tsc-watch --onSuccess \"npm run postbuild\" -p ./config",
+    "predeploy": "npm run build",
+    "deploy": "npm publish",
+    "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/components",
+    "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/components --watch",
+    "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/components",
+    "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/components"
+  },
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "jest": "24.9.0",
+    "rollup": "1.21.4",
+    "tsc-watch": "3.0.2",
+    "typescript": "3.6.3"
+  }
+}

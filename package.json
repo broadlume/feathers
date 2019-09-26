@@ -1,0 +1,49 @@
+{
+  "name": "@adhawk/feathers",
+  "version": "1.0.0",
+  "private": true,
+  "author": "developers@tryadhawk.com",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "npx lerna exec -- npm install --package-lock=false && npx lerna run prepare",
+    "build": "npx lerna run build",
+    "test": "npx jest --config ./config/jest.config.js --silent",
+    "test:watch": "npx jest --config ./config/jest.config.js --watch",
+    "test:coverage": "npx jest --config ./config/jest.config.js --verbose --coverage",
+    "test:ci": "npm run test:coverage -- --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "test:cjs": "npm run build && npx jest --config ./config/jest.cjs.config.js",
+    "test:cjs:ci": "npx jest --config ./config/jest.cjs.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "test:umd": "npm run build && npx jest --config ./config/jest.umd.config.js",
+    "test:umd:ci": "npx jest --config ./config/jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "bundlesize": "npx lerna run build && bundlesize",
+    "prettier": "npx prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
+    "deploy": "npx lerna publish",
+    "clean": "rm -Rf ./node_modules ./meta && npx lerna exec -- npm run clean"
+  },
+  "devDependencies": {
+    "@babel/core": "7.6.0",
+    "@babel/plugin-transform-modules-commonjs": "7.6.0",
+    "@babel/plugin-transform-modules-umd": "7.2.0",
+    "@types/jest": "24.0.18",
+    "bundlesize": "0.18.0",
+    "jest": "24.9.0",
+    "jest-junit": "8.0.0",
+    "lerna": "3.16.4",
+    "rollup": "1.21.4",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-invariant": "0.5.2",
+    "rollup-plugin-node-resolve": "5.2.0",
+    "rollup-plugin-terser": "5.1.2",
+    "rollup-plugin-typescript2": "0.24.2",
+    "ts-jest": "24.1.0",
+    "tsc-watch": "3.0.2",
+    "typescript": "3.6.3"
+  },
+  "bundlesize": [
+    {
+      "name": "dom-dataset",
+      "path": "./packages/dom-dataset/lib/dom-dataset.cjs.min.js",
+      "maxSize": "200B"
+    }
+  ]
+}
