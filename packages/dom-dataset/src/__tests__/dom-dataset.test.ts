@@ -1,4 +1,4 @@
-import { DOMDataset } from "./../";
+import DOMDataset from "./../";
 
 describe("DOMDataset", () => {
   it("pulls data from a meta tag", () => {

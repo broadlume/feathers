@@ -1,5 +1,6 @@
 import { rollup } from "../../../config/rollup.config";
 
 export default rollup({
-  name: "dom-dataset"
+  name: "dom-dataset",
+  umdName: "DOMDataset"
 });
