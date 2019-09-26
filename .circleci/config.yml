@@ -5,10 +5,10 @@ jobs:
     docker: [{ image: 'circleci/node:10' }]
     steps:
       - checkout
-      - run: npm i
+      - run: yarn
       - run:
           name: Tests - ESM
-          command: npm run test:ci
+          command: yarn run test:ci
           environment:
             JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
       - store_test_results:
@@ -20,10 +20,10 @@ jobs:
     docker: [{ image: 'circleci/node:10' }]
     steps:
       - checkout
-      - run: npm i
+      - run: yarn
       - run:
           name: Tests - CJS
-          command: npm run test:cjs:ci
+          command: yarn run test:cjs:ci
           environment:
             JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
       - store_test_results:
@@ -35,10 +35,10 @@ jobs:
     docker: [{ image: 'circleci/node:10' }]
     steps:
       - checkout
-      - run: npm i
+      - run: yarn
       - run:
           name: Tests - CJS
-          command: npm run test:umd:ci
+          command: yarn run test:umd:ci
           environment:
             JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
       - store_test_results:
@@ -47,11 +47,11 @@ jobs:
           path: reports/junit
 
   Bundlesize:
-    docker: [{ image: 'circleci/node:8' }]
+    docker: [{ image: 'circleci/node:10' }]
     steps:
       - checkout
-      - run: npm i
-      - run: npm run bundlesize
+      - run: yarn
+      - run: yarn run bundlesize
 
 workflows:
   version: 2
