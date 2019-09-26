@@ -4,8 +4,11 @@
   "private": true,
   "author": "developers@tryadhawk.com",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "postinstall": "npx lerna exec -- npm install --package-lock=false && npx lerna run prepare",
+    "postinstall": "npx lerna run prepare",
     "build": "npx lerna run build",
     "test": "npx jest --config ./config/jest.config.js --silent",
     "test:all": "npm run test:cjs && npm run test:umd && npm run test",
