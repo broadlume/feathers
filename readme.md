@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+[![CircleCI](https://circleci.com/gh/adHawk/feathers.svg?style=svg)](https://circleci.com/gh/adHawk/feathers)
 
 A loosely related set of packages for JavaScript / TypeScript projects at AdHawk.
 
