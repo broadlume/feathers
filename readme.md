@@ -8,8 +8,8 @@ A loosely related set of packages for JavaScript / TypeScript projects at AdHawk
 
 ## Usage
 
-The Feathers repo is managed as a monorepo that is composed of many packages.
-Each package has its own `README` and documentation describing usage.
+Feathers is a monorepo that is composed of many packages. Each package has its
+own `README` and documentation describing usage.
 
 ### Package Index
 
@@ -17,6 +17,7 @@ Each package has its own `README` and documentation describing usage.
 | ----------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | dom-dataset       | [dir](packages/dom-dataset)       | [![ver](https://badge.fury.io/js/%40adhawk%2Fdom-dataset.svg)](https://badge.fury.io/js/%40adhawk%2Fdom-dataset)             |
 | adwords-phone-tag | [dir](packages/adwords-phone-tag) | [![ver](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag.svg)](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag) |
+| error-tracking    | [dir](packages/error-tracking)    | [![ver](https://badge.fury.io/js/%40adhawk%2Ferror-tracking.svg)](https://badge.fury.io/js/%40adhawk%2Ferror-tracking)       |
 
 ## License
 
