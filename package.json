@@ -56,7 +56,7 @@
     {
       "name": "error-tracking",
       "path": "./packages/error-tracking/lib/error-tracking.cjs.min.js",
-      "maxSize": "512B"
+      "maxSize": "5.38kB"
     }
   ]
 }
