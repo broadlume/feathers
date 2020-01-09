@@ -52,6 +52,11 @@
       "name": "adwords-phone-tag",
       "path": "./packages/adwords-phone-tag/lib/adwords-phone-tag.cjs.min.js",
       "maxSize": "512B"
+    },
+    {
+      "name": "error-tracking",
+      "path": "./packages/error-tracking/lib/error-tracking.cjs.min.js",
+      "maxSize": "512B"
     }
   ]
 }
