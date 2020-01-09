@@ -1,0 +1,47 @@
+{
+  "name": "@adhawk/error-tracking",
+  "description": "Configure error tracking for your project",
+  "version": "1.0.0",
+  "author": "developers@tryadhawk.com",
+  "license": "MIT",
+  "main": "./lib/error-tracking.cjs.js",
+  "module": "./lib/error-tracking.esm.js",
+  "unpkg": "./lib/error-tracking.umd.min.js",
+  "typings": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "@adhawk/feathers"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
+    "prepare": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "npx tsc -p ./config",
+    "postbuild": "npx rollup -c ./config/rollup.config.js",
+    "watch": "npx tsc-watch --onSuccess \"npm run postbuild\" -p ./config",
+    "predeploy": "npm run build",
+    "deploy": "npm publish",
+    "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/error-tracking",
+    "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/error-tracking --watch",
+    "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/error-tracking",
+    "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/error-tracking"
+  },
+  "dependencies": {
+    "@sentry/browser": "^5.11.0",
+    "tslib": "^1.10.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "jest": "24.9.0",
+    "rollup": "1.21.4",
+    "tsc-watch": "4.0.0",
+    "typescript": "3.6.3"
+  }
+}

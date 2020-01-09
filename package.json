@@ -4,9 +4,11 @@
   "private": true,
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
     "postinstall": "npx lerna run prepare",
     "build": "npx lerna run build",
