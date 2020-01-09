@@ -50,8 +50,8 @@ export function rollup({
       },
       plugins: [
         nodeResolve({
-          extensions: ['.ts', '.tsx'],
-          module: true,
+          extensions: ['.ts', '.tsx', '.js'],
+          mainFields: ['browser', 'jsnext', 'module', 'main'],
         }),
         typescriptPlugin({ typescript, tsconfig }),
         invariantPlugin({
