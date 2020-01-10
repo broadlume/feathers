@@ -17,15 +17,15 @@
     "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
     "prepare": "npm run build",
     "prebuild": "npm run clean",
-    "build": "npx tsc -p ./config",
-    "postbuild": "npx rollup -c ./config/rollup.config.js",
-    "watch": "npx tsc-watch --onSuccess \"npm run postbuild\" -p ./config",
+    "build": "tsc -p .",
+    "postbuild": "rollup -c",
+    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/error-tracking",
-    "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/error-tracking --watch",
-    "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/error-tracking",
-    "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/error-tracking"
+    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/error-tracking",
+    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/error-tracking --watch",
+    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/error-tracking",
+    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/error-tracking"
   },
   "dependencies": {
     "@sentry/browser": "^5.11.0",

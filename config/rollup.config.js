@@ -1,12 +1,9 @@
-import nodeResolve from "rollup-plugin-node-resolve";
-import typescript from "typescript";
-import typescriptPlugin from "rollup-plugin-typescript2";
+import nodeResolve from "@rollup/plugin-node-resolve";
+import typescriptPlugin from "@rollup/plugin-typescript";
 import invariantPlugin from "rollup-plugin-invariant";
 import { terser as minify } from "rollup-plugin-terser";
 
 export function rollup({ name, umdName, input = "./src/index.ts" }) {
-  const tsconfig = "./config/tsconfig.json";
-
   function outputFile(format) {
     return `./lib/${name}.${format}.js`;
   }
@@ -28,7 +25,7 @@ export function rollup({ name, umdName, input = "./src/index.ts" }) {
   function fromSource(format, out = format, opts = { plugins: [] }) {
     return {
       input,
-      external: ["tslib", "react"],
+      // external: ["tslib", "react"],
       output: {
         file: outputFile(out),
         format,
@@ -40,7 +37,7 @@ export function rollup({ name, umdName, input = "./src/index.ts" }) {
           extensions: [".ts", ".tsx", ".js"],
           mainFields: ["browser", "jsnext", "module", "main"],
         }),
-        typescriptPlugin({ typescript, tsconfig }),
+        typescriptPlugin(),
         invariantPlugin({
           // Instead of completely stripping InvariantError messages in
           // production, this option assigns a numeric code to the

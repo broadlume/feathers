@@ -17,13 +17,13 @@
     "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
     "prepare": "npm run build",
     "prebuild": "npm run clean",
-    "build": "npx tsc -p ./config",
-    "watch": "npx tsc-watch --onSuccess \"npm run postbuild\" -p ./config",
+    "build": "tsc -p .",
+    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "npx jest --config ../../config/jest.config.js --testPathPattern packages/react-error-boundary",
-    "test:watch": "npx jest --config ../../config/jest.config.js --testPathPattern packages/react-error-boundary --watch",
-    "test:cjs": "npm run build && npx jest --config ../../config/jest.cjs.config.js --testPathPattern packages/react-error-boundary"
+    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/react-error-boundary",
+    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/react-error-boundary --watch",
+    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/react-error-boundary"
   },
   "dependencies": {
     "@adhawk/error-tracking": "^1.1.2",

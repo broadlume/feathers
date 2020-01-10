@@ -1,4 +1,4 @@
-import { rollup } from "../../../config/rollup.config";
+import { rollup } from "./../../config/rollup.config";
 
 export default rollup({
   name: "react-error-boundary",
