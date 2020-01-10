@@ -13,12 +13,12 @@ own `README` and documentation describing usage.
 
 ### Package Index
 
-| package              |                                      |                                                                                                                                    |
-| -------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| dom-dataset          | [dir](packages/dom-dataset)          | [![ver](https://badge.fury.io/js/%40adhawk%2Fdom-dataset.svg)](https://badge.fury.io/js/%40adhawk%2Fdom-dataset)                   |
-| adwords-phone-tag    | [dir](packages/adwords-phone-tag)    | [![ver](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag.svg)](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag)       |
-| error-tracking       | [dir](packages/error-tracking)       | [![ver](https://badge.fury.io/js/%40adhawk%2Ferror-tracking.svg)](https://badge.fury.io/js/%40adhawk%2Ferror-tracking)             |
-| react-error-boundary | [dir](packages/react-error-boundary) | [![ver](https://badge.fury.io/js/%40adhawk%2Freact-error-boundary.svg)](https://badge.fury.io/js/%40adhawk%2Freact-error-boundary) |
+| package                                               |                                                                                                                  |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [adwords-phone-tag](packages/adwords-phone-tag)       | [![](https://img.shields.io/npm/v/@adhawk/adwords-phone-tag)](https://npmjs.com/@adhawk/adwords-phone-tag)       |
+| [dom-dataset](packages/dom-dataset)                   | [![](https://img.shields.io/npm/v/@adhawk/dom-dataset)](https://npmjs.com/@adhawk/dom-dataset)                   |
+| [error-tracking](packages/error-tracking)             | [![](https://img.shields.io/npm/v/@adhawk/error-tracking)](https://npmjs.com/@adhawk/error-tracking)             |
+| [react-error-boundary](packages/react-error-boundary) | [![](https://img.shields.io/npm/v/@adhawk/react-error-boundary)](https://npmjs.com/@adhawk/react-error-boundary) |
 
 ## License
 
