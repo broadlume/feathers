@@ -13,7 +13,7 @@ own `README` and documentation describing usage.
 
 ### Package Index
 
-| package                                               |                                                                                                                  |
+| package                                               | version                                                                                                          |
 | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | [adwords-phone-tag](packages/adwords-phone-tag)       | [![](https://img.shields.io/npm/v/@adhawk/adwords-phone-tag)](https://npmjs.com/@adhawk/adwords-phone-tag)       |
 | [dom-dataset](packages/dom-dataset)                   | [![](https://img.shields.io/npm/v/@adhawk/dom-dataset)](https://npmjs.com/@adhawk/dom-dataset)                   |
