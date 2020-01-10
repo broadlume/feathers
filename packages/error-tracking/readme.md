@@ -12,7 +12,7 @@ import { init as errorTrackingInit } from "@adhawk/error-tracking";
 init({
   release: "v1.0",
   environment: "production",
-  sentryDsn: "..."
+  sentryDsn: "...",
 });
 ```
 
@@ -36,7 +36,7 @@ import { identify as identifyForErrorTracking } from "@adhawk/error-tracking";
 identify({
   id: loggedInUser.id,
   username: loggedInUser.name,
-  email: loggedInUser.email
+  email: loggedInUser.email,
 });
 ```
 

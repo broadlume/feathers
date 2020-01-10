@@ -4,12 +4,12 @@ declare const gtag: (...args: any[]) => void;
 
 export function install(
   conversionId: string | null,
-  conversionLabel: string | null
+  conversionLabel: string | null,
 ) {
   try {
     gtag("config", `${conversionId}/${conversionLabel}`, {
       phone_conversion_callback: replacePhoneNumbers,
-      phone_conversion_number: getPhoneNumber()
+      phone_conversion_number: getPhoneNumber(),
     });
   } catch (e) {
     console.error(e);
@@ -28,10 +28,10 @@ export function getPhoneNumber() {
 
 export function replacePhoneNumbers(
   formattedNumber: string,
-  mobileNumber: string
+  mobileNumber: string,
 ) {
   const elements = document.querySelectorAll<HTMLLinkElement>(
-    ".phone-number--link"
+    ".phone-number--link",
   );
 
   for (var i = 0; i < elements.length; ++i) {

@@ -1,6 +1,18 @@
-import { captureException } from "./../";
+import { captureException, init, identify } from "./../";
 
 describe("ErrorTracking", () => {
+  describe("init", () => {
+    it("is a function", () => {
+      expect(typeof init).toBe("function");
+    });
+  });
+
+  describe("identify", () => {
+    it("is a function", () => {
+      expect(typeof identify).toBe("function");
+    });
+  });
+
   describe("captureException", () => {
     beforeEach(() => {
       jest.clearAllMocks();

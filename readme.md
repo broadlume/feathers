@@ -13,11 +13,12 @@ own `README` and documentation describing usage.
 
 ### Package Index
 
-| package           |                                   |                                                                                                                              |
-| ----------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| dom-dataset       | [dir](packages/dom-dataset)       | [![ver](https://badge.fury.io/js/%40adhawk%2Fdom-dataset.svg)](https://badge.fury.io/js/%40adhawk%2Fdom-dataset)             |
-| adwords-phone-tag | [dir](packages/adwords-phone-tag) | [![ver](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag.svg)](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag) |
-| error-tracking    | [dir](packages/error-tracking)    | [![ver](https://badge.fury.io/js/%40adhawk%2Ferror-tracking.svg)](https://badge.fury.io/js/%40adhawk%2Ferror-tracking)       |
+| package              |                                      |                                                                                                                                    |
+| -------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| dom-dataset          | [dir](packages/dom-dataset)          | [![ver](https://badge.fury.io/js/%40adhawk%2Fdom-dataset.svg)](https://badge.fury.io/js/%40adhawk%2Fdom-dataset)                   |
+| adwords-phone-tag    | [dir](packages/adwords-phone-tag)    | [![ver](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag.svg)](https://badge.fury.io/js/%40adhawk%2Fadwords-phone-tag)       |
+| error-tracking       | [dir](packages/error-tracking)       | [![ver](https://badge.fury.io/js/%40adhawk%2Ferror-tracking.svg)](https://badge.fury.io/js/%40adhawk%2Ferror-tracking)             |
+| react-error-boundary | [dir](packages/react-error-boundary) | [![ver](https://badge.fury.io/js/%40adhawk%2Freact-error-boundary.svg)](https://badge.fury.io/js/%40adhawk%2Freact-error-boundary) |
 
 ## License
 

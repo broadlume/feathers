@@ -11,7 +11,7 @@
   },
   "scripts": {
     "postinstall": "npx lerna run prepare",
-    "build": "npx lerna run build",
+    "build": "npx lerna run build --concurrency 4",
     "test": "npx jest --config ./config/jest.config.js --silent",
     "test:all": "npm run test:cjs && npm run test:umd && npm run test",
     "test:watch": "npx jest --config ./config/jest.config.js --watch",
@@ -22,9 +22,10 @@
     "test:umd": "npm run build && npx jest --config ./config/jest.umd.config.js",
     "test:umd:ci": "npx jest --config ./config/jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "bundlesize": "npx lerna run build && bundlesize",
-    "prettier": "npx prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
+    "format": "npx prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
     "deploy": "npx lerna publish",
-    "clean": "rm -Rf ./node_modules ./meta && npx lerna exec -- npm run clean"
+    "clean": "rm -Rf ./node_modules ./meta && npx lerna exec -- npm run clean",
+    "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job"
   },
   "devDependencies": {
     "@types/jest": "24.0.18",
@@ -56,7 +57,7 @@
     {
       "name": "error-tracking",
       "path": "./packages/error-tracking/lib/error-tracking.cjs.min.js",
-      "maxSize": "5.38kB"
+      "maxSize": "16.18kB"
     }
   ]
 }

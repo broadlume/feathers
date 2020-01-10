@@ -5,3 +5,4 @@ npm
 package.json
 *.snap
 package-lock.json
+**/lib

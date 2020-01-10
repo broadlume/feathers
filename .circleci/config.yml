@@ -1,8 +1,8 @@
 version: 2
 
 jobs:
-  Tests - ESM:
-    docker: [{ image: 'circleci/node:10' }]
+  test_esm:
+    docker: [{ image: 'circleci/node:12' }]
     steps:
       - checkout
       - run: yarn
@@ -16,8 +16,8 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-  Tests - CJS:
-    docker: [{ image: 'circleci/node:10' }]
+  test_cjs:
+    docker: [{ image: 'circleci/node:12' }]
     steps:
       - checkout
       - run: yarn
@@ -31,8 +31,8 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-  Tests - UMD:
-    docker: [{ image: 'circleci/node:10' }]
+  test_umd:
+    docker: [{ image: 'circleci/node:12' }]
     steps:
       - checkout
       - run: yarn
@@ -46,18 +46,26 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-  Bundlesize:
-    docker: [{ image: 'circleci/node:10' }]
+  bundlesize:
+    docker: [{ image: 'circleci/node:12' }]
     steps:
       - checkout
       - run: yarn
       - run: yarn run bundlesize
 
+  lint:
+    docker: [{ image: 'circleci/node:12' }]
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn format --check
+
 workflows:
   version: 2
-  Build and Test:
+  verify:
     jobs:
-      - Tests - ESM
-      - Tests - CJS
-      - Tests - UMD
-      - Bundlesize
+      - lint
+      - test_esm
+      - test_cjs
+      - test_umd
+      - bundlesize
