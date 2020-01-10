@@ -38,3 +38,5 @@ export function captureException(error: Error) {
 
   return sentryCaptureException(error);
 }
+
+export { ErrorBoundary } from "./error-boundary";

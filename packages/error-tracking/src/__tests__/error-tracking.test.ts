@@ -1,5 +1,4 @@
-import { captureException, init, identify } from "./../";
-import { ErrorBoundary } from "./../react";
+import { captureException, init, identify, ErrorBoundary } from "./../";
 
 describe("ErrorTracking", () => {
   describe("init", () => {
