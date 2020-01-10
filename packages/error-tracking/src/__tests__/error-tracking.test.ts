@@ -1,4 +1,5 @@
 import { captureException, init, identify } from "./../";
+import { ErrorBoundary } from "./../react";
 
 describe("ErrorTracking", () => {
   describe("init", () => {
@@ -36,6 +37,12 @@ describe("ErrorTracking", () => {
       process.env.NODE_ENV = "test";
 
       expect(logStub).not.toHaveBeenCalled();
+    });
+
+    describe("ErrorBoundary", () => {
+      it("is a React component", () => {
+        expect(typeof ErrorBoundary.prototype.render).toBe("function");
+      });
     });
   });
 });

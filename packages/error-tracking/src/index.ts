@@ -33,9 +33,8 @@ export function identify<T extends User>(user: T) {
 
 export function captureException(error: Error) {
   if (process.env.NODE_ENV !== "production") {
-    console.log(process.env.NODE_ENV);
     console.error(error);
   }
 
-  sentryCaptureException(error);
+  return sentryCaptureException(error);
 }
