@@ -3,7 +3,12 @@ import typescriptPlugin from "@rollup/plugin-typescript";
 import invariantPlugin from "rollup-plugin-invariant";
 import { terser as minify } from "rollup-plugin-terser";
 
-export function rollup({ name, umdName, input = "./src/index.ts" }) {
+export function rollup({
+  name,
+  umdName,
+  input = "./src/index.ts",
+  skipFormats = [],
+}) {
   function outputFile(format) {
     return `./lib/${name}.${format}.js`;
   }
@@ -23,14 +28,21 @@ export function rollup({ name, umdName, input = "./src/index.ts" }) {
   });
 
   function fromSource(format, out = format, opts = { plugins: [] }) {
+    if (skipFormats.includes(format)) {
+      return false;
+    }
+
     return {
       input,
-      // external: ["tslib", "react"],
+      external: ["react"],
       output: {
         file: outputFile(out),
         format,
         sourcemap: true,
         name: umdName,
+        globals: {
+          react: "React",
+        },
       },
       plugins: [
         nodeResolve({
@@ -58,5 +70,5 @@ export function rollup({ name, umdName, input = "./src/index.ts" }) {
     fromSource("cjs", "cjs.min", { plugins: [minifyPlugin] }),
     fromSource("umd"),
     fromSource("umd", "umd.min", { plugins: [minifyPlugin] }),
-  ];
+  ].filter(Boolean);
 }
