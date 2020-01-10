@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/adwords-phone-tag",
   "description": "Easily install AdWords phone call conversion tracking",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/adwords-phone-tag.cjs.js",
@@ -28,7 +28,7 @@
     "test:umd": "npm run build && npx jest --config ../../config/jest.umd.config.js --testPathPattern packages/adwords-phone-tag"
   },
   "dependencies": {
-    "@adhawk/dom-dataset": "^1.1.0",
+    "@adhawk/dom-dataset": "^1.1.1",
     "tslib": "^1.10.0"
   },
   "files": [
