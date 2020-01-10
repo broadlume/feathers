@@ -1,27 +1,11 @@
-import nodeResolve from 'rollup-plugin-node-resolve';
-import typescript from 'typescript';
-import typescriptPlugin from 'rollup-plugin-typescript2';
-import invariantPlugin from 'rollup-plugin-invariant';
-import { terser as minify } from 'rollup-plugin-terser';
+import nodeResolve from "rollup-plugin-node-resolve";
+import typescript from "typescript";
+import typescriptPlugin from "rollup-plugin-typescript2";
+import invariantPlugin from "rollup-plugin-invariant";
+import { terser as minify } from "rollup-plugin-terser";
 
-const defaultGlobals = {};
-
-export function rollup({
-  name,
-  umdName,
-  input = './src/index.ts',
-  extraGlobals = {},
-}) {
-  const tsconfig = './config/tsconfig.json';
-
-  const globals = {
-    ...defaultGlobals,
-    ...extraGlobals,
-  };
-
-  function external(id) {
-    return Object.prototype.hasOwnProperty.call(globals, id);
-  }
+export function rollup({ name, umdName, input = "./src/index.ts" }) {
+  const tsconfig = "./config/tsconfig.json";
 
   function outputFile(format) {
     return `./lib/${name}.${format}.js`;
@@ -31,9 +15,12 @@ export function rollup({
     mangle: {
       toplevel: true,
     },
+    output: {
+      comments: false,
+    },
     compress: {
       global_defs: {
-        '@process.env.NODE_ENV': JSON.stringify('production'),
+        "@process.env.NODE_ENV": JSON.stringify("production"),
       },
     },
   });
@@ -41,7 +28,7 @@ export function rollup({
   function fromSource(format, out = format, opts = { plugins: [] }) {
     return {
       input,
-      external,
+      external: ["tslib", "react"],
       output: {
         file: outputFile(out),
         format,
@@ -50,8 +37,8 @@ export function rollup({
       },
       plugins: [
         nodeResolve({
-          extensions: ['.ts', '.tsx', '.js'],
-          mainFields: ['browser', 'jsnext', 'module', 'main'],
+          extensions: [".ts", ".tsx", ".js"],
+          mainFields: ["browser", "jsnext", "module", "main"],
         }),
         typescriptPlugin({ typescript, tsconfig }),
         invariantPlugin({
@@ -69,10 +56,10 @@ export function rollup({
   }
 
   return [
-    fromSource('esm'),
-    fromSource('cjs'),
-    fromSource('cjs', 'cjs.min', { plugins: [minifyPlugin] }),
-    fromSource('umd'),
-    fromSource('umd', 'umd.min', { plugins: [minifyPlugin] }),
+    fromSource("esm"),
+    fromSource("cjs"),
+    fromSource("cjs", "cjs.min", { plugins: [minifyPlugin] }),
+    fromSource("umd"),
+    fromSource("umd", "umd.min", { plugins: [minifyPlugin] }),
   ];
 }

@@ -1,17 +1,17 @@
 module.exports = {
-  preset: 'ts-jest',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
-  rootDir: '../packages',
-  projects: ['<rootDir>'],
+  preset: "ts-jest",
+  moduleFileExtensions: ["ts", "tsx", "js", "json"],
+  rootDir: "../packages",
+  projects: ["<rootDir>"],
   globals: {
-    'ts-jest': {
-      tsConfig: '<rootDir>/../config/tsconfig.base.json',
+    "ts-jest": {
+      tsConfig: "<rootDir>/../config/tsconfig.base.json",
     },
   },
-  coverageDirectory: './meta/coverage',
+  coverageDirectory: "./meta/coverage",
   moduleNameMapper: {
-    '^@adhawk\\/([^/]+)': '<rootDir>/$1/src',
+    "^@adhawk\\/([^/]+)": "<rootDir>/$1/src",
   },
-  testMatch: ['<rootDir>/*/src/**/__tests__/**/*.test.ts?(x)'],
-  testPathIgnorePatterns: ['/examples', '/lib'],
+  testMatch: ["<rootDir>/*/src/**/__tests__/**/*.test.ts?(x)"],
+  testPathIgnorePatterns: ["/examples", "/lib"],
 };
