@@ -1,12 +1,28 @@
 import {
   configureScope,
-  captureException as sentryCaptureException
+  captureException as sentryCaptureException,
+  init as sentryInit
 } from "@sentry/browser";
 
 interface User {
   id: string;
   username?: string;
   email?: string;
+}
+
+interface ErrorTrackingConfig {
+  environment: string;
+  release: string;
+  sentryDsn?: string;
+  debug?: boolean;
+}
+
+export function init(conf: ErrorTrackingConfig) {
+  const { sentryDsn, release, debug, environment } = conf;
+
+  if (sentryDsn) {
+    sentryInit({ dsn: sentryDsn, debug, environment, release });
+  }
 }
 
 export function identify<T extends User>(user: T) {
