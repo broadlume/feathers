@@ -1,4 +1,4 @@
-import { captureException, init, identify } from "./../";
+import { captureException, init, identify, showReportDialog } from "./../";
 
 describe("ErrorTracking", () => {
   describe("init", () => {
@@ -36,6 +36,12 @@ describe("ErrorTracking", () => {
       process.env.NODE_ENV = "test";
 
       expect(logStub).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("showReportDialog", () => {
+    it("is a function", () => {
+      expect(typeof showReportDialog).toBe("function");
     });
   });
 });
