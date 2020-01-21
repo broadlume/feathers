@@ -4,8 +4,6 @@
   "version": "0.0.2",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "module": "./lib/analytics-pixel-loader.esm.js",
-  "unpkg": "./lib/analytics-pixel-loader.umd.min.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
