@@ -45,7 +45,7 @@
     "jest": "24.9.0",
     "prettier": "^1.19.1",
     "tsc-watch": "4.0.0",
-    "typescript": "3.6.3",
+    "typescript": "3.7.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
