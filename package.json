@@ -34,7 +34,7 @@
     "bundlesize": "0.18.0",
     "jest": "24.9.0",
     "jest-junit": "10.0.0",
-    "lerna": "3.16.4",
+    "lerna": "3.20.2",
     "rollup": "1.29.1",
     "rollup-plugin-invariant": "^0.5.6",
     "rollup-plugin-terser": "5.2.0",
