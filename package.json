@@ -35,7 +35,7 @@
     "jest": "24.9.0",
     "jest-junit": "8.0.0",
     "lerna": "3.16.4",
-    "rollup": "1.21.4",
+    "rollup": "1.29.1",
     "rollup-plugin-invariant": "^0.5.6",
     "rollup-plugin-terser": "5.1.2",
     "ts-jest": "24.1.0",
