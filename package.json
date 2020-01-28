@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "@rollup/plugin-typescript": "^2.1.0",
+    "@rollup/plugin-typescript": "^3.0.0",
     "@types/jest": "24.9.0",
     "bundlesize": "0.18.0",
     "jest": "24.9.0",
