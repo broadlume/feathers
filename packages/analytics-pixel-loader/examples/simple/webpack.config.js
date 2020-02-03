@@ -5,13 +5,13 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   resolve: {
     modules: [
       path.resolve(__dirname, "node_modules"),
-      path.resolve(__dirname, "./../../node_modules")
-    ]
+      path.resolve(__dirname, "./../../node_modules"),
+    ],
   },
   module: {
     rules: [
@@ -19,11 +19,11 @@ module.exports = {
         test: /\.yml$/,
         // exclude: /(node_modules|bower_components)/,
         use: {
-          loader: require.resolve("./../../lib")
-        }
-      }
-    ]
+          loader: require.resolve("./../../lib"),
+        },
+      },
+    ],
   },
   mode: "production",
-  plugins: [new HtmlWebpackPlugin()]
+  plugins: [new HtmlWebpackPlugin()],
 };

@@ -28,12 +28,12 @@ yarn add @adhawk/analytics-pixel-loader
 module: {
   rules: [
     {
-      test: /\.analytics-pixel\.yml$/,
+      test: /analytics-pixel\.yml$/,
       exclude: /(node_modules|bower_components)/,
       use: {
-        loader: "@adhawk/analytics-pixel-loader"
-      }
-    }
+        loader: "@adhawk/analytics-pixel-loader",
+      },
+    },
   ];
 }
 ```

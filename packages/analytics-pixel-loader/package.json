@@ -32,6 +32,7 @@
     "schema-utils": "^2.6.2",
     "tslib": "^1.10.0"
   },
+  "main": "./lib/index.js",
   "files": [
     "lib"
   ],

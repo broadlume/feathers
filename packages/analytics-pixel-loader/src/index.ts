@@ -16,8 +16,12 @@ interface IntegrationConfig {
   opts: object;
 }
 
+function generateImportName(name: string) {
+  return name.replace(/\W/g, "");
+}
+
 function buildImportStatement(integration: IntegrationConfig) {
-  const importName = integration.name.replace(" ", "");
+  const importName = generateImportName(integration.name);
   const importPath =
     integration.package ||
     `@segment/analytics.js-integration-${kebabCase(integration.name)}`;
@@ -26,7 +30,7 @@ function buildImportStatement(integration: IntegrationConfig) {
 }
 
 function buildSetupStatement(integration: IntegrationConfig) {
-  const importName = integration.name.replace(" ", "");
+  const importName = generateImportName(integration.name);
 
   return `analytics.use(${importName});`;
 }
@@ -55,7 +59,7 @@ export default function(source: string) {
     "var analytics = new Analytics();",
     ...setups,
     `analytics.initialize(${JSON.stringify(mappedAnalyticsConfig)});`,
-    "export default analytics;"
+    "export default analytics;",
   ].join("\n");
 
   return outputSource;
