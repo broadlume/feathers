@@ -7,6 +7,33 @@ const VisitorEvents = integration("Visitor Events")
   .option("debug", false)
   .readyOnInitialize();
 
+export function sendJson(
+  url: string,
+  obj: object,
+  fn: (err: Error | null, res?: any) => void,
+) {
+  const req = new XMLHttpRequest();
+
+  req.withCredentials = true;
+  req.onerror = () => fn(new Error("Error when sending HTTP request"));
+  req.onreadystatechange = function() {
+    if (req.readyState === 4) {
+      // Fail on non-200 statuses
+      if (req.status > 299 || req.status < 200) {
+        fn(new Error("HTTP Error " + req.status + " (" + req.statusText + ")"));
+      } else {
+        fn(null, req);
+      }
+    }
+  };
+
+  req.open("POST", url, true);
+  req.timeout = 10;
+  req.ontimeout = () => fn(new Error("Timed out sending HTTP request"));
+  req.setRequestHeader("Content-Type", "application/json");
+  req.send(JSON.stringify(obj));
+}
+
 Object.assign(VisitorEvents.prototype, {
   normalizeEvent(event: any, type: string, argNames: string[] = []) {
     const { properties = {}, integrations: _, context, ...body } = event.obj;
@@ -41,12 +68,7 @@ Object.assign(VisitorEvents.prototype, {
   },
   initialize() {
     this.queue = new Queue("visitor-events", (item: any, done: any) => {
-      return this.postJSON(item)
-        .then(res => done(null, res))
-        .catch((err: Error) => {
-          console.error(err);
-          done(err);
-        });
+      return this.postJSON(item, done);
     });
     this.queue.start();
     // @ts-ignore
@@ -70,15 +92,10 @@ Object.assign(VisitorEvents.prototype, {
   publishEvent(event: any, type: any, argNames: string[] = []) {
     return this.queue.addItem(this.normalizeEvent(event, type, argNames));
   },
-  postJSON(data: object): Promise<Response> {
-    const request = {
-      method: "POST",
-      credentials: "same-origin" as "same-origin",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    };
+  postJSON(data: object, fn: (err: Error | null, res?: any) => void) {
+    console.log(data);
     // @ts-ignore
-    return window.fetch(this.options.endpoint, request);
+    sendJson(this.options.endpoint, data, fn);
   },
 });
 
