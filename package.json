@@ -39,7 +39,7 @@
     "rollup-plugin-invariant": "^0.5.6",
     "rollup-plugin-terser": "5.2.0",
     "ts-jest": "24.1.0",
-    "tsc-watch": "4.0.0",
+    "tsc-watch": "4.1.0",
     "typescript": "3.7.5"
   },
   "bundlesize": [

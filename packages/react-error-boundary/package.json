@@ -39,7 +39,7 @@
     "@types/react": "^16.9.17",
     "jest": "24.9.0",
     "react": "^16.12.0",
-    "tsc-watch": "4.0.0",
+    "tsc-watch": "4.1.0",
     "typescript": "3.7.5"
   },
   "peerDependencies": {
