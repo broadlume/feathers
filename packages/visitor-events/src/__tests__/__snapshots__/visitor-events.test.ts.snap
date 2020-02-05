@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisitorEvents after loading #alias includes the args 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {},
+  "timestamp": Any<String>,
+  "type": "alias",
+  "typeContext": Object {
+    "previousId": "old ID",
+  },
+  "userId": "new ID",
+}
+`;
+
+exports[`VisitorEvents after loading #alias includes the event name 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {},
+  "timestamp": Any<String>,
+  "type": "alias",
+  "typeContext": Object {
+    "previousId": "new ID",
+  },
+  "userId": "old ID",
+}
+`;
+
+exports[`VisitorEvents after loading #group includes the args 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {},
+  "timestamp": Any<String>,
+  "traits": Object {},
+  "type": "group",
+  "typeContext": Object {
+    "groupId": "Manufacturers",
+  },
+}
+`;
+
+exports[`VisitorEvents after loading #group includes the event name 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {},
+  "timestamp": Any<String>,
+  "traits": Object {},
+  "type": "group",
+  "typeContext": Object {
+    "groupId": "Manufacturers",
+  },
+}
+`;
+
+exports[`VisitorEvents after loading #identify sends the userId when identified 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {},
+  "timestamp": Any<String>,
+  "traits": Object {},
+  "type": "identify",
+  "typeContext": Object {},
+  "userId": "1",
+}
+`;
+
+exports[`VisitorEvents after loading #identify should default to anonymousId 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {},
+  "timestamp": Any<String>,
+  "traits": Object {},
+  "type": "identify",
+  "typeContext": Object {},
+  "userId": null,
+}
+`;
+
+exports[`VisitorEvents after loading #page includes the event name 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {
+    "path": "/",
+    "referrer": "",
+    "search": "",
+    "title": "",
+    "url": "http://localhost/",
+  },
+  "timestamp": Any<String>,
+  "type": "page",
+  "typeContext": Object {},
+}
+`;
+
+exports[`VisitorEvents after loading #page includes the page name and category in type context 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "messageId": Any<String>,
+  "payload": Object {
+    "category": "FlooringStores",
+    "name": "Show",
+    "path": "/",
+    "referrer": "",
+    "search": "",
+    "title": "",
+    "url": "http://localhost/",
+  },
+  "timestamp": Any<String>,
+  "type": "page",
+  "typeContext": Object {
+    "category": "FlooringStores",
+    "name": "Show",
+  },
+}
+`;
+
+exports[`VisitorEvents after loading #track includes the event name 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "event": "foo",
+  "messageId": Any<String>,
+  "payload": Object {
+    "some_field": "field_value",
+  },
+  "timestamp": Any<String>,
+  "type": "track",
+  "typeContext": Object {},
+}
+`;
+
+exports[`VisitorEvents after loading #track includes the provided props as a payload 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "event": "foo",
+  "messageId": Any<String>,
+  "payload": Object {
+    "some_field": "field_value",
+  },
+  "timestamp": Any<String>,
+  "type": "track",
+  "typeContext": Object {},
+}
+`;
+
+exports[`VisitorEvents after loading sets the campaign based on utm params 1`] = `
+Object {
+  "anonymousId": Any<String>,
+  "context": Object {
+    "page": Object {
+      "path": "/",
+      "referrer": "",
+      "search": "",
+      "title": "",
+      "url": "http://localhost/",
+    },
+  },
+  "event": "foo",
+  "messageId": Any<String>,
+  "payload": Object {
+    "some_field": "field_value",
+  },
+  "timestamp": Any<String>,
+  "type": "track",
+  "typeContext": Object {},
+}
+`;
