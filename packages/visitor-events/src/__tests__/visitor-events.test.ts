@@ -1,14 +1,17 @@
+import VisitorEventsIntegration from "..";
 const Analytics = require("@segment/analytics.js-core").constructor;
 const analyticsIntegration = require("@segment/analytics.js-integration");
 const sandbox = require("@segment/clear-env");
 const tester = require("@segment/analytics.js-integration-tester");
 const { matchers } = require("jest-json-schema");
-import VisitorEvents from "..";
 
 expect.extend(matchers);
 
 function expectFetchedWithProperSchema(extra: any) {
-  const body = VisitorEvents.prototype.postJSON.mock.calls[0][0];
+  // @ts-ignore
+  const body = JSON.parse(window.fetch.mock.calls[0][1].body);
+  // @ts-ignore
+  const endpoint = window.fetch.mock.calls[0][0];
 
   // @ts-ignore
   expect(body).toMatchSchema(schema(extra));
@@ -17,6 +20,7 @@ function expectFetchedWithProperSchema(extra: any) {
     anonymousId: expect.any(String),
     messageId: expect.any(String),
   });
+  expect(endpoint).toEqual("/visitor-events");
 }
 
 const schema = (extra: any) => ({
@@ -27,6 +31,15 @@ const schema = (extra: any) => ({
   },
   $id: undefined,
 });
+
+function mockFetch(data: any) {
+  return jest.fn().mockImplementation(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => data,
+    }),
+  );
+}
 
 describe("VisitorEvents", () => {
   let analytics: any;
@@ -46,8 +59,8 @@ describe("VisitorEvents", () => {
 
   beforeEach(() => {
     analytics = new Analytics();
-    visitorEvents = new VisitorEvents(options);
-    analytics.use(VisitorEvents);
+    visitorEvents = new VisitorEventsIntegration(options);
+    analytics.use(VisitorEventsIntegration);
     analytics.use(tester);
     analytics.add(visitorEvents);
   });
@@ -61,7 +74,7 @@ describe("VisitorEvents", () => {
 
   it("should have the right settings", () => {
     analytics.compare(
-      VisitorEvents,
+      VisitorEventsIntegration,
       analyticsIntegration("Visitor Events")
         .option("endpoint", "/visitor-events")
         .option("debug", false)
@@ -71,11 +84,8 @@ describe("VisitorEvents", () => {
 
   describe("after loading", () => {
     beforeEach(done => {
-      VisitorEvents.prototype.postJSON = jest.fn((_data: any, fn: any) => {
-        setTimeout(() => fn(null, {}), 10);
-      });
-
       analytics.once("ready", done);
+      window.fetch = mockFetch({});
       analytics.initialize();
     });
 
