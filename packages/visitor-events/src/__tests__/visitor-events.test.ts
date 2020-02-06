@@ -9,9 +9,9 @@ expect.extend(matchers);
 
 function expectFetchedWithProperSchema(extra: any) {
   // @ts-ignore
-  const body = JSON.parse(window.fetch.mock.calls[0][1].body);
-  // @ts-ignore
-  const endpoint = window.fetch.mock.calls[0][0];
+  const postJSON = window._visitor_events_postJSON;
+  const body = JSON.parse(postJSON.mock.calls[0][1].body);
+  const endpoint = postJSON.mock.calls[0][0];
 
   // @ts-ignore
   expect(body).toMatchSchema(schema(extra));
@@ -85,13 +85,12 @@ describe("VisitorEvents", () => {
   describe("after loading", () => {
     beforeEach(done => {
       analytics.once("ready", done);
-      window.fetch = mockFetch({});
+      // @ts-ignore
+      window._visitor_events_postJSON = mockFetch({});
       analytics.initialize();
     });
 
     it("sets the campaign based on utm params", async () => {
-      window.location.href =
-        "https://www.example.com?utm_source=news4&utm_medium=email&utm_campaign=spring-summer";
       analytics.track("foo", { some_field: "field_value" });
 
       await isProcessed();

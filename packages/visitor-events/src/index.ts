@@ -2,6 +2,61 @@ const integration = require("@segment/analytics.js-integration");
 const Queue = require("@segment/localstorage-retry");
 const utm = require("@segment/utm-params");
 
+export function postJSON(url: string, options: any, done: any) {
+  // @ts-ignore
+  if (window._visitor_events_postJSON) {
+    // @ts-ignore
+    return window._visitor_events_postJSON(url, options, done);
+  }
+  const request = new XMLHttpRequest();
+  const keys: any = [];
+  const all: any = [];
+  const headers: any = {};
+
+  const response = () => ({
+    ok: ((request.status / 100) | 0) == 2, // 200-299
+    statusText: request.statusText,
+    status: request.status,
+    url: request.responseURL,
+    text: () => Promise.resolve(request.responseText),
+    json: () => Promise.resolve(JSON.parse(request.responseText)),
+    blob: () => Promise.resolve(new Blob([request.response])),
+    clone: response,
+    headers: {
+      keys: () => keys,
+      entries: () => all,
+      get: (n: any) => headers[n.toLowerCase()],
+      has: (n: any) => n.toLowerCase() in headers,
+    },
+  });
+
+  request.open(options.method || "get", url, true);
+
+  request.onload = () => {
+    request
+      .getAllResponseHeaders()
+      .replace(
+        /^(.*?):[^\S\n]*([\s\S]*?)$/gm,
+        (_m: any, key: any, value: any): any => {
+          keys.push((key = key.toLowerCase()));
+          all.push([key, value]);
+          headers[key] = headers[key] ? `${headers[key]},${value}` : value;
+        },
+      );
+    done(null, response());
+  };
+
+  request.onerror = done;
+
+  request.withCredentials = options.credentials == "include";
+
+  for (const i in options.headers) {
+    request.setRequestHeader(i, options.headers[i]);
+  }
+
+  request.send(options.body || null);
+}
+
 const VisitorEvents = integration("Visitor Events")
   .option("endpoint", "/visitor-events")
   .option("debug", false)
@@ -41,7 +96,7 @@ Object.assign(VisitorEvents.prototype, {
   },
   initialize() {
     this.queue = new Queue("visitor-events", (item: any, done: any) => {
-      return this.postJSON(item)
+      return this.postJSON(item, done)
         .then(res => done(null, res))
         .catch((err: Error) => {
           console.error(err);
@@ -70,15 +125,16 @@ Object.assign(VisitorEvents.prototype, {
   publishEvent(event: any, type: any, argNames: string[] = []) {
     return this.queue.addItem(this.normalizeEvent(event, type, argNames));
   },
-  postJSON(data: object): Promise<Response> {
+  postJSON(data: object, done: any): Promise<Response> {
     const request = {
       method: "POST",
       credentials: "same-origin" as "same-origin",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     };
+
     // @ts-ignore
-    return window.fetch(this.options.endpoint, request);
+    return postJSON(this.options.endpoint, request, done);
   },
 });
 
