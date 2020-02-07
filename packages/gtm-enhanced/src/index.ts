@@ -4,19 +4,13 @@
  * Module dependencies.
  */
 
-//  @ts-ignore
-var integration = require("@segment/analytics.js-integration");
-//  @ts-ignore
-//var push = require("global-queue")("dataLayer", { wrap: false });
-
-// @ts-ignore
-window.dataLayer = window.dataLayer || [];
+const integration = require("@segment/analytics.js-integration");
+const push = require("global-queue")("dataLayer", { wrap: false });
 
 /**
  * Expose `GTM`.
  */
-//  @ts-ignore
-var GTM = (module.exports = integration("Google Tag Manager")
+const GTM = (module.exports = integration("Google Tag Manager")
   .global("dataLayer")
   .global("google_tag_manager")
   .option("containerId", "")
@@ -41,16 +35,17 @@ var GTM = (module.exports = integration("Google Tag Manager")
  */
 
 GTM.prototype.initialize = function() {
-  // For testing
-  this.ready();
+  if (process.env.NODE_ENV === "test") {
+    this.ready();
+  } else {
+    push({ "gtm.start": Number(new Date()), event: "gtm.js" });
 
-  // @ts-ignore
-  // window.dataLayer.push({ "gtm.start": Number(new Date()), event: "gtm.js" });
-  // if (this.options.environment.length) {
-  //   this.load("with-env", this.options, this.ready);
-  // } else {
-  //   this.load("no-env", this.options, this.ready);
-  // }
+    if (this.options.environment.length) {
+      this.load("with-env", this.options, this.ready);
+    } else {
+      this.load("no-env", this.options, this.ready);
+    }
+  }
 };
 
 /**
@@ -60,8 +55,9 @@ GTM.prototype.initialize = function() {
  * @return {boolean}
  */
 GTM.prototype.loaded = function() {
-  //  @ts-ignore
-  return !!(window.dataLayer && Array.prototype.push !== window.dataLayer.push);
+  return !!(
+    window["dataLayer"] && Array.prototype.push !== window["dataLayer"].push
+  );
 };
 
 /**
@@ -72,9 +68,9 @@ GTM.prototype.loaded = function() {
  */
 
 GTM.prototype.page = function(page: any) {
-  var category = page.category();
-  var name = page.fullName();
-  var opts = this.options;
+  const category = page.category();
+  const name = page.fullName();
+  const opts = this.options;
 
   // all
   if (opts.trackAllPages) {
@@ -102,13 +98,14 @@ GTM.prototype.page = function(page: any) {
  */
 
 GTM.prototype.track = function(track: any) {
-  var props = track.properties();
-  var userId = this.analytics.user().id();
-  var anonymousId = this.analytics.user().anonymousId();
+  const props = track.properties();
+  const userId = this.analytics.user().id();
+  const anonymousId = this.analytics.user().anonymousId();
+
   if (userId) props.userId = userId;
   if (anonymousId) props.segmentAnonymousId = anonymousId;
+
   props.event = track.event();
 
-  // @ts-ignore
-  window.dataLayer.push(props);
+  push(props);
 };

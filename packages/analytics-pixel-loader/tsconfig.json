@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "react",
     "outDir": "./lib",
+    "strict": true,
     "module": "CommonJS"
   },
   "include": ["./src/**/*"],

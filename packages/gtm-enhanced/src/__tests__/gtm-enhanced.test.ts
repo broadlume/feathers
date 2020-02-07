@@ -1,29 +1,25 @@
 "use strict";
 
-//  @ts-ignore
-var Analytics = require("@segment/analytics.js-core").constructor;
-//  @ts-ignore
-var integration = require("@segment/analytics.js-integration");
-//  @ts-ignore
-var sandbox = require("@segment/clear-env");
-//  @ts-ignore
-var tester = require("@segment/analytics.js-integration-tester");
-//  @ts-ignore
-var GTM = require("..");
+const Analytics = require("@segment/analytics.js-core").constructor;
+const integration = require("@segment/analytics.js-integration");
+const sandbox = require("@segment/clear-env");
+const tester = require("@segment/analytics.js-integration-tester");
+const GTM = require("..");
 
-describe("Google Tag Manager", function() {
-  //  @ts-ignore
-  var analytics;
-  //  @ts-ignore
-  var gtm;
-  //  @ts-ignore
-  var options = {
+interface Window {
+  dataLayer: any;
+}
+
+describe("GTM Enhanced", function() {
+  let analytics: any;
+  let gtm: any;
+
+  let options = {
     containerId: "GTM-M8M29T",
     environment: "",
   };
 
-  beforeEach(function() {
-    //  @ts-ignore
+  beforeEach(() => {
     analytics = new Analytics();
     gtm = new GTM(options);
     analytics.use(GTM);
@@ -31,43 +27,35 @@ describe("Google Tag Manager", function() {
     analytics.add(gtm);
   });
 
-  afterEach(function() {
-    //  @ts-ignore
+  afterEach(() => {
     analytics.restore();
-    //  @ts-ignore
     analytics.reset();
-    //  @ts-ignore
     gtm.reset();
-    //  @ts-ignore
     sandbox();
   });
 
   describe("after loading", function() {
     let stub: any;
 
-    beforeEach(function(done) {
-      //  @ts-ignore
+    beforeEach(done => {
       options = {
         containerId: "GTM-M8M29T",
         environment: "",
       };
-      //@ts-ignore
+
+      window["dataLayer"] = [];
+      window["google_tag_manger"] = true;
+
       stub = jest.spyOn(window.dataLayer, "push");
-      //  @ts-ignore
       analytics.once("ready", done);
-      //  @ts-ignore
       analytics.initialize();
-      //  @ts-ignore
       analytics.page();
     });
 
     describe("#track", function() {
       it("should send event", function() {
-        // @ts-ignore
-        window.google_tag_manger = true;
-        //  @ts-ignore
-        var anonId = analytics.user().anonymousId();
-        //  @ts-ignore
+        const anonId = analytics.user().anonymousId();
+
         analytics.track("some-event");
 
         expect(stub).toHaveBeenCalledWith({

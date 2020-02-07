@@ -6,6 +6,7 @@ module.exports = {
   globals: {
     "ts-jest": {
       tsConfig: "<rootDir>/../config/tsconfig.base.json",
+      isolatedModules: true,
     },
   },
   coverageDirectory: "./meta/coverage",
