@@ -23,16 +23,14 @@ var GTM = (module.exports = integration("Google Tag Manager")
   .option("environment", "")
   .option("trackNamedPages", true)
   .option("trackCategorizedPages", true)
-  .readyOnInitialize());
-
-// .tag(
-//   "no-env",
-//   '<script src="//www.googletagmanager.com/gtm.js?id={{ containerId }}&l=dataLayer">',
-// )
-// .tag(
-//   "with-env",
-//   '<script src="//www.googletagmanager.com/gtm.js?id={{ containerId }}&l=dataLayer&gtm_preview={{ environment }}">',
-// ));
+  .tag(
+    "no-env",
+    '<script src="//www.googletagmanager.com/gtm.js?id={{ containerId }}&l=dataLayer">',
+  )
+  .tag(
+    "with-env",
+    '<script src="//www.googletagmanager.com/gtm.js?id={{ containerId }}&l=dataLayer&gtm_preview={{ environment }}">',
+  ));
 
 /**
  * Initialize.
@@ -43,9 +41,11 @@ var GTM = (module.exports = integration("Google Tag Manager")
  */
 
 GTM.prototype.initialize = function() {
-  // @ts-ignore
-  //window.dataLayer.push({ "gtm.start": Number(new Date()), event: "gtm.js" });
+  // For testing
   this.ready();
+
+  // @ts-ignore
+  // window.dataLayer.push({ "gtm.start": Number(new Date()), event: "gtm.js" });
   // if (this.options.environment.length) {
   //   this.load("with-env", this.options, this.ready);
   // } else {

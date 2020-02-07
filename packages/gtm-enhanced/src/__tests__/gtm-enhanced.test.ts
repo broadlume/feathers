@@ -1,7 +1,3 @@
-import { jsxAttribute } from "@babel/types";
-
-declare const analytics: any;
-
 "use strict";
 
 //  @ts-ignore
@@ -66,14 +62,7 @@ describe("Google Tag Manager", function() {
     });
 
     describe("#track", function() {
-      //   beforeEach(function() {
-      //     //  @ts-ignore
-      //     // analytics.stub(window.dataLayer, "push");
-      //   });
-
       it("should send event", function() {
-        //  @ts-ignore
-
         // @ts-ignore
         window.google_tag_manger = true;
         //  @ts-ignore
