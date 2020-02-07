@@ -1,0 +1,54 @@
+{
+  "name": "@adhawk/gtm-enhanced",
+  "description": "Analytics.js integration for visitor events",
+  "version": "1.0.3",
+  "author": "developers@tryadhawk.com",
+  "license": "MIT",
+  "main": "./lib/gtm-enhanced.cjs.js",
+  "module": "./lib/gtm-enhanced.esm.js",
+  "unpkg": "./lib/gtm-enhanced.umd.min.js",
+  "typings": "./lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "@adhawk/feathers"
+  },
+  "sideEffects": true,
+  "scripts": {
+    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
+    "prepare": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "tsc -p .",
+    "postbuild": "rollup -c",
+    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
+    "predeploy": "npm run build",
+    "deploy": "npm publish",
+    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/gtm-enhanced",
+    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/gtm-enhanced --watch",
+    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/gtm-enhanced",
+    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/gtm-enhanced"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@segment/analytics.js-integration-tester": "^3.1.1",
+    "@segment/clear-env": "^2.1.1",
+    "jest-environment-jsdom": "^25.1.0",
+    "jest-environment-jsdom-global": "^1.1.0",
+    "jest-json-schema": "^2.0.1",
+    "typescript": "^3.1.3"
+  },
+  "dependencies": {
+    "@segment/analytics.js-core": "3.10.1",
+    "@segment/analytics.js-integration": "^3.3.1",
+    "@segment/localstorage-retry": "^1.2.2",
+    "@segment/utm-params": "^2.0.0",
+    "analytics.js-integrations": "https://github.com/segmentio/analytics.js-integrations#c1fc75c3913035d9b1d187e3948d8ef257a32fc2",
+    "component-type": "^1.2.1",
+    "global-queue": "^1.0.1",
+    "type": "npm:component-type"
+  }
+}
