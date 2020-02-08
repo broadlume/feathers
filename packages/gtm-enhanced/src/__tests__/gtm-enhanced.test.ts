@@ -88,18 +88,22 @@ describe("GTM Enhanced", () => {
           segmentAnonymousId: anonId,
           event: "productClick",
           ecommerce: {
-            click: expect.objectContaining({
-              id: "G-32",
-              name: "Monopoly: 3rd jEdition",
-              brand: "Hasbro",
-              category: "Games",
-              variant: "200 pieces",
-              currency: "USD",
-              price: 18.99,
-              quantity: 1,
-              coupon: "MAYDEALS",
-              position: 3,
-            }),
+            click: {
+              products: expect.arrayContaining([
+                {
+                  id: "G-32",
+                  name: "Monopoly: 3rd jEdition",
+                  brand: "Hasbro",
+                  category: "Games",
+                  variant: "200 pieces",
+                  currency: "USD",
+                  price: 18.99,
+                  quantity: 1,
+                  coupon: "MAYDEALS",
+                  position: 3,
+                },
+              ]),
+            },
           },
         }),
       ]);

@@ -114,13 +114,15 @@ EnhancedGTM.prototype.track = function(track: any) {
  */
 EnhancedGTM.prototype.productClicked = function(track: any) {
   const userProps = enhancedUserInfo(this.analytics, this.options);
-  const click = enhancedEcommerceTrackProduct(track, this.options);
+  const product = enhancedEcommerceTrackProduct(track, this.options);
 
   push({
     ...userProps,
     event: "productClick",
     ecommerce: {
-      click: click,
+      click: {
+        products: [product],
+      },
     },
   });
 };
