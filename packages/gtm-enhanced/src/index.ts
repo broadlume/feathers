@@ -1,9 +1,3 @@
-"use strict";
-
-/**
- * Module dependencies.
- */
-
 const integration = require("@segment/analytics.js-integration");
 const push = require("global-queue")("dataLayer", { wrap: false });
 const dot = require("obj-case");
@@ -13,12 +7,12 @@ const pick = require("lodash.pick");
 /**
  * Expose `GTM`.
  */
-const EnhancedGTM = integration("Google Tag Manager")
+const EnhancedGTM = integration("GTM Enhanced")
   .global("dataLayer")
   .global("google_tag_manager")
   .option("containerId", "")
   .option("environment", "")
-  .option("dimensions", {})
+  .option("extraDimensions", [])
   .option("trackNamedPages", true)
   .option("trackCategorizedPages", true)
   .tag(
@@ -74,7 +68,6 @@ EnhancedGTM.prototype.loaded = function() {
  * @api public
  * @param {Page} page
  */
-
 EnhancedGTM.prototype.page = function(page: any) {
   const category = page.category();
   const name = page.fullName();
@@ -147,7 +140,7 @@ function enhancedUserInfo(analytics: any, opts: any) {
   return { ...customDimensions, ...userProps };
 }
 
-function enhancedEcommerceTrackProduct(track: any, opts: any) {
+function enhancedEcommerceTrackProduct(track: any, _opts: any) {
   const props = track.properties();
   const product: any = {
     id: track.productId() || track.id() || track.sku(),
