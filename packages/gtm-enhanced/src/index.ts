@@ -6,15 +6,19 @@
 
 const integration = require("@segment/analytics.js-integration");
 const push = require("global-queue")("dataLayer", { wrap: false });
+const dot = require("obj-case");
+// const forEach = require("lodash.foreach");
+const pick = require("lodash.pick");
 
 /**
  * Expose `GTM`.
  */
-const GTM = (module.exports = integration("Google Tag Manager")
+const EnhancedGTM = integration("Google Tag Manager")
   .global("dataLayer")
   .global("google_tag_manager")
   .option("containerId", "")
   .option("environment", "")
+  .option("dimensions", {})
   .option("trackNamedPages", true)
   .option("trackCategorizedPages", true)
   .tag(
@@ -24,7 +28,7 @@ const GTM = (module.exports = integration("Google Tag Manager")
   .tag(
     "with-env",
     '<script src="//www.googletagmanager.com/gtm.js?id={{ containerId }}&l=dataLayer&gtm_preview={{ environment }}">',
-  ));
+  );
 
 /**
  * Initialize.
@@ -34,7 +38,7 @@ const GTM = (module.exports = integration("Google Tag Manager")
  * @api public
  */
 
-GTM.prototype.initialize = function() {
+EnhancedGTM.prototype.initialize = function() {
   if (process.env.NODE_ENV === "test") {
     this.ready();
   } else {
@@ -54,7 +58,11 @@ GTM.prototype.initialize = function() {
  * @api private
  * @return {boolean}
  */
-GTM.prototype.loaded = function() {
+EnhancedGTM.prototype.loaded = function() {
+  if (process.env.NODE_ENV === "test") {
+    return !!window["dataLayer"];
+  }
+
   return !!(
     window["dataLayer"] && Array.prototype.push !== window["dataLayer"].push
   );
@@ -67,7 +75,7 @@ GTM.prototype.loaded = function() {
  * @param {Page} page
  */
 
-GTM.prototype.page = function(page: any) {
+EnhancedGTM.prototype.page = function(page: any) {
   const category = page.category();
   const name = page.fullName();
   const opts = this.options;
@@ -96,16 +104,74 @@ GTM.prototype.page = function(page: any) {
  * @api public
  * @param {Track} track
  */
-
-GTM.prototype.track = function(track: any) {
+EnhancedGTM.prototype.track = function(track: any) {
   const props = track.properties();
-  const userId = this.analytics.user().id();
-  const anonymousId = this.analytics.user().anonymousId();
-
-  if (userId) props.userId = userId;
-  if (anonymousId) props.segmentAnonymousId = anonymousId;
-
   props.event = track.event();
 
-  push(props);
+  push({ ...enhancedUserInfo(this.analytics, this.options), ...props });
 };
+
+/**
+ * Product Clicked.
+ *
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#product-data
+ *
+ * @api public
+ * @param {Track} track
+ */
+EnhancedGTM.prototype.productClicked = function(track: any) {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+  const click = enhancedEcommerceTrackProduct(track, this.options);
+
+  push({
+    ...userProps,
+    event: "productClick",
+    ecommerce: {
+      click: click,
+    },
+  });
+};
+
+function enhancedUserInfo(analytics: any, opts: any) {
+  const userId = analytics.user().id();
+  const anonymousId = analytics.user().anonymousId();
+  const userProps: any = {};
+  const customDimensions = pick(
+    analytics.user().traits(),
+    opts.extraDimensions,
+  );
+
+  if (userId) userProps.userId = userId;
+  if (anonymousId) userProps.segmentAnonymousId = anonymousId;
+
+  return { ...customDimensions, ...userProps };
+}
+
+function enhancedEcommerceTrackProduct(track: any, opts: any) {
+  const props = track.properties();
+  const product: any = {
+    id: track.productId() || track.id() || track.sku(),
+    name: track.name(),
+    category: track.category(),
+    quantity: track.quantity(),
+    price: track.price(),
+    brand: props.brand,
+    variant: props.variant,
+    currency: track.currency(),
+  };
+
+  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#product-data
+  // GA requires an integer but our specs says "Number", so it could be a float.
+  if (props.position != null) {
+    product.position = Math.round(props.position);
+  }
+
+  // append coupon if it set
+  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#measuring-transactions
+  const coupon = track.proxy("properties.coupon");
+  if (coupon) product.coupon = coupon;
+
+  return product;
+}
+
+module.exports = EnhancedGTM;
