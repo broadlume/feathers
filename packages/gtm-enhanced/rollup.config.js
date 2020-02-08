@@ -1,6 +1,6 @@
 import { rollup } from "./../../config/rollup.config";
 
 export default rollup({
-  name: "GTM-Enhanced",
+  name: "gtm-enhanced",
   umdName: "GTMEnhanced",
 });
