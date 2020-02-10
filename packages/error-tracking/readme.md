@@ -1,4 +1,4 @@
-# @adhawk/adwords-phone-tag
+# @adhawk/error-tracking
 
 This package sets up error tracking for projects. Behinds the curtains, it sets up and uses [sentry.io](https://sentry.io).
 
