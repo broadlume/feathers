@@ -45,6 +45,7 @@
     "analytics.js-integrations": "https://github.com/segmentio/analytics.js-integrations#c1fc75c3913035d9b1d187e3948d8ef257a32fc2",
     "component-type": "^1.2.1",
     "global-queue": "^1.0.1",
+    "lodash": "^4.17.15",
     "lodash.foreach": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "obj-case": "^0.2.0"
