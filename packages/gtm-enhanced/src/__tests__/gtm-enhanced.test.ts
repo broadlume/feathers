@@ -207,48 +207,51 @@ describe("GTM Enhanced", () => {
 
     describe("#orderCompleted", () => {
       it("maps order completed to Enhanced Ecommerce spec", () => {
-        analytics.track("Order Completed", {
-          checkout_id: "123",
-          step: 2,
-        });
+        const anonId = analytics.user().anonymousId();
+        const products = [
+          {
+            name: "Monopoly: 3rd jEdition",
+            sku: "G-32",
+            price: 18.99,
+            category: "Games",
+            brand: "Hasbro",
+            variant: "200 pieces",
+            quantity: 1,
+            coupon: "MAYDEALS",
+            position: 3,
+            url: "https://www.example.com/product/path",
+            image_url: "https://www.example.com/product/path.jpg",
+          },
+        ];
 
-        console.log("window:", window["dataLayer"]);
+        analytics.track("Order Completed", {
+          checkout_id: "fksdjfsdjfisjf9sdfjsd9f",
+          order_id: "50314b8e9bcf000000000000",
+          affiliation: "Google Store",
+          total: 27.5,
+          subtotal: 22.5,
+          revenue: 25.0,
+          shipping: 3,
+          tax: 2,
+          discount: 2.5,
+          currency: "USD",
+          products: products,
+        });
 
         expect(window["dataLayer"]).toEqual([
           expect.objectContaining({
-            event: "checkout",
+            userId: 1,
+            segmentAnonymousId: anonId,
             ecommerce: {
               purchase: {
                 actionField: {
-                  id: "T12345", // Transaction ID. Required for purchases and refunds.
-                  affiliation: "Online Store",
-                  revenue: "35.43", // Total transaction value (incl. tax and shipping)
-                  tax: "4.90",
-                  shipping: "5.99",
-                  coupon: "SUMMER_SALE",
+                  id: "50314b8e9bcf000000000000",
+                  affiliation: "Google Store",
+                  revenue: 27.5,
+                  tax: 2,
+                  shipping: 3,
                 },
-                products: [
-                  {
-                    // List of productFieldObjects.
-                    name: "Triblend Android T-Shirt", // Name or ID is required.
-                    id: "12345",
-                    price: "15.25",
-                    brand: "Google",
-                    category: "Apparel",
-                    variant: "Gray",
-                    quantity: 1,
-                    coupon: "", // Optional fields may be omitted or set to empty string.
-                  },
-                  {
-                    name: "Donut Friday Scented T-Shirt",
-                    id: "67890",
-                    price: "33.75",
-                    brand: "Google",
-                    category: "Apparel",
-                    variant: "Black",
-                    quantity: 1,
-                  },
-                ],
+                products: products,
               },
             },
           }),

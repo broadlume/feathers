@@ -186,8 +186,6 @@ EnhancedGTM.prototype.orderCompleted = function(track) {
   const total = track.total() || track.revenue() || 0;
   const props = track.properties();
 
-  console.log("INSIDE ORDER COMPLETE");
-
   push({
     ...userProps,
     ecommerce: {
