@@ -205,12 +205,14 @@ describe("GTM Enhanced", () => {
       });
     });
 
-    describe("#orderComplete", () => {
-      it("maps order complete to Enhanced Ecommerce spec", () => {
-        analytics.track("Order Complete", {
+    describe("#orderCompleted", () => {
+      it("maps order completed to Enhanced Ecommerce spec", () => {
+        analytics.track("Order Completed", {
           checkout_id: "123",
           step: 2,
         });
+
+        console.log("window:", window["dataLayer"]);
 
         expect(window["dataLayer"]).toEqual([
           expect.objectContaining({

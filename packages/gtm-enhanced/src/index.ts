@@ -181,21 +181,25 @@ EnhancedGTM.prototype.checkoutStarted = function(track) {
  * @api private
  */
 
-EnhancedGTM.prototype.orderComplete = function(track) {
+EnhancedGTM.prototype.orderCompleted = function(track) {
   const userProps = enhancedUserInfo(this.analytics, this.options);
+  const total = track.total() || track.revenue() || 0;
+  const props = track.properties();
+
+  console.log("INSIDE ORDER COMPLETE");
 
   push({
     ...userProps,
     ecommerce: {
       purchase: {
         actionField: {
-          id: "", // Transaction ID. Required for purchases and refunds.
-          affiliation: "",
-          revenue: "35.43", // Total transaction value (incl. tax and shipping)
-          tax: "4.90",
-          shipping: "5.99",
+          id: track.orderId(),
+          affiliation: props.affiliation,
+          revenue: total,
+          tax: track.tax(),
+          shipping: track.shipping(),
         },
-        products: [], // need to pass products into here
+        products: track.products(),
       },
     },
   });
