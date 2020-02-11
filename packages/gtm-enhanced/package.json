@@ -1,14 +1,19 @@
 {
   "name": "@adhawk/gtm-enhanced",
   "description": "Google Tag Manager integration for Segment.io with enhanced ecommerce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/gtm-enhanced.cjs.js",
   "module": "./lib/gtm-enhanced.esm.js",
   "unpkg": "./lib/gtm-enhanced.umd.min.js",
   "typings": "./lib/index.d.ts",
-  "keywords": ["segment", "google tag manager", "gtm", "analytics.js"],
+  "keywords": [
+    "segment",
+    "google tag manager",
+    "gtm",
+    "analytics.js"
+  ],
   "repository": {
     "type": "git",
     "url": "@adhawk/feathers"
