@@ -8,6 +8,7 @@
   "module": "./lib/gtm-enhanced.esm.js",
   "unpkg": "./lib/gtm-enhanced.umd.min.js",
   "typings": "./lib/index.d.ts",
+  "keywords": ["segment", "google tag manager", "gtm", "analytics.js"],
   "repository": {
     "type": "git",
     "url": "@adhawk/feathers"
