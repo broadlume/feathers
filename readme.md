@@ -19,6 +19,7 @@ own `README` and documentation describing usage.
 | [dom-dataset](packages/dom-dataset)                   | [![](https://img.shields.io/npm/v/@adhawk/dom-dataset)](https://npmjs.com/@adhawk/dom-dataset)                   |
 | [error-tracking](packages/error-tracking)             | [![](https://img.shields.io/npm/v/@adhawk/error-tracking)](https://npmjs.com/@adhawk/error-tracking)             |
 | [react-error-boundary](packages/react-error-boundary) | [![](https://img.shields.io/npm/v/@adhawk/react-error-boundary)](https://npmjs.com/@adhawk/react-error-boundary) |
+| [gtm-enhanced](packages/gtm-enhanced)                 | [![](https://img.shields.io/npm/v/@adhawk/gtm-enhanced)](https://npmjs.com/@adhawk/gtm-enhanced)                 |
 
 ## License
 
