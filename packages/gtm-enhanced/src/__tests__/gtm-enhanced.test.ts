@@ -206,11 +206,24 @@ describe("GTM Enhanced", () => {
     });
 
     describe("#checkoutStepViewed", () => {
+      const productData = {
+        id: "G-32",
+        name: "Monopoly: 3rd jEdition",
+        category: "Games",
+        quantity: 1,
+        price: 18.99,
+        brand: "Hasbro",
+        variant: "200 pieces",
+        currency: "USD",
+        position: 3,
+        coupon: "MAYDEALS",
+      };
+
       it("maps to Enhanced Ecommerce spec", () => {
         analytics.track("Checkout Step Viewed", {
           checkout_id: "1234",
           step: 2,
-          products: [{}],
+          products: [{ ...productData }],
         });
 
         expect(window["dataLayer"]).toEqual([
@@ -219,7 +232,7 @@ describe("GTM Enhanced", () => {
             ecommerce: {
               checkout: {
                 actionField: { step: 2 },
-                products: [{}],
+                products: [{ ...productData }],
               },
             },
           }),

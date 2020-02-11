@@ -152,9 +152,9 @@ EnhancedGTM.prototype.productAdded = function(track: any) {
 };
 
 /**
- * Completed checkout step - Enhanced Ecommerce
+ * Started order - Enhanced Ecommerce
  *
- * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#checkout-options
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#checkout-steps
  *
  * @api private
  */
@@ -168,6 +168,30 @@ EnhancedGTM.prototype.checkoutStarted = function(track) {
     ecommerce: {
       checkout: {
         actionField: { step: 1 },
+        products: track.products(),
+      },
+    },
+  });
+};
+
+/**
+ * Viewed checkout step - Enhanced Ecommerce
+ *
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#checkout-steps
+ *
+ * @api private
+ */
+
+EnhancedGTM.prototype.checkoutStepViewed = function(track) {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+  const step = track.properties().step;
+
+  push({
+    ...userProps,
+    event: "checkout",
+    ecommerce: {
+      checkout: {
+        actionField: { step: step },
         products: track.products(),
       },
     },
