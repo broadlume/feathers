@@ -155,6 +155,33 @@ describe("GTM Enhanced", () => {
       });
     });
 
+    describe("#checkoutStepCompleted", () => {
+      it("maps to Enhanced Ecommerce spec", () => {
+        const anonId = analytics.user().anonymousId();
+        const productData = {}; // fill this out
+
+        analytics.track("Checkout Started", {
+          order_id: "123",
+          value: 18.99,
+          currency: "USD",
+          products: [{ ...productData }],
+        });
+
+        expect(window["dataLayer"]).toEqual([
+          expect.objectContaining({
+            segmentAnonymousId: anonId,
+            event: "checkout",
+            ecommerce: {
+              checkout: {
+                actionField: { step: 1 },
+                products: [],
+              },
+            },
+          }),
+        ]);
+      });
+    });
+
     it("tracks custom dimensions", () => {
       analytics.identify(1, { "retailer-id": "123" });
 
