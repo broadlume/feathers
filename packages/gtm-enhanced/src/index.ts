@@ -127,6 +127,22 @@ EnhancedGTM.prototype.productClicked = function(track: any) {
   });
 };
 
+EnhancedGTM.prototype.productAdded = function(track: any) {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+  const product = enhancedEcommerceTrackProduct(track, this.options);
+
+  push({
+    ...userProps,
+    event: "addToCart",
+    ecommerce: {
+      currencyCode: "USD",
+      add: {
+        products: [product],
+      },
+    },
+  });
+};
+
 function enhancedUserInfo(analytics: any, opts: any) {
   const userId = analytics.user().id();
   const anonymousId = analytics.user().anonymousId();
