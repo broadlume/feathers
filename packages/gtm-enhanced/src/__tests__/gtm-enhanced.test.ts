@@ -155,26 +155,49 @@ describe("GTM Enhanced", () => {
       });
     });
 
-    describe("#checkoutStepCompleted", () => {
+    describe("#checkoutStarted", () => {
       it("maps to Enhanced Ecommerce spec", () => {
-        const anonId = analytics.user().anonymousId();
-        const productData = {}; // fill this out
+        const cartValue = 18.99;
+        const productData = {
+          id: "G-32",
+          name: "Monopoly: 3rd jEdition",
+          category: "Games",
+          quantity: 1,
+          price: 18.99,
+          brand: "Hasbro",
+          variant: "200 pieces",
+          currency: "USD",
+          position: 3,
+          coupon: "MAYDEALS",
+        };
 
         analytics.track("Checkout Started", {
           order_id: "123",
-          value: 18.99,
+          value: cartValue,
           currency: "USD",
           products: [{ ...productData }],
         });
 
         expect(window["dataLayer"]).toEqual([
           expect.objectContaining({
-            segmentAnonymousId: anonId,
             event: "checkout",
             ecommerce: {
               checkout: {
                 actionField: { step: 1 },
-                products: [],
+                products: [
+                  {
+                    brand: "Hasbro",
+                    category: "Games",
+                    coupon: "MAYDEALS",
+                    currency: "USD",
+                    id: "G-32",
+                    name: "Monopoly: 3rd jEdition",
+                    position: 3,
+                    price: 18.99,
+                    quantity: 1,
+                    variant: "200 pieces",
+                  },
+                ],
               },
             },
           }),

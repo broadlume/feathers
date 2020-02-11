@@ -151,34 +151,16 @@ EnhancedGTM.prototype.productAdded = function(track: any) {
  * @api private
  */
 
-EnhancedGTM.prototype.checkoutStepCompletedEnhanced = function(track) {
-  // WIP
-  // var props = track.properties();
-  // const userProps = enhancedUserInfo(this.analytics, this.options);
-  // const product = enhancedEcommerceTrackProduct(track, this.options);
-
-  // // Only send an event if we have step and options to update
-  // if (!props.step || !options) return;
-
-  // this.loadEnhancedEcommerce(track);
+EnhancedGTM.prototype.checkoutStarted = function(track) {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
 
   push({
-    // ...userProps,
+    ...userProps,
     event: "checkout",
     ecommerce: {
       checkout: {
-        actionField: { step: 1, option: "Visa" },
-        products: [
-          {
-            name: "Triblend Android T-Shirt",
-            id: "12345",
-            price: "15.25",
-            brand: "Google",
-            category: "Apparel",
-            variant: "Gray",
-            quantity: 1,
-          },
-        ],
+        actionField: { step: 1 },
+        products: track.products(),
       },
     },
   });
