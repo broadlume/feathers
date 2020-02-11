@@ -127,6 +127,14 @@ EnhancedGTM.prototype.productClicked = function(track: any) {
   });
 };
 
+/**
+ * Added product - Enhanced Ecommerce
+ *
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#add-remove-cart
+ *
+ * @api private
+ */
+
 EnhancedGTM.prototype.productAdded = function(track: any) {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const product = enhancedEcommerceTrackProduct(track, this.options);
@@ -161,6 +169,33 @@ EnhancedGTM.prototype.checkoutStarted = function(track) {
       checkout: {
         actionField: { step: 1 },
         products: track.products(),
+      },
+    },
+  });
+};
+
+/**
+ * Completed order - Enhanced Ecommerce
+ *
+ * https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#measuring-transactions
+ * @api private
+ */
+
+EnhancedGTM.prototype.orderComplete = function(track) {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+
+  push({
+    ...userProps,
+    ecommerce: {
+      purchase: {
+        actionField: {
+          id: "", // Transaction ID. Required for purchases and refunds.
+          affiliation: "",
+          revenue: "35.43", // Total transaction value (incl. tax and shipping)
+          tax: "4.90",
+          shipping: "5.99",
+        },
+        products: [], // need to pass products into here
       },
     },
   });

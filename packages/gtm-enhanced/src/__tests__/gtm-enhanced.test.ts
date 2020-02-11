@@ -205,6 +205,55 @@ describe("GTM Enhanced", () => {
       });
     });
 
+    describe("#orderComplete", () => {
+      it("maps order complete to Enhanced Ecommerce spec", () => {
+        analytics.track("Order Complete", {
+          checkout_id: "123",
+          step: 2,
+        });
+
+        expect(window["dataLayer"]).toEqual([
+          expect.objectContaining({
+            event: "checkout",
+            ecommerce: {
+              purchase: {
+                actionField: {
+                  id: "T12345", // Transaction ID. Required for purchases and refunds.
+                  affiliation: "Online Store",
+                  revenue: "35.43", // Total transaction value (incl. tax and shipping)
+                  tax: "4.90",
+                  shipping: "5.99",
+                  coupon: "SUMMER_SALE",
+                },
+                products: [
+                  {
+                    // List of productFieldObjects.
+                    name: "Triblend Android T-Shirt", // Name or ID is required.
+                    id: "12345",
+                    price: "15.25",
+                    brand: "Google",
+                    category: "Apparel",
+                    variant: "Gray",
+                    quantity: 1,
+                    coupon: "", // Optional fields may be omitted or set to empty string.
+                  },
+                  {
+                    name: "Donut Friday Scented T-Shirt",
+                    id: "67890",
+                    price: "33.75",
+                    brand: "Google",
+                    category: "Apparel",
+                    variant: "Black",
+                    quantity: 1,
+                  },
+                ],
+              },
+            },
+          }),
+        ]);
+      });
+    });
+
     it("tracks custom dimensions", () => {
       analytics.identify(1, { "retailer-id": "123" });
 
