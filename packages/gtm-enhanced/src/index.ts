@@ -1,7 +1,6 @@
 const integration = require("@segment/analytics.js-integration");
 const push = require("global-queue")("dataLayer", { wrap: false });
 const dot = require("obj-case");
-// const forEach = require("lodash.foreach");
 const pick = require("lodash.pick");
 
 /**
