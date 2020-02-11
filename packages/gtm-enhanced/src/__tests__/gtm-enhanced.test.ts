@@ -205,6 +205,28 @@ describe("GTM Enhanced", () => {
       });
     });
 
+    describe("#checkoutStepViewed", () => {
+      it("maps to Enhanced Ecommerce spec", () => {
+        analytics.track("Checkout Step Viewed", {
+          checkout_id: "1234",
+          step: 2,
+          products: [{}],
+        });
+
+        expect(window["dataLayer"]).toEqual([
+          expect.objectContaining({
+            event: "checkout",
+            ecommerce: {
+              checkout: {
+                actionField: { step: 2 },
+                products: [{}],
+              },
+            },
+          }),
+        ]);
+      });
+    });
+
     describe("#orderCompleted", () => {
       it("maps order completed to Enhanced Ecommerce spec", () => {
         const anonId = analytics.user().anonymousId();
