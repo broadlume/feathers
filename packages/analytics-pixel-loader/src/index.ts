@@ -55,7 +55,7 @@ export default function(source: string) {
 
   const outputSource = [
     ...imports,
-    "var Analytics = require('@segment/analytics.js-core/analytics');",
+    "var Analytics = require('@segment/analytics.js-core/lib/analytics');",
     "var analytics = new Analytics();",
     "analytics.VERSION = require('@segment/analytics.js-core/package.json').version;",
     ...setups,
