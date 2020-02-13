@@ -55,11 +55,12 @@ export default function(source: string) {
 
   const outputSource = [
     ...imports,
-    "var Analytics = require('@segment/analytics.js-core').constructor;",
+    "var Analytics = require('@segment/analytics.js-core/analytics');",
     "var analytics = new Analytics();",
+    "analytics.VERSION = require('@segment/analytics.js-core/package.json').version;",
     ...setups,
     `analytics.initialize(${JSON.stringify(mappedAnalyticsConfig)});`,
-    "export default analytics;",
+    "export default analytics;"
   ].join("\n");
 
   return outputSource;
