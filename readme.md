@@ -20,6 +20,7 @@ own `README` and documentation describing usage.
 | [error-tracking](packages/error-tracking)             | [![](https://img.shields.io/npm/v/@adhawk/error-tracking)](https://npmjs.com/@adhawk/error-tracking)             |
 | [react-error-boundary](packages/react-error-boundary) | [![](https://img.shields.io/npm/v/@adhawk/react-error-boundary)](https://npmjs.com/@adhawk/react-error-boundary) |
 | [gtm-enhanced](packages/gtm-enhanced)                 | [![](https://img.shields.io/npm/v/@adhawk/gtm-enhanced)](https://npmjs.com/@adhawk/gtm-enhanced)                 |
+| [flux-vision](packages/flux-vision)                   | [![](https://img.shields.io/npm/v/@adhawk/flux-vision)](https://npmjs.com/@adhawk/flux-vision)                   |
 
 ## License
 
