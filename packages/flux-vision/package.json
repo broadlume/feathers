@@ -4,9 +4,9 @@
   "version": "1.0.1",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/gtm-enhanced.cjs.js",
-  "module": "./lib/gtm-enhanced.esm.js",
-  "unpkg": "./lib/gtm-enhanced.umd.min.js",
+  "main": "./lib/flux-vision.cjs.js",
+  "module": "./lib/flux-vision.esm.js",
+  "unpkg": "./lib/flux-vision.umd.min.js",
   "typings": "./lib/index.d.ts",
   "keywords": [
     "segment",
@@ -28,10 +28,10 @@
     "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/gtm-enhanced",
-    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/gtm-enhanced --watch",
-    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/gtm-enhanced",
-    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/gtm-enhanced"
+    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/flux-vision",
+    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/flux-vision --watch",
+    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/flux-vision",
+    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/flux-vision"
   },
   "files": [
     "lib"
