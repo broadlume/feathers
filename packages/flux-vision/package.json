@@ -1,0 +1,47 @@
+{
+  "name": "@adhawk/flux-vision",
+  "description": "Track End of Funnel Behavior in Shopify Liquid templates through Segment.io",
+  "version": "1.0.1",
+  "author": "developers@tryadhawk.com",
+  "license": "MIT",
+  "main": "./lib/gtm-enhanced.cjs.js",
+  "module": "./lib/gtm-enhanced.esm.js",
+  "unpkg": "./lib/gtm-enhanced.umd.min.js",
+  "typings": "./lib/index.d.ts",
+  "keywords": [
+    "segment",
+    "shopify",
+    "liquid template",
+    "analytics.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "@adhawk/feathers"
+  },
+  "sideEffects": true,
+  "scripts": {
+    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
+    "prepare": "npm run build",
+    "prebuild": "npm run clean",
+    "build": "tsc -p .",
+    "postbuild": "rollup -c",
+    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
+    "predeploy": "npm run build",
+    "deploy": "npm publish",
+    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/gtm-enhanced",
+    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/gtm-enhanced --watch",
+    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/gtm-enhanced",
+    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/gtm-enhanced"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "jest-environment-jsdom": "^25.1.0",
+    "typescript": "^3.1.3"
+  },
+  "dependencies": {}
+}
