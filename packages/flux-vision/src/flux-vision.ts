@@ -4,45 +4,39 @@ export default class FluxVision {
   productData: any[];
   Shopify: any;
   analytics: any;
+  liquidDivSelector: string;
 
-  constructor({ analytics, Shopify }) {
+  constructor({
+    analytics,
+    Shopify,
+    liquidDivSelector = "#FLUX_VISION_DATASETS",
+  }) {
     this.productData = [];
     this.analytics = analytics;
     this.Shopify = Shopify;
+    this.liquidDivSelector = liquidDivSelector;
   }
 
   public init() {
-    this.addLiquidDivToDOM();
-    this.pullDataFromDOM();
-    this.sendAnalytics();
+    try {
+      this.checkDomForSelector();
+      this.pullDataFromDOM();
+      this.sendAnalytics();
+    } catch (error) {
+      throw new Error(`Flux Vision ${error}`);
+    }
   }
 
-  private addLiquidDivToDOM() {
-    const shopifyLiquidHTML = `
-    <div id="FLUX_VISION_DATASETS" style='display:none'> 
-        <div 
-            id="checkout-data" 
-            data-checkout-id={{checkout.id}} 
-            data-order-number={{checkout.order_number}} 
-            data-total-price={{checkout.total_price}} 
-        >
-        </div>
-    {% for item in checkout.line_items %} 
-        <div 
-            id="product-item-for-analytics-dataset" 
-            data-name="{{item.title}}" 
-            data-sku="{{item.sku}}" 
-            data-price="{{item.price}}" 
-            data-quantity="{{item.quantity}}" 
-            data-url="{{item.url}}" 
-        > 
-        </div>
-    {% endfor %}
-    </div>
-    `;
-
-    const body = document.querySelector("body");
-    body.insertAdjacentHTML("beforeend", shopifyLiquidHTML);
+  private checkDomForSelector() {
+    const { liquidDivSelector } = this;
+    try {
+      const liquidElement = document.querySelector(liquidDivSelector);
+      if (!liquidElement) {
+        throw `no liquid element found with selector ${liquidDivSelector}. Learn more at https://github.com/adHawk/feathers/tree/master/packages/flux-vision`;
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   private pullDataFromDOM() {
