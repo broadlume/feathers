@@ -18,7 +18,29 @@ export default class FluxVision {
   }
 
   private addLiquidDivToDOM() {
-    const defaultHTMLData = `<div id="FLUX_VISION_DATASETS" style='display:none'> <div id="checkout-data" data-checkout-id={{checkout.id}} data-order-number={{checkout.order_number}} data-total-price={{checkout.total_price}} ></div>{% for item in checkout.line_items %} <div id="product-item-for-analytics-dataset" data-name="{{item.title}}" data-sku="{{item.sku}}" data-price="{{item.price}}" data-quantity="{{item.quantity}}" data-url="{{item.url}}" > </div>{% endfor %}</div>`;
+    const defaultHTMLData = `
+    <div id="FLUX_VISION_DATASETS" style='display:none'> 
+        <div 
+            id="checkout-data" 
+            data-checkout-id={{checkout.id}} 
+            data-order-number={{checkout.order_number}} 
+            data-total-price={{checkout.total_price}} 
+        >
+        </div>
+    {% for item in checkout.line_items %} 
+        <div 
+            id="product-item-for-analytics-dataset" 
+            data-name="{{item.title}}" 
+            data-sku="{{item.sku}}" 
+            data-price="{{item.price}}" 
+            data-quantity="{{item.quantity}}" 
+            data-url="{{item.url}}" 
+        > 
+        </div>
+    {% endfor %}
+    </div>
+    `;
+
     const body = document.querySelector("body");
     body.insertAdjacentHTML("beforeend", defaultHTMLData);
   }
