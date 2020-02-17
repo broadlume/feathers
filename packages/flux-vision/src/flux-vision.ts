@@ -23,6 +23,29 @@ export default class FluxVision {
     body.insertAdjacentHTML("beforeend", defaultHTMLData);
   }
 
+  private pullDataFromDOM() {
+    let { productData } = this;
+
+    //checkout data
+    const checkoutElemement: any = document.querySelector("#checkout-data");
+    this.checkoutDataset = Object.assign({}, checkoutElemement.dataset);
+
+    // product data
+    const productsDatasets: any = document.querySelectorAll(
+      "#product-item-for-analytics-dataset",
+    );
+
+    for (let i = 0; i < productsDatasets.length; i++) {
+      const productDataset = productsDatasets[i].dataset;
+      if (productDataset) {
+        const formattedPrice = (productDataset.price / 100).toFixed(2);
+        productDataset.price = formattedPrice;
+        const objectProduct = Object.assign({}, productDataset);
+        productData.push(objectProduct);
+      }
+    }
+  }
+
   private sendAnalytics() {
     const { analytics, checkoutDataset, productData } = this;
     const { currentStep, currentPage } = this.getCurrentEnvironment();
@@ -67,34 +90,10 @@ export default class FluxVision {
 
   private getCurrentEnvironment() {
     const { Shopify } = this;
-    this.currentStep = Shopify.Checkout.step;
-    this.currentPage = Shopify.Checkout.page;
+
     return {
       currentStep: Shopify.Checkout.step,
       currentPage: Shopify.Checkout.page,
     };
-  }
-
-  private pullDataFromDOM() {
-    let { productData } = this;
-
-    //checkout data
-    const checkoutElemement: any = document.querySelector("#checkout-data");
-    this.checkoutDataset = Object.assign({}, checkoutElemement.dataset);
-
-    // product data
-    const productsDatasets: any = document.querySelectorAll(
-      "#product-item-for-analytics-dataset",
-    );
-
-    for (let i = 0; i < productsDatasets.length; i++) {
-      const productDataset = productsDatasets[i].dataset;
-      if (productDataset) {
-        const formattedPrice = (productDataset.price / 100).toFixed(2);
-        productDataset.price = formattedPrice;
-        const objectProduct = Object.assign({}, productDataset);
-        productData.push(objectProduct);
-      }
-    }
   }
 }
