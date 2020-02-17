@@ -18,7 +18,7 @@ export default class FluxVision {
   }
 
   private addLiquidDivToDOM() {
-    const defaultHTMLData = `
+    const shopifyLiquidHTML = `
     <div id="FLUX_VISION_DATASETS" style='display:none'> 
         <div 
             id="checkout-data" 
@@ -42,7 +42,7 @@ export default class FluxVision {
     `;
 
     const body = document.querySelector("body");
-    body.insertAdjacentHTML("beforeend", defaultHTMLData);
+    body.insertAdjacentHTML("beforeend", shopifyLiquidHTML);
   }
 
   private pullDataFromDOM() {
