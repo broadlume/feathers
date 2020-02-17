@@ -160,8 +160,8 @@ describe("FluxVision", () => {
       expect(analyticsTrackMock).toHaveBeenCalledWith("Order Completed", {
         checkout_id: "{{checkout.id}}",
         currency: "USD",
-        order_id: undefined,
-        total: undefined,
+        order_id: "{{checkout.order_number}}",
+        total: "{{checkout.total_price}}",
         products: [
           {
             name: "{{item.title}}",

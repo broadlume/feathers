@@ -102,8 +102,8 @@ export default class FluxVision {
     if (currentPage == "thank_you") {
       analytics.track("Order Completed", {
         checkout_id: checkoutDataset.checkoutId,
-        order_id: checkoutDataset.orderId,
-        total: checkoutDataset.orderPrice,
+        order_id: checkoutDataset.orderNumber,
+        total: checkoutDataset.totalPrice,
         currency: "USD",
         products: productData,
       });
