@@ -21,8 +21,6 @@ describe("FluxVision", () => {
     const flux = new FluxVision({ analytics, Shopify });
     flux.init();
     expect(flux.analytics).toEqual(analytics);
-    expect(flux.currentPage).toEqual("page_one");
-    expect(flux.currentStep).toEqual("contact_information");
   });
 
   it("pulls correct dom element data (liquid template style)", () => {
