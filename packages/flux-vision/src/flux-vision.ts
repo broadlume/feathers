@@ -41,18 +41,21 @@ export default class FluxVision {
           currency: "USD",
           products: productData,
         });
+        break;
       case "shipping_method":
         analytics.track("Checkout Step Viewed", {
           checkout_id: checkoutDataset.checkoutId,
           step: 2,
           products: productData,
         });
+        break;
       case "payment_method":
         analytics.track("Checkout Step Viewed", {
           checkout_id: checkoutDataset.checkoutId,
           step: 3,
           products: productData,
         });
+        break;
       default:
         break;
     }

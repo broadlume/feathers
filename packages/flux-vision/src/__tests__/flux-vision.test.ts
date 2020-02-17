@@ -50,4 +50,49 @@ describe("FluxVision", () => {
       },
     ]);
   });
+
+  describe("Analytics", () => {
+    it("sends the correct checkout start event", () => {
+      const analyticsTrackMock = jest.fn();
+      const analytics = {
+        track: analyticsTrackMock,
+      };
+
+      const Shopify = {
+        Checkout: { page: "page_one", step: "contact_information" },
+      };
+
+      new FluxVision({ analytics, Shopify });
+
+      expect(analyticsTrackMock).toHaveBeenCalledTimes(1);
+      expect(analyticsTrackMock).toHaveBeenCalledWith("Checkout Started", {
+        currency: "USD",
+        order_id: "{{checkout.order_number}}",
+        products: [
+          {
+            name: "{{item.title}}",
+            price: "NaN",
+            quantity: "{{item.quantity}}",
+            sku: "{{item.sku}}",
+            url: "{{item.url}}",
+          },
+          {
+            name: "{{item.title}}",
+            price: "NaN",
+            quantity: "{{item.quantity}}",
+            sku: "{{item.sku}}",
+            url: "{{item.url}}",
+          },
+          {
+            name: "{{item.title}}",
+            price: "NaN",
+            quantity: "{{item.quantity}}",
+            sku: "{{item.sku}}",
+            url: "{{item.url}}",
+          },
+        ],
+        value: undefined,
+      });
+    });
+  });
 });
