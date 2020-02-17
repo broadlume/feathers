@@ -1,4 +1,4 @@
-import FluxVision from "./../";
+import FluxVision from "./../flux-vision";
 
 describe("FluxVision", () => {
   it("initializes the class with analytics and shopify object", () => {
