@@ -7,7 +7,7 @@ export default class FluxVision {
   currentStep: any;
   analytics: any;
   Shopify: any;
-  productsDatasets: NodeListOf<Element>;
+  productsDatasets: NodeListOf<any>;
   currentPage: any;
 
   constructor({ htmlDataElements = defaultHTMLData, analytics, Shopify }) {
