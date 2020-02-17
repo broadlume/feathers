@@ -1,6 +1,14 @@
 import FluxVision from "./../flux-vision";
 
 describe("FluxVision", () => {
+  // clean up divs added to document in test environment
+  afterEach(() => {
+    var data = document.getElementById("TEST_ID_ENV");
+    if (data) {
+      data.remove();
+    }
+  });
+
   it("initializes the class with analytics and shopify object", () => {
     const analytics = {
       track: jest.fn(),
@@ -11,6 +19,7 @@ describe("FluxVision", () => {
     };
 
     const flux = new FluxVision({ analytics, Shopify });
+    flux.init();
     expect(flux.analytics).toEqual(analytics);
     expect(flux.currentPage).toEqual("page_one");
     expect(flux.currentStep).toEqual("contact_information");
@@ -26,6 +35,7 @@ describe("FluxVision", () => {
     };
 
     const flux = new FluxVision({ analytics, Shopify });
+    flux.init();
 
     expect(flux.checkoutDataset).toEqual({
       checkoutId: "{{checkout.id}}",
@@ -34,13 +44,6 @@ describe("FluxVision", () => {
     });
 
     expect(flux.productData).toEqual([
-      {
-        name: "{{item.title}}",
-        price: "NaN",
-        quantity: "{{item.quantity}}",
-        sku: "{{item.sku}}",
-        url: "{{item.url}}",
-      },
       {
         name: "{{item.title}}",
         price: "NaN",
@@ -62,7 +65,10 @@ describe("FluxVision", () => {
         Checkout: { page: "page_one", step: "contact_information" },
       };
 
-      new FluxVision({ analytics, Shopify });
+      const flux = new FluxVision({ analytics, Shopify });
+      flux.init();
+
+      console.log(flux.productData);
 
       expect(analyticsTrackMock).toHaveBeenCalledTimes(1);
       expect(analyticsTrackMock).toHaveBeenCalledWith("Checkout Started", {
@@ -76,13 +82,28 @@ describe("FluxVision", () => {
             sku: "{{item.sku}}",
             url: "{{item.url}}",
           },
-          {
-            name: "{{item.title}}",
-            price: "NaN",
-            quantity: "{{item.quantity}}",
-            sku: "{{item.sku}}",
-            url: "{{item.url}}",
-          },
+        ],
+        value: undefined,
+      });
+    });
+
+    it("sends the correct checkout step 2 event for shipping_method", () => {
+      const analyticsTrackMock = jest.fn();
+      const analytics = {
+        track: analyticsTrackMock,
+      };
+
+      const Shopify = {
+        Checkout: { page: "page_one", step: "shipping_method" },
+      };
+
+      const flux = new FluxVision({ analytics, Shopify });
+      flux.init();
+
+      expect(analyticsTrackMock).toHaveBeenCalledTimes(1);
+      expect(analyticsTrackMock).toHaveBeenCalledWith("Checkout Step Viewed", {
+        checkout_id: "{{checkout.id}}",
+        products: [
           {
             name: "{{item.title}}",
             price: "NaN",
@@ -91,7 +112,36 @@ describe("FluxVision", () => {
             url: "{{item.url}}",
           },
         ],
-        value: undefined,
+        step: 2,
+      });
+    });
+
+    it("sends the correct checkout step 3 event for payment_method", () => {
+      const analyticsTrackMock = jest.fn();
+      const analytics = {
+        track: analyticsTrackMock,
+      };
+
+      const Shopify = {
+        Checkout: { page: "page_one", step: "payment_method" },
+      };
+
+      const flux = new FluxVision({ analytics, Shopify });
+      flux.init();
+
+      expect(analyticsTrackMock).toHaveBeenCalledTimes(1);
+      expect(analyticsTrackMock).toHaveBeenCalledWith("Checkout Step Viewed", {
+        checkout_id: "{{checkout.id}}",
+        products: [
+          {
+            name: "{{item.title}}",
+            price: "NaN",
+            quantity: "{{item.quantity}}",
+            sku: "{{item.sku}}",
+            url: "{{item.url}}",
+          },
+        ],
+        step: 3,
       });
     });
   });

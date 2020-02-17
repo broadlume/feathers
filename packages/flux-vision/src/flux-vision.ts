@@ -1,4 +1,4 @@
-const defaultHTMLData = `<div style='display:none'> <div id="checkout-data" data-checkout-id={{checkout.id}} data-order-number={{checkout.order_number}} data-total-price={{checkout.total_price}} ></div>{% for item in checkout.line_items %} <div id="product-item-for-analytics-dataset" data-name="{{item.title}}" data-sku="{{item.sku}}" data-price="{{item.price}}" data-quantity="{{item.quantity}}" data-url="{{item.url}}" > </div>{% endfor %}</div>`;
+const defaultHTMLData = `<div id="TEST_ID_ENV" style='display:none'> <div id="checkout-data" data-checkout-id={{checkout.id}} data-order-number={{checkout.order_number}} data-total-price={{checkout.total_price}} ></div>{% for item in checkout.line_items %} <div id="product-item-for-analytics-dataset" data-name="{{item.title}}" data-sku="{{item.sku}}" data-price="{{item.price}}" data-quantity="{{item.quantity}}" data-url="{{item.url}}" > </div>{% endfor %}</div>`;
 
 export default class FluxVision {
   htmlDataElements: string;
@@ -18,7 +18,9 @@ export default class FluxVision {
     // Add html elements with product / checkout data
     const body = document.querySelector("body");
     body.insertAdjacentHTML("beforeend", htmlDataElements);
+  }
 
+  public init() {
     this.setCurrentEnvironment();
     this.pullDataFromDOM();
     this.sendAnalytics();
@@ -78,24 +80,25 @@ export default class FluxVision {
   }
 
   private pullDataFromDOM() {
-    // Analytics: FF main account
     let { productData } = this;
-    // Pull in html elements with data
+
+    //checkout data
     const checkoutElemement: any = document.querySelector("#checkout-data");
     this.checkoutDataset = Object.assign({}, checkoutElemement.dataset);
+
+    // product data
     const productsDatasets: any = document.querySelectorAll(
       "#product-item-for-analytics-dataset",
     );
+    console.log("###### productsDatasets", productsDatasets);
 
-    if (productsDatasets) {
-      for (let i = 0; i < productsDatasets.length; i++) {
-        const productDataset = productsDatasets[i].dataset;
-        if (productDataset) {
-          const formattedPrice = (productDataset.price / 100).toFixed(2);
-          productDataset.price = formattedPrice;
-          const objectProduct = Object.assign({}, productDataset);
-          productData.push(objectProduct);
-        }
+    for (let i = 0; i < productsDatasets.length; i++) {
+      const productDataset = productsDatasets[i].dataset;
+      if (productDataset) {
+        const formattedPrice = (productDataset.price / 100).toFixed(2);
+        productDataset.price = formattedPrice;
+        const objectProduct = Object.assign({}, productDataset);
+        productData.push(objectProduct);
       }
     }
   }
