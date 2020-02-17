@@ -87,7 +87,6 @@ export default class FluxVision {
     const productsDatasets: any = document.querySelectorAll(
       "#product-item-for-analytics-dataset",
     );
-    console.log("###### productsDatasets", productsDatasets);
 
     for (let i = 0; i < productsDatasets.length; i++) {
       const productDataset = productsDatasets[i].dataset;
