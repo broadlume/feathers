@@ -4,33 +4,23 @@ export default class FluxVision {
   htmlDataElements: string;
   checkoutDataset: any;
   productData: any[];
-  currentStep: any;
-  analytics: any;
   Shopify: any;
-  productsDatasets: NodeListOf<any>;
+  currentStep: any;
   currentPage: any;
+  analytics: any;
+  productsDatasets: NodeListOf<any>;
 
   constructor({ htmlDataElements = defaultHTMLData, analytics, Shopify }) {
     this.htmlDataElements = htmlDataElements;
-    this.checkoutDataset = null;
     this.productData = [];
-    this.currentStep = null;
-    this.currentStep = null;
     this.analytics = analytics;
     this.Shopify = Shopify;
 
-    // Todo clean up this constructor into methods
+    // Add html elements with product / checkout data
     const body = document.querySelector("body");
     body.insertAdjacentHTML("beforeend", htmlDataElements);
 
-    const checkoutElemement: any = document.querySelector("#checkout-data");
-    this.checkoutDataset = checkoutElemement.dataset;
-
-    this.productsDatasets = document.querySelectorAll(
-      "#product-item-for-analytics-dataset",
-    );
-
-    this.currentEnvironment();
+    this.setCurrentEnvironment();
     this.pullDataFromDOM();
     this.sendAnalytics();
   }
@@ -79,7 +69,7 @@ export default class FluxVision {
     }
   }
 
-  private currentEnvironment() {
+  private setCurrentEnvironment() {
     const { Shopify } = this;
     this.currentStep = Shopify.Checkout.step;
     this.currentPage = Shopify.Checkout.page;
@@ -88,6 +78,12 @@ export default class FluxVision {
   private pullDataFromDOM() {
     // Analytics: FF main account
     let { productData, productsDatasets } = this;
+    // Pull in html elements with data
+    const checkoutElemement: any = document.querySelector("#checkout-data");
+    this.checkoutDataset = checkoutElemement.dataset;
+    this.productsDatasets = document.querySelectorAll(
+      "#product-item-for-analytics-dataset",
+    );
 
     for (let i = 0; i < productsDatasets.length; i++) {
       const productDataset = productsDatasets[i].dataset;
