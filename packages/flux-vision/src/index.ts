@@ -2,13 +2,13 @@ const defaultHTMLData = `<div style='display:none'> <div id="checkout-data" data
 
 export default class FluxVision {
   htmlDataElements: string;
-  checkoutDataset: DOMStringMap;
-  productsDatasets: NodeListOf<any>;
-  productData: string[];
-  currentStep: string;
-  currentPage: string;
+  checkoutDataset: any;
+  productData: any[];
+  currentStep: any;
   analytics: any;
   Shopify: any;
+  productsDatasets: NodeListOf<Element>;
+  currentPage: any;
 
   constructor({ htmlDataElements = defaultHTMLData, analytics, Shopify }) {
     this.htmlDataElements = htmlDataElements;
