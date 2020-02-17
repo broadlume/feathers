@@ -3,7 +3,7 @@ import FluxVision from "./../flux-vision";
 describe("FluxVision", () => {
   // clean up divs added to document in test environment
   afterEach(() => {
-    var data = document.getElementById("TEST_ID_ENV");
+    var data = document.getElementById("FLUX_VISION_DATASETS");
     if (data) {
       data.remove();
     }
