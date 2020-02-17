@@ -8,7 +8,6 @@ export default class FluxVision {
   currentStep: any;
   currentPage: any;
   analytics: any;
-  productsDatasets: NodeListOf<any>;
 
   constructor({ htmlDataElements = defaultHTMLData, analytics, Shopify }) {
     this.htmlDataElements = htmlDataElements;
@@ -77,11 +76,11 @@ export default class FluxVision {
 
   private pullDataFromDOM() {
     // Analytics: FF main account
-    let { productData, productsDatasets } = this;
+    let { productData } = this;
     // Pull in html elements with data
     const checkoutElemement: any = document.querySelector("#checkout-data");
-    this.checkoutDataset = checkoutElemement.dataset;
-    this.productsDatasets = document.querySelectorAll(
+    this.checkoutDataset = Object.assign({}, checkoutElemement.dataset);
+    const productsDatasets: any = document.querySelectorAll(
       "#product-item-for-analytics-dataset",
     );
 
