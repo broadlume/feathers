@@ -2,40 +2,56 @@ const defaultHTMLData = `<div style='display:none'> <div id="checkout-data" data
 
 export default class FluxVision {
   htmlDataElements: string;
+  checkoutDataset: DOMStringMap;
+  productsDatasets: NodeListOf<Element>;
+  productData: string[];
   currentStep: string;
   currentPage: string;
 
   constructor({ htmlDataElements = defaultHTMLData }) {
     this.htmlDataElements = htmlDataElements;
-    this.currentStep = "contact_information";
+    this.checkoutDataset = null;
+    this.productData = [];
+    this.currentStep = null;
     this.currentStep = null;
 
+    // Todo clean up this constructor into methods
     const body = document.querySelector("body");
     body.insertAdjacentHTML("beforeend", htmlDataElements);
+
+    const checkoutElemement: Element = document.querySelector("#checkout-data");
+    this.checkoutDataset = checkoutElemement.dataset;
+
+    this.productsDatasets = document.querySelectorAll(
+      "#product-item-for-analytics-dataset",
+    );
+
     this.currentEnvironment();
+    this.pullDataFromDOM();
+    this.sendAnalytics();
   }
 
   public sendAnalytics() {
-    const { currentStep } = this;
+    const { currentStep, checkoutDataset, productData } = this;
     switch (currentStep) {
       case "contact_information":
         analytics.track("Checkout Started", {
-          order_id: dataset.orderNumber,
-          value: dataset.orderPrice,
+          order_id: checkoutDataset.orderNumber,
+          value: checkoutDataset.orderPrice,
           currency: "USD",
-          products: productAnalyticDatasetArray,
+          products: productData,
         });
       case "shipping_method":
         analytics.track("Checkout Step Viewed", {
-          checkout_id: dataset.checkoutId,
+          checkout_id: checkoutDataset.checkoutId,
           step: 2,
-          products: productAnalyticDatasetArray,
+          products: productData,
         });
       case "payment_method":
         analytics.track("Checkout Step Viewed", {
-          checkout_id: dataset.checkoutId,
+          checkout_id: checkoutDataset.checkoutId,
           step: 3,
-          products: productAnalyticDatasetArray,
+          products: productData,
         });
       default:
         break;
@@ -43,11 +59,11 @@ export default class FluxVision {
 
     if (currentPage == "thank_you") {
       analytics.track("Order Completed", {
-        checkout_id: dataset.checkoutId,
-        order_id: dataset.orderId,
-        total: dataset.orderPrice,
+        checkout_id: checkoutDataset.checkoutId,
+        order_id: checkoutDataset.orderId,
+        total: checkoutDataset.orderPrice,
         currency: "USD",
-        products: productAnalyticDatasetArray,
+        products: productData,
       });
     }
   }
@@ -59,13 +75,7 @@ export default class FluxVision {
 
   private pullDataFromDOM() {
     // Analytics: FF main account
-    const productAnalyticDatasetArray = [];
-
-    // Get DOM elements with checkout data
-    const dataset = document.querySelector("#checkout-data").dataset;
-    const productsDatasets = document.querySelectorAll(
-      "#product-item-for-analytics-dataset",
-    );
+    let { productData, productsDatasets } = this;
 
     for (const i = 0; i < productsDatasets.length; i++) {
       const productDataset = productsDatasets[i].dataset;
@@ -73,10 +83,8 @@ export default class FluxVision {
         const formattedPrice = (productDataset.price / 100).toFixed(2);
         productDataset.price = formattedPrice;
         const objectProduct = Object.assign({}, productDataset);
-
-        productAnalyticDatasetArray.push(objectProduct);
+        productData.push(objectProduct);
       }
     }
-    //   console.log('productAnalyticDatasetArray', productAnalyticDatasetArray)
   }
 }
