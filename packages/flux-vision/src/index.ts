@@ -3,23 +3,27 @@ const defaultHTMLData = `<div style='display:none'> <div id="checkout-data" data
 export default class FluxVision {
   htmlDataElements: string;
   checkoutDataset: DOMStringMap;
-  productsDatasets: NodeListOf<Element>;
+  productsDatasets: NodeListOf<any>;
   productData: string[];
   currentStep: string;
   currentPage: string;
+  analytics: any;
+  Shopify: any;
 
-  constructor({ htmlDataElements = defaultHTMLData }) {
+  constructor({ htmlDataElements = defaultHTMLData, analytics, Shopify }) {
     this.htmlDataElements = htmlDataElements;
     this.checkoutDataset = null;
     this.productData = [];
     this.currentStep = null;
     this.currentStep = null;
+    this.analytics = analytics;
+    this.Shopify = Shopify;
 
     // Todo clean up this constructor into methods
     const body = document.querySelector("body");
     body.insertAdjacentHTML("beforeend", htmlDataElements);
 
-    const checkoutElemement: Element = document.querySelector("#checkout-data");
+    const checkoutElemement: any = document.querySelector("#checkout-data");
     this.checkoutDataset = checkoutElemement.dataset;
 
     this.productsDatasets = document.querySelectorAll(
@@ -32,7 +36,14 @@ export default class FluxVision {
   }
 
   public sendAnalytics() {
-    const { currentStep, checkoutDataset, productData } = this;
+    const {
+      analytics,
+      currentStep,
+      currentPage,
+      checkoutDataset,
+      productData,
+    } = this;
+
     switch (currentStep) {
       case "contact_information":
         analytics.track("Checkout Started", {
@@ -69,6 +80,7 @@ export default class FluxVision {
   }
 
   private currentEnvironment() {
+    const { Shopify } = this;
     this.currentStep = Shopify.Checkout.step;
     this.currentPage = Shopify.Checkout.page;
   }
@@ -77,7 +89,7 @@ export default class FluxVision {
     // Analytics: FF main account
     let { productData, productsDatasets } = this;
 
-    for (const i = 0; i < productsDatasets.length; i++) {
+    for (let i = 0; i < productsDatasets.length; i++) {
       const productDataset = productsDatasets[i].dataset;
       if (productDataset) {
         const formattedPrice = (productDataset.price / 100).toFixed(2);
