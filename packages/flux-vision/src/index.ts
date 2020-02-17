@@ -25,7 +25,7 @@ export default class FluxVision {
     this.sendAnalytics();
   }
 
-  public sendAnalytics() {
+  private sendAnalytics() {
     const {
       analytics,
       currentStep,
@@ -85,13 +85,15 @@ export default class FluxVision {
       "#product-item-for-analytics-dataset",
     );
 
-    for (let i = 0; i < productsDatasets.length; i++) {
-      const productDataset = productsDatasets[i].dataset;
-      if (productDataset) {
-        const formattedPrice = (productDataset.price / 100).toFixed(2);
-        productDataset.price = formattedPrice;
-        const objectProduct = Object.assign({}, productDataset);
-        productData.push(objectProduct);
+    if (productsDatasets) {
+      for (let i = 0; i < productsDatasets.length; i++) {
+        const productDataset = productsDatasets[i].dataset;
+        if (productDataset) {
+          const formattedPrice = (productDataset.price / 100).toFixed(2);
+          productDataset.price = formattedPrice;
+          const objectProduct = Object.assign({}, productDataset);
+          productData.push(objectProduct);
+        }
       }
     }
   }

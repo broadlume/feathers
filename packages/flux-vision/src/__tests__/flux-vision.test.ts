@@ -1,7 +1,18 @@
+import FluxVision from "./../";
+
 describe("FluxVision", () => {
-  describe("install", () => {
-    it("todo", () => {
-      expect(0).toEqual(1);
-    });
+  it("initializes the class with analytics and shopify object", () => {
+    const analytics = {
+      track: jest.fn(),
+    };
+
+    const Shopify = {
+      Checkout: { page: "page_one", step: "contact_information" },
+    };
+
+    const flux = new FluxVision({ analytics, Shopify });
+    expect(flux.analytics).toEqual(analytics);
+    expect(flux.currentPage).toEqual("page_one");
+    expect(flux.currentStep).toEqual("contact_information");
   });
 });
