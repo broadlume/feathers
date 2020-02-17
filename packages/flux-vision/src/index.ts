@@ -8,5 +8,9 @@ declare global {
 }
 
 export default (function() {
-  new FluxVision({ Shopify: window.Shopify, analytics: window.analytics });
+  const flux = new FluxVision({
+    Shopify: window.Shopify,
+    analytics: window.analytics,
+  });
+  flux.init();
 })();
