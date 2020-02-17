@@ -3,34 +3,29 @@ export default class FluxVision {
   checkoutDataset: any;
   productData: any[];
   Shopify: any;
-  currentStep: any;
-  currentPage: any;
   analytics: any;
 
   constructor({ analytics, Shopify }) {
     this.productData = [];
     this.analytics = analytics;
     this.Shopify = Shopify;
+  }
 
+  public init() {
+    this.addLiquidDivToDOM();
+    this.pullDataFromDOM();
+    this.sendAnalytics();
+  }
+
+  private addLiquidDivToDOM() {
     const defaultHTMLData = `<div id="FLUX_VISION_DATASETS" style='display:none'> <div id="checkout-data" data-checkout-id={{checkout.id}} data-order-number={{checkout.order_number}} data-total-price={{checkout.total_price}} ></div>{% for item in checkout.line_items %} <div id="product-item-for-analytics-dataset" data-name="{{item.title}}" data-sku="{{item.sku}}" data-price="{{item.price}}" data-quantity="{{item.quantity}}" data-url="{{item.url}}" > </div>{% endfor %}</div>`;
     const body = document.querySelector("body");
     body.insertAdjacentHTML("beforeend", defaultHTMLData);
   }
 
-  public init() {
-    this.setCurrentEnvironment();
-    this.pullDataFromDOM();
-    this.sendAnalytics();
-  }
-
   private sendAnalytics() {
-    const {
-      analytics,
-      currentStep,
-      currentPage,
-      checkoutDataset,
-      productData,
-    } = this;
+    const { analytics, checkoutDataset, productData } = this;
+    const { currentStep, currentPage } = this.getCurrentEnvironment();
 
     switch (currentStep) {
       case "contact_information":
@@ -70,10 +65,14 @@ export default class FluxVision {
     }
   }
 
-  private setCurrentEnvironment() {
+  private getCurrentEnvironment() {
     const { Shopify } = this;
     this.currentStep = Shopify.Checkout.step;
     this.currentPage = Shopify.Checkout.page;
+    return {
+      currentStep: Shopify.Checkout.step,
+      currentPage: Shopify.Checkout.page,
+    };
   }
 
   private pullDataFromDOM() {
