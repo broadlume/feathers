@@ -278,6 +278,7 @@ describe("GTM Enhanced", () => {
             userId: 1,
             segmentAnonymousId: anonId,
             ecommerce: {
+              event: "purchase",
               purchase: {
                 actionField: {
                   id: "50314b8e9bcf000000000000",
