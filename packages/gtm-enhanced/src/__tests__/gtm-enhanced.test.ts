@@ -277,8 +277,8 @@ describe("GTM Enhanced", () => {
           expect.objectContaining({
             userId: 1,
             segmentAnonymousId: anonId,
+            event: "purchase",
             ecommerce: {
-              event: "purchase",
               purchase: {
                 actionField: {
                   id: "50314b8e9bcf000000000000",

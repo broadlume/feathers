@@ -211,8 +211,8 @@ EnhancedGTM.prototype.orderCompleted = function(track) {
 
   push({
     ...userProps,
+    event: "purchase",
     ecommerce: {
-      event: "purchase",
       purchase: {
         actionField: {
           id: track.orderId(),
