@@ -17,7 +17,16 @@ describe("Analytics Pixel Loader", () => {
       var analytics = new Analytics();
       analytics.VERSION = require('@segment/analytics.js-core/package.json').version;
       analytics.use(GoogleAnalytics);
-      analytics.initialize({\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}});
+      var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
+
+      if (typeof document !== 'undefined') {
+        var analyticsConfigMeta = document.querySelector('meta[name=\\"analytics-config\\"]');
+        if (analyticsConfigMeta) {
+          analyticsConfig = JSON.parse(analyticsConfigMeta.content);
+        }
+      }
+
+      analytics.initialize(analyticsConfig);
       export default analytics;"
     `);
   });
@@ -39,7 +48,16 @@ describe("Analytics Pixel Loader", () => {
       var analytics = new Analytics();
       analytics.VERSION = require('@segment/analytics.js-core/package.json').version;
       analytics.use(GoogleAnalytics);
-      analytics.initialize({\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}});
+      var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
+
+      if (typeof document !== 'undefined') {
+        var analyticsConfigMeta = document.querySelector('meta[name=\\"analytics-config\\"]');
+        if (analyticsConfigMeta) {
+          analyticsConfig = JSON.parse(analyticsConfigMeta.content);
+        }
+      }
+
+      analytics.initialize(analyticsConfig);
       export default analytics;"
     `);
   });
