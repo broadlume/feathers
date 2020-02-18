@@ -31,9 +31,9 @@ module: {
       test: /analytics-pixel\.yml$/,
       exclude: /(node_modules|bower_components)/,
       use: {
-        loader: "@adhawk/analytics-pixel-loader",
-      },
-    },
+        loader: "@adhawk/analytics-pixel-loader"
+      }
+    }
   ];
 }
 ```
@@ -50,4 +50,16 @@ import "./analytics-pixel.yml";
 
 ```javascript
 <button onClick={() => analytics.track("Button Clicked", { foo: "bar" })} />
+```
+
+### Overriding a Page's Analytics Configuration
+
+To override an analytics configuration for a page, simply add a meta tag with
+the JSON you would like to use as the configuration:
+
+```html
+<meta
+  name="analytics-config"
+  content='{"Google Analytics": {"trackingId": "123"}}'
+/>
 ```
