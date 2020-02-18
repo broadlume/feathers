@@ -53,15 +53,22 @@ export default function(source: string) {
     mappedAnalyticsConfig[integration.name] = integration.opts;
   }
 
-  const outputSource = [
-    ...imports,
-    "var Analytics = require('@segment/analytics.js-core/lib/analytics');",
-    "var analytics = new Analytics();",
-    "analytics.VERSION = require('@segment/analytics.js-core/package.json').version;",
-    ...setups,
-    `analytics.initialize(${JSON.stringify(mappedAnalyticsConfig)});`,
-    "export default analytics;"
-  ].join("\n");
+  const outputSource = `${imports.join("\n")}
+var Analytics = require('@segment/analytics.js-core/lib/analytics');
+var analytics = new Analytics();
+analytics.VERSION = require('@segment/analytics.js-core/package.json').version;
+${setups.join("\n")}
+var analyticsConfig = ${JSON.stringify(mappedAnalyticsConfig)};
+
+if (typeof document !== 'undefined') {
+  var analyticsConfigMeta = document.querySelector('meta[name="analytics-config"]');
+  if (analyticsConfigMeta) {
+    analyticsConfig = JSON.parse(analyticsConfigMeta.content);
+  }
+}
+
+analytics.initialize(analyticsConfig);
+export default analytics;`;
 
   return outputSource;
 }
