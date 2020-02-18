@@ -13,4 +13,5 @@ export default (function() {
     analytics: window.analytics,
   });
   flux.init();
+  console.log("Loading Flux Vision!");
 })();
