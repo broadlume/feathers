@@ -2,7 +2,7 @@
 
 Tracks end of funnel E-Commerce data for your Shopify checkout.
 
-Gather in-depth analytics about product information, checkout steps viewed, and purchases
+Gather in-depth analytics about product information, checkout steps viewed, and purchases.
 
 This package utilizes Segment.io to allow you to send data to any number of destinations including Google Analytics, Google Tag Manager and more.
 
