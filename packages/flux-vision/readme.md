@@ -1,10 +1,24 @@
 # @adhawk/flux-vision
 
-Tracks end of funnel E-commerce data for your Shopify checkout. Gather in-depth analytics about product information, checkout steps viewed, purchase complete and more. Automatically integrated with Segment.io to allow you to send data to any number of destinations including Google Analytics, Google Tag Manager and more.
+Tracks end of funnel E-Commerce data for your Shopify checkout.
 
-## Liquid Template HTML
+Gather in-depth analytics about product information, checkout steps viewed, and purchases
 
-To enable this package to pull liquid template data from Shopify into Segment, you must add this to the end of the `<body>` tag.
+This package utilizes Segment.io to allow you to send data to any number of destinations including Google Analytics, Google Tag Manager and more.
+
+## Steps to install
+
+1.  Go to your Shopify Checkout Theme and open the "Edit Code" dashboard. Open the `checkout.liquid` template file and add your Segment.io script within the `<head>` tag like below:
+
+```html
+<head>
+  <script type="text/javascript">
+    //  insert your segment io script here
+  </script>
+</head>
+```
+
+1. Go to your Shopify Checkout Theme and open the "Edit Code" dashboard. Open the `checkout.liquid` template file and add the following to the end of the `<body>` tag.
 
 ```html
 <div id="FLUX_VISION_DATASETS" style="display:none">
@@ -26,3 +40,18 @@ To enable this package to pull liquid template data from Shopify into Segment, y
   {% endfor %}
 </div>
 ```
+
+1. Then add the following script to import this package and automatically send `analytic.track()` events populated with checkout data.
+
+```html
+<html>
+  <body>
+    <!-- ...body contents here -->
+  </body>
+</html>
+
+<!-- Add this script in after the </html> -->
+<script src="https://unpkg.com/@adhawk/flux-vision/lib/flux-vision.umd.min.js"></script>
+```
+
+That's it!
