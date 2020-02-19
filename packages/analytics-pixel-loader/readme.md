@@ -31,9 +31,9 @@ module: {
       test: /analytics-pixel\.yml$/,
       exclude: /(node_modules|bower_components)/,
       use: {
-        loader: "@adhawk/analytics-pixel-loader"
-      }
-    }
+        loader: "@adhawk/analytics-pixel-loader",
+      },
+    },
   ];
 }
 ```

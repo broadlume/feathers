@@ -1,0 +1,10 @@
+{
+  "extends": "./../../config/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "noImplicitAny": false,
+    "strict": false
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./src/**/__tests__/**/*", "./src/**/__mocks__/**/*"]
+}

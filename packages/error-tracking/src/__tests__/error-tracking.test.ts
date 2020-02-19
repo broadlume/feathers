@@ -1,6 +1,5 @@
 import { captureException, init, identify, showReportDialog } from "./../";
 
-
 describe("ErrorTracking", () => {
   describe("init", () => {
     it("is a function", () => {
