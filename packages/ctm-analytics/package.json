@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/ctm-analytics",
   "description": "Analytics.js integration for CallTrackingMetrics",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/ctm-analytics.cjs.js",
