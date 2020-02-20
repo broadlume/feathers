@@ -170,7 +170,7 @@ describe("FluxVision", () => {
       });
     });
 
-    it("sends the correct event for purchase", () => {
+    it("sends the correct event for purchase if Shopify.Checkout.page is 'thank_you'", () => {
       const analyticsTrackMock = jest.fn();
       const analytics = {
         track: analyticsTrackMock,
@@ -178,6 +178,41 @@ describe("FluxVision", () => {
 
       const Shopify = {
         Checkout: { page: "thank_you", step: "processing" },
+      };
+
+      const flux = new FluxVision({ analytics, Shopify });
+      flux.init();
+
+      expect(analyticsTrackMock).toHaveBeenCalledTimes(1);
+      expect(analyticsTrackMock).toHaveBeenCalledWith("Order Completed", {
+        checkout_id: "{{checkout.id}}",
+        currency: "USD",
+        order_id: "{{checkout.order_number}}",
+        total: "{{checkout.total_price}}",
+        products: [
+          {
+            name: "{{item.title}}",
+            price: "NaN",
+            quantity: "{{item.quantity}}",
+            sku: "{{item.sku}}",
+            url: "{{item.url}}",
+          },
+        ],
+      });
+    });
+
+    it("sends the correct event for purchase if Shopify.Checkout.isOrderStatusPage is true", () => {
+      const analyticsTrackMock = jest.fn();
+      const analytics = {
+        track: analyticsTrackMock,
+      };
+
+      const Shopify = {
+        Checkout: {
+          page: undefined,
+          step: "processing",
+          isOrderStatusPage: true,
+        },
       };
 
       const flux = new FluxVision({ analytics, Shopify });

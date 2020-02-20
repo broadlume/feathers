@@ -64,7 +64,11 @@ export default class FluxVision {
 
   private sendAnalytics() {
     const { analytics, checkoutDataset, productData } = this;
-    const { currentStep, currentPage } = this.getCurrentEnvironment();
+    const {
+      currentStep,
+      currentPage,
+      isOrderStatusPage,
+    } = this.getCurrentEnvironment();
 
     switch (currentStep) {
       case "contact_information":
@@ -93,7 +97,7 @@ export default class FluxVision {
         break;
     }
 
-    if (currentPage == "thank_you") {
+    if (currentPage == "thank_you" || isOrderStatusPage) {
       analytics.track("Order Completed", {
         checkout_id: checkoutDataset.checkoutId,
         order_id: checkoutDataset.orderNumber,
@@ -110,6 +114,7 @@ export default class FluxVision {
     return {
       currentStep: Shopify.Checkout.step,
       currentPage: Shopify.Checkout.page,
+      isOrderStatusPage: Shopify.Checkout.isOrderStatusPage,
     };
   }
 }
