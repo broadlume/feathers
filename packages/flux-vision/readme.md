@@ -18,7 +18,7 @@ This package utilizes Segment.io to allow you to send data to any number of dest
 </head>
 ```
 
-1. Go to your Shopify Checkout Theme and open the "Edit Code" dashboard. Open the `checkout.liquid` template file and add the following to the end of the `<body>` tag.
+. Go to your Shopify Checkout Theme and open the "Edit Code" dashboard. Open the `checkout.liquid` template file and add the following to the end of the `<body>` tag.
 
 ```html
 <div id="FLUX_VISION_DATASETS" style="display:none">
@@ -41,7 +41,7 @@ This package utilizes Segment.io to allow you to send data to any number of dest
 </div>
 ```
 
-1. Then add the following script to import this package and automatically send `analytic.track()` events populated with checkout data.
+3. Then add the following script to import this package and automatically send `analytic.track()` events populated with checkout data.
 
 ```html
 <html>
