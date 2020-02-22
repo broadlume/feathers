@@ -19,7 +19,6 @@
     "prebuild": "npm run clean",
     "build": "tsc -p .",
     "postbuild": "rollup -c",
-    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../../config/jest.config.js --testPathPattern packages/adwords-phone-tag",
@@ -39,8 +38,7 @@
   },
   "devDependencies": {
     "jest": "24.9.0",
-    "rollup": "1.29.1",
-    "tsc-watch": "4.0.0",
-    "typescript": "3.7.5"
+    "rollup": "1.31.1",
+    "typescript": "3.8.2"
   }
 }

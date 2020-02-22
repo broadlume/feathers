@@ -25,7 +25,6 @@
     "prebuild": "npm run clean",
     "build": "tsc -p .",
     "postbuild": "rollup -c",
-    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../../config/jest.config.js --testPathPattern packages/flux-vision",

@@ -18,7 +18,7 @@
     "prebuild": "npm run clean",
     "build": "tsc -p .",
     "postbuild": "rollup -c",
-    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
+    "watch": "ch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../../config/jest.config.js --testPathPattern packages/react-error-boundary",
@@ -39,8 +39,7 @@
     "@types/react": "^16.9.17",
     "jest": "24.9.0",
     "react": "^16.12.0",
-    "tsc-watch": "4.0.0",
-    "typescript": "3.7.5"
+    "typescript": "3.8.2"
   },
   "peerDependencies": {
     "react": "^16.12.0"

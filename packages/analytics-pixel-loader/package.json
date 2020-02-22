@@ -15,7 +15,6 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../../config/jest.config.js --testPathPattern packages/analytics-pixel-loader",
@@ -45,8 +44,7 @@
     "@types/lodash.kebabcase": "^4.1.6",
     "jest": "24.9.0",
     "prettier": "^1.19.1",
-    "tsc-watch": "4.0.0",
-    "typescript": "3.7.5",
+    "typescript": "3.8.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   },
