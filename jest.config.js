@@ -3,7 +3,6 @@ const { defaults: tsjPreset } = require("ts-jest/presets");
 module.exports = {
   preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js", "json"],
-  rootDir: "../",
   // projects: ["<rootDir>/packages/*"],
   testEnvironment: "jest-environment-jsdom-global",
   globals: {

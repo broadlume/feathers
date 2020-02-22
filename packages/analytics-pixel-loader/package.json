@@ -17,9 +17,9 @@
     "build": "tsc -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/analytics-pixel-loader",
-    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/analytics-pixel-loader --watch",
-    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/analytics-pixel-loader"
+    "test": "jest --config ../..//jest.config.js --testPathPattern packages/analytics-pixel-loader",
+    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/analytics-pixel-loader --watch",
+    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/analytics-pixel-loader"
   },
   "dependencies": {
     "@adhawk/error-tracking": "^1.1.8",
