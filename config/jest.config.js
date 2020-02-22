@@ -3,6 +3,7 @@ module.exports = {
   moduleFileExtensions: ["ts", "tsx", "js", "json"],
   rootDir: "../packages",
   projects: ["<rootDir>"],
+  testEnvironment: "jest-environment-jsdom-global",
   globals: {
     "ts-jest": {
       tsConfig: "<rootDir>/../config/tsconfig.base.json",

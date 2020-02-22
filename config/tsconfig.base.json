@@ -11,7 +11,8 @@
     "sourceMap": true,
     "target": "es5",
     "esModuleInterop": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "typeRoots": ["../node_modules/@types"]
   },
   "include": ["../packages/*/src/**/*"],
   "exclude": ["../packages/*/node_modules", "../packages/*/lib", "../examples"]

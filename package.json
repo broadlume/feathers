@@ -33,6 +33,8 @@
     "@types/jest": "24.9.0",
     "bundlesize": "0.18.0",
     "jest": "24.9.0",
+    "jest-environment-jsdom": "^25.1.0",
+    "jest-environment-jsdom-global": "^1.2.1",
     "jest-junit": "10.0.0",
     "lerna": "3.20.2",
     "rollup": "1.29.1",
