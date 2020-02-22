@@ -5,19 +5,6 @@ interface Props extends React.AnchorHTMLAttributes<{}> {
   eventProperties: object;
 }
 
-const NEWTAB = "_blank";
-const MIDDLECLICK = 1;
-
-function isAnalyticsActive() {
-  return window.analytics && typeof window.analytics.track === "function";
-}
-
-function warnNoAnalytics() {
-  console.warn(
-    "TrackedLink: window.analytics could not be found, make sure to include analytics.js script tag in the head tag before any other JS",
-  );
-}
-
 export class TrackedLink extends React.Component<Props, {}> {
   static defaultProps = {
     target: null,
@@ -77,4 +64,17 @@ export class TrackedLink extends React.Component<Props, {}> {
 
     return React.createElement("a", props);
   }
+}
+
+const NEWTAB = "_blank";
+const MIDDLECLICK = 1;
+
+function isAnalyticsActive() {
+  return window.analytics && typeof window.analytics.track === "function";
+}
+
+function warnNoAnalytics() {
+  console.warn(
+    "TrackedLink: window.analytics could not be found, make sure to include analytics.js script tag in the head tag before any other JS",
+  );
 }
