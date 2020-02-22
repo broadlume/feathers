@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { name: displayName } = require("./package.json");
 
 module.exports = {
