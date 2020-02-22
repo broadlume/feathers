@@ -46,7 +46,7 @@
     "@segment/localstorage-retry": "^1.2.2",
     "@segment/utm-params": "^2.0.0",
     "analytics.js-integrations": "https://github.com/segmentio/analytics.js-integrations#c1fc75c3913035d9b1d187e3948d8ef257a32fc2",
-    "component-type": "^1.2.1",
+    "component-type": "npm:component-type",
     "type": "npm:component-type"
   }
 }

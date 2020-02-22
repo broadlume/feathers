@@ -1,19 +1,24 @@
+const { defaults: tsjPreset } = require("ts-jest/presets");
+
 module.exports = {
   preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js", "json"],
-  rootDir: "../packages",
-  projects: ["<rootDir>"],
+  rootDir: "../",
+  // projects: ["<rootDir>/packages/*"],
   testEnvironment: "jest-environment-jsdom-global",
   globals: {
     "ts-jest": {
-      tsConfig: "<rootDir>/../config/tsconfig.base.json",
+      tsConfig: "<rootDir>/config/tsconfig.base.json",
       isolatedModules: true,
     },
   },
   coverageDirectory: "./meta/coverage",
   moduleNameMapper: {
-    "^@adhawk\\/([^/]+)": "<rootDir>/$1/src",
+    "^@adhawk\\/([^/]+)": "<rootDir>/packages/$1/src",
   },
-  testMatch: ["<rootDir>/*/src/**/__tests__/**/*.test.ts?(x)"],
+  testMatch: ["<rootDir>/packages/*/src/**/__tests__/**/*.test.ts?(x)"],
   testPathIgnorePatterns: ["/examples", "/lib"],
+  transform: {
+    ...tsjPreset.transform,
+  },
 };
