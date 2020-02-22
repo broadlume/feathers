@@ -2,12 +2,12 @@ import FluxVision from "./flux-vision";
 
 declare global {
   interface Window {
-    Shopify: any;
-    analytics: any;
+    Shopify: { Checkout: { page: unknown; step: number } };
+    analytics: SegmentAnalytics.AnalyticsJS;
   }
 }
 
-export default (function() {
+export default (function(): void {
   const flux = new FluxVision({
     Shopify: window.Shopify,
     analytics: window.analytics,

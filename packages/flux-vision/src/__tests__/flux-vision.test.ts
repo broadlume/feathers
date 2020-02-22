@@ -3,14 +3,14 @@ import FluxVision from "./../flux-vision";
 describe("FluxVision", () => {
   // clean up divs added to document in test environment
   afterEach(() => {
-    var data = document.getElementById("FLUX_VISION_DATASETS");
+    const data = document.getElementById("FLUX_VISION_DATASETS");
     if (data) {
       data.remove();
     }
   });
 
   beforeEach(() => {
-    var data = document.querySelector("body");
+    const data = document.querySelector("body");
     data.insertAdjacentHTML(
       "beforeend",
       `
@@ -205,7 +205,7 @@ describe("FluxVision", () => {
 
 describe("Flux Vision Errors", () => {
   beforeEach(() => {
-    var data = document.getElementById("FLUX_VISION_DATASETS");
+    const data = document.getElementById("FLUX_VISION_DATASETS");
     if (data) {
       data.remove();
     }

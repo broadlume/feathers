@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const integration = require("@segment/analytics.js-integration");
 const Queue = require("@segment/localstorage-retry");
 const utm = require("@segment/utm-params");
@@ -37,7 +41,7 @@ export function postJSON(url: string, options: any, done: any) {
       .getAllResponseHeaders()
       .replace(
         /^(.*?):[^\S\n]*([\s\S]*?)$/gm,
-        (_m: any, key: any, value: any): any => {
+        (_m: unknown, key: string, value: string): any => {
           keys.push((key = key.toLowerCase()));
           all.push([key, value]);
           headers[key] = headers[key] ? `${headers[key]},${value}` : value;
@@ -64,6 +68,7 @@ const VisitorEvents = integration("Visitor Events")
 
 Object.assign(VisitorEvents.prototype, {
   normalizeEvent(event: any, type: string, argNames: string[] = []) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { properties = {}, integrations: _, context, ...body } = event.obj;
     const typeContext = {};
 

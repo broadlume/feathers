@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/camelcase */
 export default class FluxVision {
   htmlDataElements: string;
-  checkoutDataset: any;
-  productData: any[];
-  Shopify: any;
-  analytics: any;
+  checkoutDataset: DOMStringMap;
+  productData: DOMStringMap[];
+  Shopify: { Checkout: { page: unknown; step: unknown } };
+  analytics: SegmentAnalytics.AnalyticsJS;
   liquidDivSelector: string;
 
   constructor({
@@ -17,7 +18,7 @@ export default class FluxVision {
     this.liquidDivSelector = liquidDivSelector;
   }
 
-  public init() {
+  public init(): void {
     try {
       this.checkDomForSelector();
       this.pullDataFromDOM();
@@ -27,7 +28,7 @@ export default class FluxVision {
     }
   }
 
-  private checkDomForSelector() {
+  private checkDomForSelector(): void {
     const { liquidDivSelector } = this;
     try {
       const liquidElement = document.querySelector(liquidDivSelector);
@@ -39,22 +40,24 @@ export default class FluxVision {
     }
   }
 
-  private pullDataFromDOM() {
-    let { productData } = this;
+  private pullDataFromDOM(): void {
+    const { productData } = this;
 
     //checkout data
-    const checkoutElemement: any = document.querySelector("#checkout-data");
+    const checkoutElemement = document.querySelector<HTMLDataElement>(
+      "#checkout-data",
+    );
     this.checkoutDataset = Object.assign({}, checkoutElemement.dataset);
 
     // product data
-    const productsDatasets: any = document.querySelectorAll(
+    const productsDatasets = document.querySelectorAll<HTMLDataElement>(
       "#product-item-for-analytics-dataset",
     );
 
     for (let i = 0; i < productsDatasets.length; i++) {
       const productDataset = productsDatasets[i].dataset;
       if (productDataset) {
-        const formattedPrice = (productDataset.price / 100).toFixed(2);
+        const formattedPrice = (Number(productDataset.price) / 100).toFixed(2);
         productDataset.price = formattedPrice;
         const objectProduct = Object.assign({}, productDataset);
         productData.push(objectProduct);
@@ -62,7 +65,7 @@ export default class FluxVision {
     }
   }
 
-  private sendAnalytics() {
+  private sendAnalytics(): void {
     const { analytics, checkoutDataset, productData } = this;
     const { currentStep, currentPage } = this.getCurrentEnvironment();
 
@@ -104,7 +107,10 @@ export default class FluxVision {
     }
   }
 
-  private getCurrentEnvironment() {
+  private getCurrentEnvironment(): {
+    currentStep: unknown;
+    currentPage: unknown;
+  } {
     const { Shopify } = this;
 
     return {

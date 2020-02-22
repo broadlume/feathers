@@ -17,7 +17,7 @@ interface ErrorTrackingConfig {
   debug?: boolean;
 }
 
-export function init(conf: ErrorTrackingConfig) {
+export function init(conf: ErrorTrackingConfig): void {
   const { sentryDsn, release, debug, environment } = conf;
 
   if (sentryDsn) {
@@ -25,13 +25,13 @@ export function init(conf: ErrorTrackingConfig) {
   }
 }
 
-export function identify<T extends User>(user: T) {
+export function identify<T extends User>(user: T): void {
   sentryConfigureScope(scope => {
     scope.setUser(user);
   });
 }
 
-export function captureException(error: Error) {
+export function captureException(error: Error): string {
   if (process.env.NODE_ENV !== "production") {
     console.error(error);
   }

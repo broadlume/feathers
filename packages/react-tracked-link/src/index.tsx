@@ -1,5 +1,18 @@
 import React from "react";
 
+const NEWTAB = "_blank";
+const MIDDLECLICK = 1;
+
+function isAnalyticsActive(): boolean {
+  return window.analytics && typeof window.analytics.track === "function";
+}
+
+function warnNoAnalytics(): void {
+  console.warn(
+    "TrackedLink: window.analytics could not be found, make sure to include analytics.js script tag in the head tag before any other JS",
+  );
+}
+
 interface Props extends React.AnchorHTMLAttributes<{}> {
   eventName: string;
   eventProperties: object;
@@ -13,7 +26,11 @@ export class TrackedLink extends React.Component<Props, {}> {
     eventProperties: {},
   };
 
-  static trackEvent(eventName: string, properties: object, cb?: () => void) {
+  static trackEvent(
+    eventName: string,
+    properties: object,
+    cb?: () => void,
+  ): void {
     if (!isAnalyticsActive()) {
       warnNoAnalytics();
       cb && cb();
@@ -47,7 +64,7 @@ export class TrackedLink extends React.Component<Props, {}> {
       onClick(event);
     }
   };
-  render() {
+  render(): React.ReactNode {
     const { href, ...oldProps } = this.props;
     const props = {
       ...oldProps,
@@ -64,17 +81,4 @@ export class TrackedLink extends React.Component<Props, {}> {
 
     return React.createElement("a", props);
   }
-}
-
-const NEWTAB = "_blank";
-const MIDDLECLICK = 1;
-
-function isAnalyticsActive() {
-  return window.analytics && typeof window.analytics.track === "function";
-}
-
-function warnNoAnalytics() {
-  console.warn(
-    "TrackedLink: window.analytics could not be found, make sure to include analytics.js script tag in the head tag before any other JS",
-  );
 }

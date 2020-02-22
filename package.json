@@ -25,13 +25,17 @@
     "format": " prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
     "deploy": " lerna publish",
     "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
-    "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job"
+    "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@rollup/plugin-typescript": "^3.0.0",
     "@types/jest": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "bundlesize": "0.18.0",
+    "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "jest-environment-jsdom": "^25.1.0",
     "jest-environment-jsdom-global": "^1.2.1",

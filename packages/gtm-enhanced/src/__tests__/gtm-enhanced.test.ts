@@ -14,7 +14,7 @@ describe("GTM Enhanced", () => {
   let analytics: any;
   let gtm: any;
 
-  let options = {
+  const options = {
     containerId: "GTM-M8M29T",
     environment: "",
     extraDimensions: ["retailer-id"],
