@@ -22,6 +22,7 @@ own `README` and documentation describing usage.
 | [gtm-enhanced](packages/gtm-enhanced)                 | [![](https://img.shields.io/npm/v/@adhawk/gtm-enhanced)](https://npmjs.com/@adhawk/gtm-enhanced)                 |
 | [flux-vision](packages/flux-vision)                   | [![](https://img.shields.io/npm/v/@adhawk/flux-vision)](https://npmjs.com/@adhawk/flux-vision)                   |
 | [ctm-analytics](packages/ctm-analytics)               | [![](https://img.shields.io/npm/v/@adhawk/ctm-analytics)](https://npmjs.com/@adhawk/ctm-analytics)               |
+| [react-tracked-link](packages/react-tracked-link)     | [![](https://img.shields.io/npm/v/@adhawk/react-tracked-link)](https://npmjs.com/@adhawk/react-tracked-link)     |
 
 ## License
 
