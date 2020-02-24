@@ -55,7 +55,7 @@ jobs:
     steps:
       - checkout
       - run: yarn
-      - run: yarn run bundlesize
+      - run: yarn run bundlesize:ci
 
   lint:
     docker: [{ image: "circleci/node:12" }]

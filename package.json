@@ -22,6 +22,7 @@
     "test:umd": "npm run build && jest --config ./jest.umd.config.js",
     "test:umd:ci": "jest --config ./jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "bundlesize": " lerna run build && bundlesize",
+    "bundlesize:ci": " bundlesize",
     "format": " prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
     "deploy": " lerna publish",
     "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
@@ -66,7 +67,17 @@
     {
       "name": "gtm-enhanced",
       "path": "./packages/gtm-enhanced/lib/gtm-enhanced.cjs.min.js",
-      "maxSize": "2.9kB"
+      "maxSize": "1.1kB"
+    },
+    {
+      "name": "flux-vision",
+      "path": "./packages/flux-vision/lib/flux-vision.umd.min.js",
+      "maxSize": "1.0kB"
+    },
+    {
+      "name": "react-tracked-link",
+      "path": "./packages/react-tracked-link/lib/react-tracked-link.cjs.min.js",
+      "maxSize": "1.0kB"
     }
   ]
 }
