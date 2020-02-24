@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/gtm-enhanced",
   "description": "Google Tag Manager integration for Segment.io with enhanced ecommerce",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/gtm-enhanced.cjs.js",
