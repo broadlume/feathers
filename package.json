@@ -62,6 +62,11 @@
       "name": "error-tracking",
       "path": "./packages/error-tracking/lib/error-tracking.cjs.min.js",
       "maxSize": "16.38kB"
+    },
+    {
+      "name": "gtm-enhanced",
+      "path": "./packages/gtm-enhanced/lib/gtm-enhanced.cjs.min.js",
+      "maxSize": "2.9kB"
     }
   ]
 }
