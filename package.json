@@ -10,37 +10,43 @@
     ]
   },
   "scripts": {
-    "postinstall": "npx lerna run prepare",
-    "build": "npx lerna run build --concurrency 4",
-    "test": "npx jest --config ./config/jest.config.js --silent",
+    "postinstall": " lerna run prepare",
+    "build": " lerna run build --concurrency 4",
+    "test": "jest --silent",
     "test:all": "npm run test:cjs && npm run test:umd && npm run test",
-    "test:watch": "npx jest --config ./config/jest.config.js --watch",
-    "test:coverage": "npx jest --config ./config/jest.config.js --verbose --coverage",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --verbose --coverage",
     "test:ci": "npm run test:coverage -- --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
-    "test:cjs": "npm run build && npx jest --config ./config/jest.cjs.config.js",
-    "test:cjs:ci": "npx jest --config ./config/jest.cjs.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
-    "test:umd": "npm run build && npx jest --config ./config/jest.umd.config.js",
-    "test:umd:ci": "npx jest --config ./config/jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
-    "bundlesize": "npx lerna run build && bundlesize",
-    "format": "npx prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
-    "deploy": "npx lerna publish",
-    "clean": "rm -Rf ./node_modules ./meta && npx lerna exec -- npm run clean",
-    "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job"
+    "test:cjs": "npm run build && jest --config ./jest.cjs.config.js",
+    "test:cjs:ci": "jest --config ./jest.cjs.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "test:umd": "npm run build && jest --config ./jest.umd.config.js",
+    "test:umd:ci": "jest --config ./jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "bundlesize": " lerna run build && bundlesize",
+    "bundlesize:ci": " bundlesize",
+    "format": " prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
+    "deploy": " lerna publish",
+    "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
+    "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "@rollup/plugin-typescript": "^2.1.0",
-    "@types/jest": "24.9.0",
+    "@rollup/plugin-typescript": "^3.0.0",
+    "@types/jest": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
     "bundlesize": "0.18.0",
-    "jest": "24.9.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "jest-environment-jsdom": "^25.1.0",
+    "jest-environment-jsdom-global": "^1.2.1",
     "jest-junit": "10.0.0",
     "lerna": "3.20.2",
-    "rollup": "1.29.1",
+    "rollup": "1.31.1",
     "rollup-plugin-invariant": "^0.5.6",
     "rollup-plugin-terser": "5.2.0",
-    "ts-jest": "24.1.0",
-    "tsc-watch": "4.0.0",
-    "typescript": "3.7.5"
+    "ts-jest": "^25.2.1",
+    "typescript": "3.8.2"
   },
   "bundlesize": [
     {
@@ -57,6 +63,21 @@
       "name": "error-tracking",
       "path": "./packages/error-tracking/lib/error-tracking.cjs.min.js",
       "maxSize": "16.38kB"
+    },
+    {
+      "name": "gtm-enhanced",
+      "path": "./packages/gtm-enhanced/lib/gtm-enhanced.cjs.min.js",
+      "maxSize": "1.1kB"
+    },
+    {
+      "name": "flux-vision",
+      "path": "./packages/flux-vision/lib/flux-vision.umd.min.js",
+      "maxSize": "1.0kB"
+    },
+    {
+      "name": "react-tracked-link",
+      "path": "./packages/react-tracked-link/lib/react-tracked-link.cjs.min.js",
+      "maxSize": "1.0kB"
     }
   ]
 }

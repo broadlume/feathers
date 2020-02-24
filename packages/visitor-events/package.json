@@ -19,13 +19,12 @@
     "prebuild": "npm run clean",
     "build": "tsc -p .",
     "postbuild": "rollup -c",
-    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/visitor-events",
-    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/visitor-events --watch",
-    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/visitor-events",
-    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/visitor-events"
+    "test": "jest --config ../..//jest.config.js --testPathPattern packages/visitor-events",
+    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/visitor-events --watch",
+    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/visitor-events",
+    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/visitor-events"
   },
   "files": [
     "lib"
@@ -39,7 +38,7 @@
     "jest-environment-jsdom": "^25.1.0",
     "jest-environment-jsdom-global": "^1.1.0",
     "jest-json-schema": "^2.0.1",
-    "typescript": "^3.1.3"
+    "typescript": "^3.8.2"
   },
   "dependencies": {
     "@segment/analytics.js-core": "3.10.1",
@@ -47,7 +46,7 @@
     "@segment/localstorage-retry": "^1.2.2",
     "@segment/utm-params": "^2.0.0",
     "analytics.js-integrations": "https://github.com/segmentio/analytics.js-integrations#c1fc75c3913035d9b1d187e3948d8ef257a32fc2",
-    "component-type": "^1.2.1",
+    "component-type": "npm:component-type",
     "type": "npm:component-type"
   }
 }

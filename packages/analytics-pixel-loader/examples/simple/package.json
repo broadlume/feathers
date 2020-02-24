@@ -7,7 +7,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "@segment/analytics.js-core": "^3.10.1",
+    "@segment/analytics.js-core": "3.10.1",
     "@segment/analytics.js-integration-google-analytics": "^2.18.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"

@@ -25,13 +25,12 @@
     "prebuild": "npm run clean",
     "build": "tsc -p .",
     "postbuild": "rollup -c",
-    "watch": "tsc-watch --onSuccess \"npm run postbuild\" -p .",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../../config/jest.config.js --testPathPattern packages/flux-vision",
-    "test:watch": "jest --config ../../config/jest.config.js --testPathPattern packages/flux-vision --watch",
-    "test:cjs": "npm run build && jest --config ../../config/jest.cjs.config.js --testPathPattern packages/flux-vision",
-    "test:umd": "npm run build && jest --config ../../config/jest.umd.config.js --testPathPattern packages/flux-vision"
+    "test": "jest --config ../..//jest.config.js --testPathPattern packages/flux-vision",
+    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/flux-vision --watch",
+    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/flux-vision",
+    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/flux-vision"
   },
   "files": [
     "lib"

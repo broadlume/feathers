@@ -1,3 +1,4 @@
+/* eslint-disable */
 import nodeResolve from "@rollup/plugin-node-resolve";
 import typescriptPlugin from "@rollup/plugin-typescript";
 import invariantPlugin from "rollup-plugin-invariant";

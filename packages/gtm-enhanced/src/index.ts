@@ -1,7 +1,57 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const integration = require("@segment/analytics.js-integration");
 const push = require("global-queue")("dataLayer", { wrap: false });
-const dot = require("obj-case");
 const pick = require("lodash.pick");
+
+interface Options {
+  extraDimensions: string[];
+}
+
+function enhancedUserInfo(analytics: any, opts: Options): object {
+  const userId = analytics.user().id();
+  const anonymousId = analytics.user().anonymousId();
+  const userProps: any = {};
+  const customDimensions = pick(
+    analytics.user().traits(),
+    opts.extraDimensions,
+  );
+
+  if (userId) userProps.userId = userId;
+  if (anonymousId) userProps.segmentAnonymousId = anonymousId;
+
+  return { ...customDimensions, ...userProps };
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function enhancedEcommerceTrackProduct(track: any, _opts: Options) {
+  const props = track.properties();
+  const product: any = {
+    id: track.productId() || track.id() || track.sku(),
+    name: track.name(),
+    category: track.category(),
+    quantity: track.quantity(),
+    price: track.price(),
+    brand: props.brand,
+    variant: props.variant,
+    currency: track.currency(),
+  };
+
+  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#product-data
+  // GA requires an integer but our specs says "Number", so it could be a float.
+  if (props.position != null) {
+    product.position = Math.round(props.position);
+  }
+
+  // append coupon if it set
+  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#measuring-transactions
+  const coupon = track.proxy("properties.coupon");
+  if (coupon) product.coupon = coupon;
+
+  return product;
+}
 
 /**
  * Expose `GTM`.
@@ -31,7 +81,7 @@ const EnhancedGTM = integration("GTM Enhanced")
  * @api public
  */
 
-EnhancedGTM.prototype.initialize = function() {
+EnhancedGTM.prototype.initialize = function(): void {
   if (process.env.NODE_ENV === "test") {
     this.ready();
   } else {
@@ -51,7 +101,7 @@ EnhancedGTM.prototype.initialize = function() {
  * @api private
  * @return {boolean}
  */
-EnhancedGTM.prototype.loaded = function() {
+EnhancedGTM.prototype.loaded = function(): boolean {
   if (process.env.NODE_ENV === "test") {
     return !!window["dataLayer"];
   }
@@ -67,7 +117,8 @@ EnhancedGTM.prototype.loaded = function() {
  * @api public
  * @param {Page} page
  */
-EnhancedGTM.prototype.page = function(page: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+EnhancedGTM.prototype.page = function(page: any): void {
   const category = page.category();
   const name = page.fullName();
   const opts = this.options;
@@ -96,7 +147,7 @@ EnhancedGTM.prototype.page = function(page: any) {
  * @api public
  * @param {Track} track
  */
-EnhancedGTM.prototype.track = function(track: any) {
+EnhancedGTM.prototype.track = function(track: any): void {
   const props = track.properties();
   props.event = track.event();
 
@@ -111,7 +162,7 @@ EnhancedGTM.prototype.track = function(track: any) {
  * @api public
  * @param {Track} track
  */
-EnhancedGTM.prototype.productClicked = function(track: any) {
+EnhancedGTM.prototype.productClicked = function(track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const product = enhancedEcommerceTrackProduct(track, this.options);
 
@@ -134,7 +185,7 @@ EnhancedGTM.prototype.productClicked = function(track: any) {
  * @api private
  */
 
-EnhancedGTM.prototype.productAdded = function(track: any) {
+EnhancedGTM.prototype.productAdded = function(track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const product = enhancedEcommerceTrackProduct(track, this.options);
 
@@ -158,7 +209,7 @@ EnhancedGTM.prototype.productAdded = function(track: any) {
  * @api private
  */
 
-EnhancedGTM.prototype.checkoutStarted = function(track) {
+EnhancedGTM.prototype.checkoutStarted = function(track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
 
   push({
@@ -181,7 +232,7 @@ EnhancedGTM.prototype.checkoutStarted = function(track) {
  * @api private
  */
 
-EnhancedGTM.prototype.checkoutStepViewed = function(track) {
+EnhancedGTM.prototype.checkoutStepViewed = function(track): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const step = track.properties().step;
 
@@ -204,7 +255,7 @@ EnhancedGTM.prototype.checkoutStepViewed = function(track) {
  * @api private
  */
 
-EnhancedGTM.prototype.orderCompleted = function(track) {
+EnhancedGTM.prototype.orderCompleted = function(track): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const total = track.total() || track.revenue() || 0;
   const props = track.properties();
@@ -226,47 +277,5 @@ EnhancedGTM.prototype.orderCompleted = function(track) {
     },
   });
 };
-
-function enhancedUserInfo(analytics: any, opts: any) {
-  const userId = analytics.user().id();
-  const anonymousId = analytics.user().anonymousId();
-  const userProps: any = {};
-  const customDimensions = pick(
-    analytics.user().traits(),
-    opts.extraDimensions,
-  );
-
-  if (userId) userProps.userId = userId;
-  if (anonymousId) userProps.segmentAnonymousId = anonymousId;
-
-  return { ...customDimensions, ...userProps };
-}
-
-function enhancedEcommerceTrackProduct(track: any, _opts: any) {
-  const props = track.properties();
-  const product: any = {
-    id: track.productId() || track.id() || track.sku(),
-    name: track.name(),
-    category: track.category(),
-    quantity: track.quantity(),
-    price: track.price(),
-    brand: props.brand,
-    variant: props.variant,
-    currency: track.currency(),
-  };
-
-  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#product-data
-  // GA requires an integer but our specs says "Number", so it could be a float.
-  if (props.position != null) {
-    product.position = Math.round(props.position);
-  }
-
-  // append coupon if it set
-  // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#measuring-transactions
-  const coupon = track.proxy("properties.coupon");
-  if (coupon) product.coupon = coupon;
-
-  return product;
-}
 
 module.exports = EnhancedGTM;

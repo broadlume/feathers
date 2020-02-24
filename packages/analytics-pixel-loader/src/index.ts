@@ -3,6 +3,7 @@ import { JSONSchema7 } from "json-schema";
 import { safeLoad } from "js-yaml";
 import kebabCase from "lodash.kebabcase";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const validateOptions = require("schema-utils");
 
 const schema: JSONSchema7 = {
@@ -16,11 +17,11 @@ interface IntegrationConfig {
   opts: object;
 }
 
-function generateImportName(name: string) {
+function generateImportName(name: string): string {
   return name.replace(/\W/g, "");
 }
 
-function buildImportStatement(integration: IntegrationConfig) {
+function buildImportStatement(integration: IntegrationConfig): string {
   const importName = generateImportName(integration.name);
   const importPath =
     integration.package ||
@@ -29,13 +30,14 @@ function buildImportStatement(integration: IntegrationConfig) {
   return `import ${importName} from "${importPath}";`;
 }
 
-function buildSetupStatement(integration: IntegrationConfig) {
+function buildSetupStatement(integration: IntegrationConfig): string {
   const importName = generateImportName(integration.name);
 
   return `analytics.use(${importName});`;
 }
 
-export default function(source: string) {
+export default function(source: string): string {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const options = getOptions(this);
 
@@ -45,7 +47,7 @@ export default function(source: string) {
 
   const imports = [];
   const setups = [];
-  const mappedAnalyticsConfig: any = {};
+  const mappedAnalyticsConfig: { [k: string]: object } = {};
 
   for (const integration of analyticsConfig) {
     imports.push(buildImportStatement(integration));

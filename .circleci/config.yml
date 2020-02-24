@@ -2,7 +2,8 @@ version: 2
 
 jobs:
   test_esm:
-    docker: [{ image: 'circleci/node:12' }]
+    docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -10,14 +11,15 @@ jobs:
           name: Tests - ESM
           command: yarn run test:ci
           environment:
-            JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
           path: reports/junit
 
   test_cjs:
-    docker: [{ image: 'circleci/node:12' }]
+    docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -25,14 +27,15 @@ jobs:
           name: Tests - CJS
           command: yarn run test:cjs:ci
           environment:
-            JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
           path: reports/junit
 
   test_umd:
-    docker: [{ image: 'circleci/node:12' }]
+    docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -40,25 +43,28 @@ jobs:
           name: Tests - CJS
           command: yarn run test:umd:ci
           environment:
-            JEST_JUNIT_OUTPUT: 'reports/junit/js-test-results.xml'
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
           path: reports/junit
 
   bundlesize:
-    docker: [{ image: 'circleci/node:12' }]
+    docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
-      - run: yarn run bundlesize
+      - run: yarn run bundlesize:ci
 
   lint:
-    docker: [{ image: 'circleci/node:12' }]
+    docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
       - run: yarn format --check
+      - run: yarn lint
 
 workflows:
   version: 2

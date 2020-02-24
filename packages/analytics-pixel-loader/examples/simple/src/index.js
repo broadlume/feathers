@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import analytics from "./analytics-pixel.yml";
 
 console.log("Running...");

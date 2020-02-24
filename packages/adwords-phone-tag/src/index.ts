@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import DOMDataset from "@adhawk/dom-dataset";
 
-declare const gtag: (...args: any[]) => void;
+declare const gtag: (...args: unknown[]) => void;
 
 export function install(
   conversionId: string | null,
@@ -34,7 +37,7 @@ export function replacePhoneNumbers(
     ".phone-number--link",
   );
 
-  for (var i = 0; i < elements.length; ++i) {
+  for (let i = 0; i < elements.length; ++i) {
     const e = elements[i];
     e.href = "tel:" + mobileNumber;
     const textEl = e.querySelector<HTMLSpanElement>(".phone-number--text span");

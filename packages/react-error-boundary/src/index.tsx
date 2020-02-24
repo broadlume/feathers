@@ -9,11 +9,11 @@ interface State {
 export class ErrorBoundary extends React.Component<{}, State> {
   state = { hasError: undefined, eventId: undefined };
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: object) {
+  componentDidCatch(error: Error, errorInfo: object): void {
     withScope(scope => {
       scope.setExtras(errorInfo);
       const eventId = captureException(error);
@@ -21,13 +21,13 @@ export class ErrorBoundary extends React.Component<{}, State> {
     });
   }
 
-  render() {
+  render(): React.ReactNode {
     const { hasError, eventId } = this.state;
 
     if (hasError) {
       //render fallback UI
       return typeof eventId !== "string" ? (
-        <button onClick={() => showReportDialog({ eventId: eventId })}>
+        <button onClick={(): void => showReportDialog({ eventId: eventId })}>
           Report Feedback
         </button>
       ) : null;

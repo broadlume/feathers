@@ -1,4 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "prettier.trailingComma": "all"
+  "prettier.configPath": "config/prettier.config.js"
 }
