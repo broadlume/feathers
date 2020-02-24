@@ -3,6 +3,7 @@ version: 2
 jobs:
   test_esm:
     docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -18,6 +19,7 @@ jobs:
 
   test_cjs:
     docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -33,6 +35,7 @@ jobs:
 
   test_umd:
     docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -48,6 +51,7 @@ jobs:
 
   bundlesize:
     docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
@@ -55,6 +59,7 @@ jobs:
 
   lint:
     docker: [{ image: "circleci/node:12" }]
+    resource_class: large
     steps:
       - checkout
       - run: yarn
