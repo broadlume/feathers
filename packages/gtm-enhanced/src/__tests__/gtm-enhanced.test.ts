@@ -1,9 +1,8 @@
+import { identify } from "../../../error-tracking/src/index";
 "use strict";
 
 const Analytics = require("@segment/analytics.js-core").constructor;
-const integration = require("@segment/analytics.js-integration");
 const sandbox = require("@segment/clear-env");
-const tester = require("@segment/analytics.js-integration-tester");
 const GTM = require("..");
 
 interface Window {
@@ -12,29 +11,31 @@ interface Window {
 
 describe("GTM Enhanced", () => {
   let analytics: any;
-  let gtm: any;
 
   const options = {
+    trackAllPages: true,
     containerId: "GTM-M8M29T",
     environment: "",
     extraDimensions: ["retailer-id"],
+    loadTag: false,
   };
 
   beforeEach(done => {
-    sandbox();
-
-    analytics = new Analytics();
-    gtm = new GTM(options);
-    analytics.use(GTM);
-    analytics.use(tester);
-    analytics.add(gtm);
-
     window["dataLayer"] = [];
-    window["google_tag_manger"] = true;
-
+    window["google_tag_manager"] = true;
+    analytics = new Analytics();
+    analytics.use(GTM);
     analytics.once("ready", done);
-    analytics.initialize();
-    analytics.page();
+    analytics.initialize({ "GTM Enhanced": options });
+  });
+
+  afterEach(() => {
+    analytics.reset();
+    analytics.user().reset();
+    analytics.group().reset();
+    window["dataLayer"] = [];
+    localStorage.clear();
+    sandbox();
   });
 
   describe("#track", () => {
@@ -56,10 +57,49 @@ describe("GTM Enhanced", () => {
 
       analytics.track("test");
 
-      expect(window["dataLayer"]).toEqual([
+      expect(window["dataLayer"][1]).toEqual(
         expect.objectContaining({
           userId: 1,
           "retailer-id": "123",
+        }),
+      );
+    });
+  });
+
+  describe("#identify", () => {
+    it("nests the user data with properties", () => {
+      analytics.identify(1, { "retailer-id": "123", email: "foo@bar.com" });
+
+      expect(window["dataLayer"][0]).toEqual(
+        expect.objectContaining({
+          user: expect.objectContaining({ email: "foo@bar.com" }),
+        }),
+      );
+    });
+  });
+
+  describe("#page", () => {
+    it("nests the page data with name", () => {
+      analytics.page("My Page");
+
+      expect(window["dataLayer"]).toEqual([
+        expect.objectContaining({
+          event: "Loaded a Page",
+          page: expect.objectContaining({ name: "My Page" }),
+        }),
+      ]);
+    });
+
+    it("nests the page data with name and category", () => {
+      analytics.page("Core Website", "My Page");
+
+      expect(window["dataLayer"]).toEqual([
+        expect.objectContaining({
+          event: "Loaded a Page",
+          page: expect.objectContaining({
+            category: "Core Website",
+            name: "My Page",
+          }),
         }),
       ]);
     });
@@ -275,7 +315,6 @@ describe("GTM Enhanced", () => {
 
         expect(window["dataLayer"]).toEqual([
           expect.objectContaining({
-            userId: 1,
             segmentAnonymousId: anonId,
             event: "purchase",
             ecommerce: {
@@ -302,12 +341,12 @@ describe("GTM Enhanced", () => {
         sku: "G-32",
       });
 
-      expect(window["dataLayer"]).toEqual([
+      expect(window["dataLayer"][1]).toEqual(
         expect.objectContaining({
           userId: 1,
           "retailer-id": "123",
         }),
-      ]);
+      );
     });
   });
 });

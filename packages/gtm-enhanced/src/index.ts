@@ -63,6 +63,7 @@ const EnhancedGTM = integration("GTM Enhanced")
   .option("environment", "")
   .option("extraDimensions", [])
   .option("trackNamedPages", true)
+  .option("loadTag", true)
   .option("trackCategorizedPages", true)
   .tag(
     "no-env",
@@ -82,16 +83,15 @@ const EnhancedGTM = integration("GTM Enhanced")
  */
 
 EnhancedGTM.prototype.initialize = function(): void {
-  if (process.env.NODE_ENV === "test") {
+  if (this.options.loadTag === false) {
     this.ready();
-  } else {
-    push({ "gtm.start": Number(new Date()), event: "gtm.js" });
+    return;
+  }
 
-    if (this.options.environment.length) {
-      this.load("with-env", this.options, this.ready);
-    } else {
-      this.load("no-env", this.options, this.ready);
-    }
+  if (this.options.environment.length) {
+    this.load("with-env", this.options, this.ready);
+  } else {
+    this.load("no-env", this.options, this.ready);
   }
 };
 
@@ -102,10 +102,6 @@ EnhancedGTM.prototype.initialize = function(): void {
  * @return {boolean}
  */
 EnhancedGTM.prototype.loaded = function(): boolean {
-  if (process.env.NODE_ENV === "test") {
-    return !!window["dataLayer"];
-  }
-
   return !!(
     window["dataLayer"] && Array.prototype.push !== window["dataLayer"].push
   );
@@ -119,24 +115,32 @@ EnhancedGTM.prototype.loaded = function(): boolean {
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 EnhancedGTM.prototype.page = function(page: any): void {
-  const category = page.category();
-  const name = page.fullName();
   const opts = this.options;
 
   // all
   if (opts.trackAllPages) {
-    this.track(page.track());
+    push({
+      ...enhancedUserInfo(this.analytics, opts),
+      event: "Loaded a Page",
+      page: { ...page.properties() },
+    });
   }
+};
 
-  // categorized
-  if (category && opts.trackCategorizedPages) {
-    this.track(page.track(category));
-  }
+/**
+ * Page.
+ *
+ * @api public
+ * @param {Page} identify
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+EnhancedGTM.prototype.identify = function(identify: any): void {
+  const opts = this.options;
 
-  // named
-  if (name && opts.trackNamedPages) {
-    this.track(page.track(name));
-  }
+  push({
+    ...enhancedUserInfo(this.analytics, opts),
+    user: { ...identify.traits() },
+  });
 };
 
 /**
