@@ -1,14 +1,14 @@
 version: 2
 
 jobs:
-  test_esm:
+  test:
     docker: [{ image: "circleci/node:12" }]
     resource_class: large
     steps:
       - checkout
       - run: yarn
       - run:
-          name: Tests - ESM
+          name: Tests
           command: yarn run test:ci
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
@@ -55,5 +55,5 @@ workflows:
   verify:
     jobs:
       - lint
-      - test_esm
+      - test
       - test_cjs

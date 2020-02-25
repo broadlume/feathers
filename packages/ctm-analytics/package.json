@@ -4,9 +4,7 @@
   "version": "1.1.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/ctm-analytics.cjs.js",
-  "module": "./lib/ctm-analytics.esm.js",
-  "unpkg": "./lib/ctm-analytics.umd.min.js",
+  "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
