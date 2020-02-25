@@ -2,6 +2,8 @@ import integration from "@segment/analytics.js-integration";
 import globalQueue from "global-queue";
 import pick from "lodash.pick";
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 const push = globalQueue("dataLayer", { wrap: false }); // eslint-disable-line
 interface Options {
   extraDimensions: string[];
@@ -23,9 +25,7 @@ function enhancedUserInfo(analytics: any, opts: Options): object {
   return { ...customDimensions, ...userProps };
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unused-vars
 function enhancedEcommerceTrackProduct(track: any, _opts: Options) {
   const props = track.properties();
   const product: any = {
