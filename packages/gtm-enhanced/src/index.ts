@@ -282,4 +282,4 @@ EnhancedGTM.prototype.orderCompleted = function(track): void {
   });
 };
 
-module.exports = EnhancedGTM;
+export default EnhancedGTM;
