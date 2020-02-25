@@ -33,22 +33,6 @@ jobs:
       - store_artifacts:
           path: reports/junit
 
-  test_umd:
-    docker: [{ image: "circleci/node:12" }]
-    resource_class: large
-    steps:
-      - checkout
-      - run: yarn
-      - run:
-          name: Tests - CJS
-          command: yarn run test:umd:ci
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
-      - store_test_results:
-          path: reports/junit
-      - store_artifacts:
-          path: reports/junit
-
   bundlesize:
     docker: [{ image: "circleci/node:12" }]
     resource_class: large
@@ -73,5 +57,3 @@ workflows:
       - lint
       - test_esm
       - test_cjs
-      - test_umd
-      - bundlesize

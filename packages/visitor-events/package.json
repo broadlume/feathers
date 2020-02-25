@@ -18,13 +18,9 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../..//jest.config.js --testPathPattern packages/visitor-events",
-    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/visitor-events --watch",
-    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/visitor-events",
-    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/visitor-events"
+    "test": "jest --config ../../jest.config.js --testPathPattern packages/visitor-events"
   },
   "files": [
     "lib"
@@ -47,6 +43,7 @@
     "@segment/utm-params": "^2.0.0",
     "analytics.js-integrations": "https://github.com/segmentio/analytics.js-integrations#c1fc75c3913035d9b1d187e3948d8ef257a32fc2",
     "component-type": "npm:component-type",
-    "type": "npm:component-type"
+    "type": "npm:component-type",
+    "tslib": "^1.11.0"
   }
 }

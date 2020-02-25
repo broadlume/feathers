@@ -4,9 +4,7 @@
   "version": "1.1.5",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/dom-dataset.cjs.js",
-  "module": "./lib/dom-dataset.esm.js",
-  "unpkg": "./lib/dom-dataset.umd.min.js",
+  "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -18,16 +16,12 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../..//jest.config.js --testPathPattern packages/dom-dataset",
-    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/dom-dataset --watch",
-    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/dom-dataset",
-    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/dom-dataset"
+    "test": "jest --config ../../jest.config.js --testPathPattern packages/dom-dataset"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^1.11.0"
   },
   "files": [
     "lib"

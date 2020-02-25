@@ -18,13 +18,9 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../..//jest.config.js --testPathPattern packages/ctm-analytics",
-    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/ctm-analytics --watch",
-    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/ctm-analytics",
-    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/ctm-analytics"
+    "test": "jest --config ../..//jest.config.js --testPathPattern packages/ctm-analytics"
   },
   "files": [
     "lib"
@@ -43,6 +39,7 @@
     "@segment/analytics.js-core": "3.10.1",
     "@segment/analytics.js-integration": "^3.3.1",
     "analytics.js-integrations": "https://github.com/segmentio/analytics.js-integrations#c1fc75c3913035d9b1d187e3948d8ef257a32fc2",
-    "component-type": "^1.2.1"
+    "component-type": "^1.2.1",
+    "tslib": "^1.11.0"
   }
 }

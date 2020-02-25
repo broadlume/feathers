@@ -1,4 +1,4 @@
-import { ErrorBoundary } from "./../";
+import { ErrorBoundary } from "@adhawk/react-error-boundary";
 
 describe("ErrorBoundary", () => {
   it("is a React component", () => {

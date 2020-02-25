@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import * as AdwordsPhoneTag from "./../";
+import * as AdwordsPhoneTag from "@adhawk/adwords-phone-tag";
 
 describe("AdwordsPhoneTag", () => {
   describe("replacePhoneNumbers", () => {

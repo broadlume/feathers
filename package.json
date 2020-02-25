@@ -7,6 +7,10 @@
   "workspaces": {
     "packages": [
       "packages/*"
+    ],
+    "nohoist": [
+      "**/tslib",
+      "**/tslib/**"
     ]
   },
   "scripts": {
@@ -21,8 +25,8 @@
     "test:cjs:ci": "jest --config ./jest.cjs.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "test:umd": "npm run build && jest --config ./jest.umd.config.js",
     "test:umd:ci": "jest --config ./jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
-    "bundlesize": " lerna run build && bundlesize",
-    "bundlesize:ci": " bundlesize",
+    "test:esm": "npm run build && jest --config ./jest.esm.config.js",
+    "test:esm:ci": "jest --config ./jest.esm.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "format": " prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
     "deploy": " lerna publish",
     "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
@@ -30,6 +34,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.8.4",
+    "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@rollup/plugin-typescript": "^3.0.0",
     "@types/jest": "^25.1.0",
@@ -46,38 +52,7 @@
     "rollup-plugin-invariant": "^0.5.6",
     "rollup-plugin-terser": "5.2.0",
     "ts-jest": "^25.2.1",
+    "tslib": "^1.11.0",
     "typescript": "3.8.2"
-  },
-  "bundlesize": [
-    {
-      "name": "dom-dataset",
-      "path": "./packages/dom-dataset/lib/dom-dataset.cjs.min.js",
-      "maxSize": "221B"
-    },
-    {
-      "name": "adwords-phone-tag",
-      "path": "./packages/adwords-phone-tag/lib/adwords-phone-tag.cjs.min.js",
-      "maxSize": "512B"
-    },
-    {
-      "name": "error-tracking",
-      "path": "./packages/error-tracking/lib/error-tracking.cjs.min.js",
-      "maxSize": "16.38kB"
-    },
-    {
-      "name": "gtm-enhanced",
-      "path": "./packages/gtm-enhanced/lib/gtm-enhanced.cjs.min.js",
-      "maxSize": "1.1kB"
-    },
-    {
-      "name": "flux-vision",
-      "path": "./packages/flux-vision/lib/flux-vision.umd.min.js",
-      "maxSize": "1.0kB"
-    },
-    {
-      "name": "react-tracked-link",
-      "path": "./packages/react-tracked-link/lib/react-tracked-link.cjs.min.js",
-      "maxSize": "1.0kB"
-    }
-  ]
+  }
 }

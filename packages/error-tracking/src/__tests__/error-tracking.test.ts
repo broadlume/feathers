@@ -1,4 +1,9 @@
-import { captureException, init, identify, showReportDialog } from "./../";
+import {
+  captureException,
+  init,
+  identify,
+  showReportDialog,
+} from "@adhawk/error-tracking";
 
 describe("ErrorTracking", () => {
   describe("init", () => {

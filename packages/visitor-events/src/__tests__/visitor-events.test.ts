@@ -1,4 +1,4 @@
-import VisitorEventsIntegration from "..";
+import VisitorEventsIntegration from "@adhawk/visitor-events";
 const Analytics = require("@segment/analytics.js-core").constructor;
 const analyticsIntegration = require("@segment/analytics.js-integration");
 const sandbox = require("@segment/clear-env");
@@ -48,7 +48,7 @@ describe("VisitorEvents", () => {
 
   function isProcessed() {
     return new Promise((resolve, reject) => {
-      visitorEvents.queue.on("processed", (err: any, res: any) => {
+      visitorEvents.getQueue().on("processed", (err: any, res: any) => {
         if (err) {
           reject(err);
         }

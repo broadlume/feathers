@@ -1,14 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const integration = require("@segment/analytics.js-integration");
-const push = require("global-queue")("dataLayer", { wrap: false });
-const pick = require("lodash.pick");
+import integration from "@segment/analytics.js-integration";
+import globalQueue from "global-queue";
+import pick from "lodash.pick";
 
+const push = globalQueue("dataLayer", { wrap: false }); // eslint-disable-line
 interface Options {
   extraDimensions: string[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function enhancedUserInfo(analytics: any, opts: Options): object {
   const userId = analytics.user().id();
   const anonymousId = analytics.user().anonymousId();
@@ -26,6 +25,7 @@ function enhancedUserInfo(analytics: any, opts: Options): object {
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function enhancedEcommerceTrackProduct(track: any, _opts: Options) {
   const props = track.properties();
   const product: any = {

@@ -1,10 +1,11 @@
+import integration from "@segment/analytics.js-integration";
+import Queue from "@segment/localstorage-retry";
+import utm from "@segment/utm-params";
+
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const integration = require("@segment/analytics.js-integration");
-const Queue = require("@segment/localstorage-retry");
-const utm = require("@segment/utm-params");
 
 export function postJSON(url: string, options: any, done: any) {
   // @ts-ignore
@@ -22,9 +23,6 @@ export function postJSON(url: string, options: any, done: any) {
     statusText: request.statusText,
     status: request.status,
     url: request.responseURL,
-    text: () => Promise.resolve(request.responseText),
-    json: () => Promise.resolve(JSON.parse(request.responseText)),
-    blob: () => Promise.resolve(new Blob([request.response])),
     clone: response,
     headers: {
       keys: () => keys,
@@ -96,9 +94,6 @@ Object.assign(VisitorEvents.prototype, {
     this.debug("normalized event", normalized);
     return normalized;
   },
-  set queue(que: typeof Queue) {
-    this.queue = que;
-  },
   initialize() {
     this.queue = new Queue("visitor-events", (item: any, done: any) => {
       return this.postJSON(item, done)
@@ -129,6 +124,9 @@ Object.assign(VisitorEvents.prototype, {
   },
   publishEvent(event: any, type: any, argNames: string[] = []) {
     return this.queue.addItem(this.normalizeEvent(event, type, argNames));
+  },
+  getQueue() {
+    return this.queue;
   },
   postJSON(data: object, done: any): Promise<Response> {
     const request = {

@@ -1,9 +1,7 @@
-import { identify } from "../../../error-tracking/src/index";
-"use strict";
+import GTM from "@adhawk/gtm-enhanced";
 
 const Analytics = require("@segment/analytics.js-core").constructor;
 const sandbox = require("@segment/clear-env");
-const GTM = require("..");
 
 interface Window {
   dataLayer: any;

@@ -4,9 +4,7 @@
   "version": "1.1.6",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/adwords-phone-tag.cjs.js",
-  "module": "./lib/adwords-phone-tag.esm.js",
-  "unpkg": "./lib/adwords-phone-tag.umd.min.js",
+  "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -18,13 +16,10 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../..//jest.config.js --testPathPattern packages/adwords-phone-tag",
-    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/adwords-phone-tag --watch",
-    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/adwords-phone-tag",
-    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/adwords-phone-tag"
+    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/adwords-phone-tag --watch"
   },
   "files": [
     "lib"
@@ -34,7 +29,7 @@
   },
   "dependencies": {
     "@adhawk/dom-dataset": "^1.1.5",
-    "tslib": "^1.10.0"
+    "tslib": "^1.11.0"
   },
   "devDependencies": {
     "jest": "^25.1.0",

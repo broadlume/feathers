@@ -4,9 +4,7 @@
   "version": "1.1.9",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/error-tracking.cjs.js",
-  "module": "./lib/error-tracking.esm.js",
-  "unpkg": "./lib/error-tracking.umd.min.js",
+  "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -18,17 +16,13 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../..//jest.config.js --testPathPattern packages/error-tracking",
-    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/error-tracking --watch",
-    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/error-tracking",
-    "test:umd": "npm run build && jest --config ../..//jest.umd.config.js --testPathPattern packages/error-tracking"
+    "test": "jest --config ../../jest.config.js --testPathPattern packages/error-tracking"
   },
   "dependencies": {
     "@sentry/browser": "^5.11.0",
-    "tslib": "^1.10.0"
+    "tslib": "^1.11.0"
   },
   "files": [
     "lib"

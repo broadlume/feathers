@@ -1,4 +1,4 @@
-import CTMAnalyticsIntegration from "..";
+import CTMAnalyticsIntegration from "@adhawk/ctm-analytics";
 const Analytics = require("@segment/analytics.js-core").constructor;
 const analyticsIntegration = require("@segment/analytics.js-integration");
 const sandbox = require("@segment/clear-env");

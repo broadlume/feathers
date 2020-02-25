@@ -2,6 +2,7 @@
 import nodeResolve from "@rollup/plugin-node-resolve";
 import typescriptPlugin from "@rollup/plugin-typescript";
 import invariantPlugin from "rollup-plugin-invariant";
+import commonjs from "@rollup/plugin-commonjs";
 import { terser as minify } from "rollup-plugin-terser";
 
 export function rollup({
@@ -50,6 +51,7 @@ export function rollup({
           extensions: [".ts", ".tsx", ".js"],
           mainFields: ["browser", "jsnext", "module", "main"],
         }),
+        commonjs(),
         typescriptPlugin(),
         invariantPlugin({
           // Instead of completely stripping InvariantError messages in
@@ -65,11 +67,7 @@ export function rollup({
     };
   }
 
-  return [
-    fromSource("esm"),
-    fromSource("cjs"),
-    fromSource("cjs", "cjs.min", { plugins: [minifyPlugin] }),
-    fromSource("umd"),
-    fromSource("umd", "umd.min", { plugins: [minifyPlugin] }),
-  ].filter(Boolean);
+  return [fromSource("umd", "umd.min", { plugins: [minifyPlugin] })].filter(
+    Boolean,
+  );
 }

@@ -1,4 +1,4 @@
-import loader from "./../";
+import loader from "@adhawk/analytics-pixel-loader";
 
 describe("Analytics Pixel Loader", () => {
   it("compiles valid source", () => {

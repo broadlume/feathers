@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "module": "./lib/react-tracked-link.esm.js",
-  "unpkg": "./lib/react-tracked-link.umd.min.js",
+  "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -17,15 +16,12 @@
     "prepare": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc -p .",
-    "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",
-    "test": "jest --config ../..//jest.config.js --testPathPattern packages/react-tracked-link",
-    "test:watch": "jest --config ../..//jest.config.js --testPathPattern packages/react-tracked-link --watch",
-    "test:cjs": "npm run build && jest --config ../..//jest.cjs.config.js --testPathPattern packages/react-tracked-link"
+    "test": "jest --config ../../jest.config.js --testPathPattern packages/react-tracked-link"
   },
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^1.11.0"
   },
   "files": [
     "lib"
