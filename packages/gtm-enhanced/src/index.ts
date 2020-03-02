@@ -88,6 +88,8 @@ EnhancedGTM.prototype.initialize = function(): void {
     return;
   }
 
+  push({ "gtm.start": Number(new Date()), event: "gtm.js" });
+
   if (this.options.environment.length) {
     this.load("with-env", this.options, this.ready);
   } else {
