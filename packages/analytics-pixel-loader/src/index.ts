@@ -55,10 +55,14 @@ export default function(source: string): string {
     mappedAnalyticsConfig[integration.name] = integration.opts;
   }
 
+  const analyticsVersion = require("@segment/analytics.js-core/package.json")
+    .version;
+
   const outputSource = `${imports.join("\n")}
-var Analytics = require('@segment/analytics.js-core/lib/analytics');
+import Analytics from '@segment/analytics.js-core/lib/analytics';
+
 var analytics = new Analytics();
-analytics.VERSION = require('@segment/analytics.js-core/package.json').version;
+analytics.VERSION = ${JSON.stringify(analyticsVersion)};
 ${setups.join("\n")}
 var analyticsConfig = ${JSON.stringify(mappedAnalyticsConfig)};
 

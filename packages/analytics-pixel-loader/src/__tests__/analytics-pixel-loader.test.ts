@@ -13,9 +13,10 @@ describe("Analytics Pixel Loader", () => {
 
     expect(compiled).toMatchInlineSnapshot(`
       "import GoogleAnalytics from \\"@segment/analytics.js-integration-google-analytics\\";
-      var Analytics = require('@segment/analytics.js-core/lib/analytics');
+      import Analytics from '@segment/analytics.js-core/lib/analytics';
+
       var analytics = new Analytics();
-      analytics.VERSION = require('@segment/analytics.js-core/package.json').version;
+      analytics.VERSION = \\"3.10.1\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
 
@@ -44,9 +45,10 @@ describe("Analytics Pixel Loader", () => {
 
     expect(compiled).toMatchInlineSnapshot(`
       "import GoogleAnalytics from \\"@segment/foo-bar\\";
-      var Analytics = require('@segment/analytics.js-core/lib/analytics');
+      import Analytics from '@segment/analytics.js-core/lib/analytics';
+
       var analytics = new Analytics();
-      analytics.VERSION = require('@segment/analytics.js-core/package.json').version;
+      analytics.VERSION = \\"3.10.1\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
 
