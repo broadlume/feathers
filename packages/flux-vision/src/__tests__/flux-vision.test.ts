@@ -93,8 +93,6 @@ describe("FluxVision", () => {
       const flux = new FluxVision({ analytics, Shopify });
       flux.init();
 
-      console.log(flux.productData);
-
       expect(analyticsTrackMock).toHaveBeenCalledTimes(1);
       expect(analyticsTrackMock).toHaveBeenCalledWith("Checkout Started", {
         currency: "USD",

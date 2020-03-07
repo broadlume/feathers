@@ -11,7 +11,7 @@ jobs:
           name: Tests
           command: yarn run test:ci
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT: "reports/junit/es-test-results.xml"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
@@ -27,7 +27,23 @@ jobs:
           name: Tests - CJS
           command: yarn run test:cjs:ci
           environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+            JEST_JUNIT_OUTPUT: "reports/junit/cjs-test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+
+  test_umd:
+    docker: [{ image: "circleci/node:12" }]
+    resource_class: large
+    steps:
+      - checkout
+      - run: yarn
+      - run:
+          name: Tests - CJS
+          command: yarn run test:umd:ci
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/umd-test-results.xml"
       - store_test_results:
           path: reports/junit
       - store_artifacts:

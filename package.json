@@ -23,6 +23,8 @@
     "test:ci": "npm run test:coverage -- --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "test:cjs": "npm run build && jest --config ./jest.cjs.config.js",
     "test:cjs:ci": "jest --config ./jest.cjs.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "test:umd": "npm run build && jest --config ./jest.umd.config.js",
+    "test:umd:ci": "jest --config ./jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "format": " prettier --config ./config/prettier.config.js --write \"./**/*.*.{js,jsx,ts*,md,graphql,json}\"",
     "deploy": " lerna publish",
     "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
