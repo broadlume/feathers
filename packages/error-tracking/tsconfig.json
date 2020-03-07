@@ -6,7 +6,10 @@
     "types": ["jest", "node"],
     "rootDir": "./src",
     "baseUrl": "./src",
-    "outDir": "./lib/cjs"
+    "outDir": "./lib/cjs",
+    "paths": {
+      "@adhawk/error-tracking": ["./"]
+    }
   },
   "include": ["./src"],
   "exclude": ["./lib"]

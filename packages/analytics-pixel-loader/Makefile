@@ -4,7 +4,7 @@ default: build
 TSC=./node_modules/.bin/tsc
 
 build: 
-	$(TSC) -b tsconfig.*.json
+	$(TSC) -b tsconfig.*
 
 clean:
 	rm -rf ./lib
