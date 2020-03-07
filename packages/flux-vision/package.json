@@ -5,6 +5,7 @@
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/index.js",
+  "module": "./lib/es/index.js",
   "unpkg": "./lib/flux-vision.umd.min.js",
   "typings": "./lib/index.d.ts",
   "keywords": [
@@ -19,10 +20,8 @@
   },
   "sideEffects": true,
   "scripts": {
-    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
     "prepare": "npm run build",
-    "prebuild": "npm run clean",
-    "build": "tsc -p .",
+    "build": "make",
     "postbuild": "rollup -c",
     "predeploy": "npm run build",
     "deploy": "npm publish",

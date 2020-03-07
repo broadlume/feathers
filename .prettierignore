@@ -2,7 +2,6 @@ node_modules
 build
 coverage
 npm
-package.json
 *.snap
 package-lock.json
 **/lib

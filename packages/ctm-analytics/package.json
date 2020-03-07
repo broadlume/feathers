@@ -5,6 +5,7 @@
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/index.js",
+  "module": "./lib/es/index.js",
   "typings": "./lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -12,10 +13,8 @@
   },
   "sideEffects": true,
   "scripts": {
-    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
     "prepare": "npm run build",
-    "prebuild": "npm run clean",
-    "build": "tsc -p .",
+    "build": "make",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../..//jest.config.js --testPathPattern packages/ctm-analytics"

@@ -3,8 +3,7 @@
   "compilerOptions": {
     "jsx": "react",
     "outDir": "./lib",
-    "strict": true,
-    "module": "CommonJS"
+    "strict": true
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/**/__tests__/**/*", "./src/**/__mocks__/**/*"]
