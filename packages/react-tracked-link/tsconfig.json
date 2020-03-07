@@ -2,12 +2,11 @@
   "extends": "./../../config/tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
-
+    "module": "commonjs",
+    "types": ["jest", "segment-analytics"],
     "rootDir": "./src",
     "baseUrl": "./src",
-    "outDir": "./lib/cjs",
-    "noImplicitAny": false,
-    "strict": false
+    "outDir": "./lib/cjs"
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/**/__tests__/**/*", "./src/**/__mocks__/**/*"]

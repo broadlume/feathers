@@ -2,9 +2,6 @@
   "extends": "./../../config/tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
-    "module": "commonjs",
-    "jsx": "react",
-
     "rootDir": "./src",
     "baseUrl": "./src",
     "outDir": "./lib/cjs"

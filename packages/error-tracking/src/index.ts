@@ -32,7 +32,11 @@ export function identify<T extends User>(user: T): void {
 }
 
 export function captureException(error: Error): string {
-  if (process.env.NODE_ENV !== "production") {
+  if (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    process?.env?.NODE_ENV !== "production"
+  ) {
     console.error(error);
   }
 

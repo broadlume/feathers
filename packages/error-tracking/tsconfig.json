@@ -2,12 +2,12 @@
   "extends": "./../../config/tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
-    "jsx": "react",
-
+    "strict": true,
+    "types": ["jest", "node"],
     "rootDir": "./src",
     "baseUrl": "./src",
     "outDir": "./lib/cjs"
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./src/**/__tests__/**/*", "./src/**/__mocks__/**/*"]
+  "include": ["./src"],
+  "exclude": ["./lib"]
 }

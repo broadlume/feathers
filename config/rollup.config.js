@@ -3,6 +3,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import invariantPlugin from "rollup-plugin-invariant";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser as minify } from "rollup-plugin-terser";
+import babel from "rollup-plugin-babel";
 
 export function rollup({
   name,
@@ -60,6 +61,9 @@ export function rollup({
           // errors back to the unminified code where they were thrown,
           // where the full error string can be found. See #4519.
           errorCodes: true,
+        }),
+        babel({
+          runtimeHelpers: true,
         }),
         ...opts.plugins,
       ],

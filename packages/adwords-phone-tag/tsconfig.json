@@ -3,6 +3,7 @@
   "compilerOptions": {
     "rootDir": "./src",
     "baseUrl": "./src",
+    "types": ["jest", "node"],
     "outDir": "./lib/cjs",
     "strict": true,
     "paths": {

@@ -2,11 +2,13 @@
   "extends": "./../../config/tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
-    "strict": true,
-
+    "jsx": "react",
+    "types": ["jest", "node"],
     "rootDir": "./src",
     "baseUrl": "./src",
-    "outDir": "./lib/cjs"
+    "outDir": "./lib/cjs",
+    "noImplicitAny": false,
+    "strict": false
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/**/__tests__/**/*", "./src/**/__mocks__/**/*"]
