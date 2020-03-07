@@ -1,16 +1,12 @@
-.PHONY: build build-es build-cjs clean
-default: clean build
+.PHONY: build clean
+default: build
 
-INSTALL_DIR=./../../node_modules/typescript/bin/
-TSC=$(INSTALL_DIR)tsc
+TSC=./node_modules/.bin/tsc
+ROLLUP=./node_modules/.bin/rollup
 
-build: build-cjs build-es
-	
-build-es:
-	$(TSC) -p tsconfig.es.json
-
-build-cjs:
-	$(TSC) -p tsconfig.cjs.json
+build: 
+	$(TSC) -b tsconfig.*.json
+	$(ROLLUP) -c rollup.config.js
 
 clean:
 	rm -rf ./lib

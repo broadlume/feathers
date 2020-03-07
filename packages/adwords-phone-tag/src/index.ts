@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import DOMDataset from "@adhawk/dom-dataset";
+import DOMDataset from "./dom-dataset";
 
 declare const gtag: (...args: unknown[]) => void;
 

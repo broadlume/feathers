@@ -1,8 +1,11 @@
 {
   "extends": "./tsconfig.cjs.json",
   "compilerOptions": {
+    "composite": true,
+
+    "rootDir": "./src",
+    "baseUrl": "./src",
     "outDir": "./lib/es",
-    "module": "ES6",
-    "declaration": false
+    "module": "ES6"
   }
 }

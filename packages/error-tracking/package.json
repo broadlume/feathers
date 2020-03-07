@@ -4,9 +4,10 @@
   "version": "1.2.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/index.js",
+  "main": "./lib/cjs/index.js",
   "module": "./lib/es/index.js",
-  "typings": "./lib/index.d.ts",
+  "unpkg": "./lib/umd/error-tracking.min.js",
+  "typings": "./lib/cjs/index.d.ts",
   "repository": {
     "type": "git",
     "url": "@adhawk/feathers"

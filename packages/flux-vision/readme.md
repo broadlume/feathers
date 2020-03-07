@@ -51,7 +51,7 @@ This package utilizes Segment.io to allow you to send data to any number of dest
 </html>
 
 <!-- Add this script in after the </html> -->
-<script src="https://unpkg.com/@adhawk/flux-vision/lib/flux-vision.umd.min.js"></script>
+<script src="https://unpkg.com/@adhawk/flux-vision"></script>
 ```
 
 That's it!

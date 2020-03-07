@@ -1,6 +1,5 @@
 /* eslint-disable */
 import nodeResolve from "@rollup/plugin-node-resolve";
-import typescriptPlugin from "@rollup/plugin-typescript";
 import invariantPlugin from "rollup-plugin-invariant";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser as minify } from "rollup-plugin-terser";
@@ -8,11 +7,11 @@ import { terser as minify } from "rollup-plugin-terser";
 export function rollup({
   name,
   umdName,
-  input = "./src/index.ts",
+  input = "./lib/es/index.js",
   skipFormats = [],
 }) {
-  function outputFile(format) {
-    return `./lib/${name}.${format}.js`;
+  function outputFile(postfix) {
+    return `./lib/umd/${name}${postfix}.js`;
   }
 
   const minifyPlugin = minify({
@@ -48,11 +47,11 @@ export function rollup({
       },
       plugins: [
         nodeResolve({
-          extensions: [".ts", ".tsx", ".js"],
+          extensions: [".js"],
           mainFields: ["browser", "jsnext", "module", "main"],
         }),
         commonjs(),
-        typescriptPlugin(),
+        // typescriptPlugin({ tsconfig: "./tsconfig.es.json" }),
         invariantPlugin({
           // Instead of completely stripping InvariantError messages in
           // production, this option assigns a numeric code to the
@@ -67,7 +66,7 @@ export function rollup({
     };
   }
 
-  return [fromSource("umd", "umd.min", { plugins: [minifyPlugin] })].filter(
+  return [fromSource("umd", ".min", { plugins: [minifyPlugin] })].filter(
     Boolean,
   );
 }
