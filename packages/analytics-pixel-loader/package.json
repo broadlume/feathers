@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/analytics-pixel-loader",
   "description": "A webpack loader which builds Segment analytics.js pixels as small, efficient bundles",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
@@ -20,7 +20,7 @@
     "test": "jest --config ../../jest.config.js --testPathPattern packages/analytics-pixel-loader"
   },
   "dependencies": {
-    "@adhawk/error-tracking": "^1.2.0",
+    "@adhawk/error-tracking": "^1.3.0",
     "@segment/analytics.js-core": "3.10.1",
     "@types/js-yaml": "^3.12.1",
     "js-yaml": "^3.13.1",
