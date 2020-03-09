@@ -23,17 +23,19 @@
     "test:ci": "npm run test:coverage -- --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
     "test:cjs": "npm run build && jest --config ./jest.cjs.config.js",
     "test:cjs:ci": "jest --config ./jest.cjs.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
-    "format": " prettier --config ./config/prettier.config.js --write \"./**/*.{js,jsx,ts*,md,graphql,json}\"",
+    "test:umd": "npm run build && jest --config ./jest.umd.config.js",
+    "test:umd:ci": "jest --config ./jest.umd.config.js --ci --maxWorkers=2 --reporters=default --reporters=jest-junit --silent",
+    "format": " prettier --config ./config/prettier.config.js --write \"./**/*.*.{js,jsx,ts*,md,graphql,json}\"",
     "deploy": " lerna publish",
     "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
     "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.4",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "@rollup/plugin-typescript": "^3.0.0",
     "@types/jest": "^25.1.0",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
@@ -45,10 +47,15 @@
     "jest-junit": "10.0.0",
     "lerna": "3.20.2",
     "rollup": "1.31.1",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-invariant": "^0.5.6",
     "rollup-plugin-terser": "5.2.0",
     "ts-jest": "^25.2.1",
     "tslib": "^1.11.0",
     "typescript": "3.8.2"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/runtime-corejs3": "^7.8.7"
   }
 }

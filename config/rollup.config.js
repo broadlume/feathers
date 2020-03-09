@@ -1,18 +1,18 @@
 /* eslint-disable */
 import nodeResolve from "@rollup/plugin-node-resolve";
-import typescriptPlugin from "@rollup/plugin-typescript";
 import invariantPlugin from "rollup-plugin-invariant";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser as minify } from "rollup-plugin-terser";
+import babel from "rollup-plugin-babel";
 
 export function rollup({
   name,
   umdName,
-  input = "./src/index.ts",
+  input = "./lib/es/index.js",
   skipFormats = [],
 }) {
-  function outputFile(format) {
-    return `./lib/${name}.${format}.js`;
+  function outputFile(postfix) {
+    return `./lib/${name}.umd${postfix}.js`;
   }
 
   const minifyPlugin = minify({
@@ -48,11 +48,10 @@ export function rollup({
       },
       plugins: [
         nodeResolve({
-          extensions: [".ts", ".tsx", ".js"],
+          extensions: [".js"],
           mainFields: ["browser", "jsnext", "module", "main"],
         }),
         commonjs(),
-        typescriptPlugin(),
         invariantPlugin({
           // Instead of completely stripping InvariantError messages in
           // production, this option assigns a numeric code to the
@@ -62,12 +61,15 @@ export function rollup({
           // where the full error string can be found. See #4519.
           errorCodes: true,
         }),
+        babel({
+          runtimeHelpers: true,
+        }),
         ...opts.plugins,
       ],
     };
   }
 
-  return [fromSource("umd", "umd.min", { plugins: [minifyPlugin] })].filter(
+  return [fromSource("umd", ".min", { plugins: [minifyPlugin] })].filter(
     Boolean,
   );
 }

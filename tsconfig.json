@@ -1,0 +1,9 @@
+{
+  "extends": "./config/tsconfig.base.json",
+  "exclude": [
+    "node_modules",
+    "packages/*/node_modules",
+    "packages/*/lib",
+    "examples"
+  ]
+}

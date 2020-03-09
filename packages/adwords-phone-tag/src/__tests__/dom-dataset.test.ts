@@ -1,4 +1,4 @@
-import DOMDataset from "@adhawk/dom-dataset";
+import DOMDataset from "./../dom-dataset";
 
 describe("DOMDataset", () => {
   it("pulls data from a meta tag", () => {

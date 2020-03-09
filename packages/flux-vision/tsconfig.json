@@ -1,7 +1,12 @@
 {
   "extends": "./../../config/tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./lib",
+    "composite": true,
+    "types": ["jest", "segment-analytics"],
+    "lib": ["ES2016", "DOM"],
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "outDir": "./lib/cjs",
     "noImplicitAny": false,
     "strict": false
   },

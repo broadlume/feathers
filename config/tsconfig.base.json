@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "composite": true,
     "declaration": true,
     "jsx": "react",
-    "lib": ["es2015", "esnext.asynciterable", "dom"],
-    "module": "es2015",
+    "lib": ["DOM", "ES2015.Iterable", "ES5"],
+    "types": ["jest"],
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
@@ -13,10 +14,8 @@
     "sourceMap": true,
     "target": "es3",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "typeRoots": ["../node_modules/@types"]
+    "experimentalDecorators": true
   },
-  "include": ["../packages/*/src/**/*"],
   "exclude": [
     "../node_modules",
     "../packages/*/node_modules",

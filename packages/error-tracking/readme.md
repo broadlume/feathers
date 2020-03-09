@@ -21,7 +21,7 @@ init({
 In the `head` tag:
 
 ```html
-<script src="https://unpkg.com/@adhawk/error-tracking/lib/error-tracking.umd.min.js"></script>
+<script src="https://unpkg.com/@adhawk/error-tracking"></script>
 ```
 
 ## Usage

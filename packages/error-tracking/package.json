@@ -4,24 +4,25 @@
   "version": "1.2.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
-  "main": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/es/index.js",
+  "unpkg": "./lib/error-tracking.umd.min.js",
+  "typings": "./lib/cjs/index.d.ts",
   "repository": {
     "type": "git",
     "url": "@adhawk/feathers"
   },
   "sideEffects": false,
   "scripts": {
-    "clean": "rm -Rf ./lib/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache",
     "prepare": "npm run build",
-    "prebuild": "npm run clean",
-    "build": "tsc -p .",
+    "build": "make",
     "predeploy": "npm run build",
     "deploy": "npm publish",
     "test": "jest --config ../../jest.config.js --testPathPattern packages/error-tracking"
   },
   "dependencies": {
     "@sentry/browser": "^5.11.0",
+    "@types/jest": "^25.1.4",
     "tslib": "^1.11.0"
   },
   "files": [
