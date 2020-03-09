@@ -5,7 +5,7 @@ const glob = require("glob");
 config.preset = "ts-jest";
 
 config.moduleNameMapper = {
-  "^@adhawk\\/([^/]+)": "<rootDir>/packages/$1/lib/umd/$1.min.js",
+  "^@adhawk\\/([^/]+)": "<rootDir>/packages/$1/lib/$1.umd.min.js",
 };
 
 config.testPathIgnorePatterns = glob

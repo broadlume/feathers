@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "./lib/cjs/index.js",
   "module": "./lib/es/index.js",
-  "unpkg": "./lib/umd/flux-vision.min.js",
+  "unpkg": "./lib/flux-vision.umd.min.js",
   "typings": "./lib/cjs/index.d.ts",
   "keywords": [
     "segment",

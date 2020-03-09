@@ -12,7 +12,7 @@ export function rollup({
   skipFormats = [],
 }) {
   function outputFile(postfix) {
-    return `./lib/umd/${name}${postfix}.js`;
+    return `./lib/${name}.umd${postfix}.js`;
   }
 
   const minifyPlugin = minify({

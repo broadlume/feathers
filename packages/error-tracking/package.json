@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "./lib/cjs/index.js",
   "module": "./lib/es/index.js",
-  "unpkg": "./lib/umd/error-tracking.min.js",
+  "unpkg": "./lib/error-tracking.umd.min.js",
   "typings": "./lib/cjs/index.d.ts",
   "repository": {
     "type": "git",
