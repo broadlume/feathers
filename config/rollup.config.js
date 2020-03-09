@@ -52,7 +52,6 @@ export function rollup({
           mainFields: ["browser", "jsnext", "module", "main"],
         }),
         commonjs(),
-        // typescriptPlugin({ tsconfig: "./tsconfig.es.json" }),
         invariantPlugin({
           // Instead of completely stripping InvariantError messages in
           // production, this option assigns a numeric code to the
