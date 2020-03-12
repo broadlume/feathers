@@ -15,13 +15,20 @@ interface ErrorTrackingConfig {
   release: string;
   sentryDsn?: string;
   debug?: boolean;
+  minimal?: boolean;
 }
 
 export function init(conf: ErrorTrackingConfig): void {
-  const { sentryDsn, release, debug, environment } = conf;
+  const { sentryDsn, release, debug, environment, minimal = false } = conf;
 
   if (sentryDsn) {
-    sentryInit({ dsn: sentryDsn, debug, environment, release });
+    sentryInit({
+      dsn: sentryDsn,
+      debug,
+      environment,
+      release,
+      defaultIntegrations: minimal ? false : undefined,
+    });
   }
 }
 
