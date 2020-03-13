@@ -6,13 +6,13 @@ import {
 
 import { GlobalHandlers } from "@sentry/browser/esm/integrations/globalhandlers";
 
-interface User {
+export interface User {
   id: string;
   username?: string;
   email?: string;
 }
 
-interface ErrorTrackingConfig {
+export interface ErrorTrackingConfig {
   environment: string;
   release: string;
   sentryDsn?: string;
