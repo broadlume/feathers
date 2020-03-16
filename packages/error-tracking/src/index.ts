@@ -4,8 +4,6 @@ import {
   init as sentryInit,
 } from "@sentry/browser";
 
-import { GlobalHandlers } from "@sentry/browser/esm/integrations/globalhandlers";
-
 export interface User {
   id: string;
   username?: string;
@@ -17,11 +15,10 @@ export interface ErrorTrackingConfig {
   release: string;
   sentryDsn?: string;
   debug?: boolean;
-  minimal?: boolean;
 }
 
 export function init(conf: ErrorTrackingConfig): void {
-  const { sentryDsn, release, debug, environment, minimal = false } = conf;
+  const { sentryDsn, release, debug, environment } = conf;
 
   if (sentryDsn) {
     sentryInit({
@@ -29,14 +26,6 @@ export function init(conf: ErrorTrackingConfig): void {
       debug,
       environment,
       release,
-      integrations: minimal
-        ? [
-            new GlobalHandlers({
-              onerror: false,
-              onunhandledrejection: false,
-            }),
-          ]
-        : undefined,
     });
   }
 }
