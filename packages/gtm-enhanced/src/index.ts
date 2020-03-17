@@ -190,8 +190,10 @@ EnhancedGTM.prototype.productViewed = function(track: any): void {
   push({
     ...userProps,
     ecommerce: {
-      currencyCode: product.currency,
-      impressions: [product],
+      detail: {
+        actionField: {},
+        products: [product],
+      },
     },
   });
 };
