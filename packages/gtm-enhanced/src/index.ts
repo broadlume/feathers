@@ -183,6 +183,19 @@ EnhancedGTM.prototype.productClicked = function(track: any): void {
   });
 };
 
+EnhancedGTM.prototype.productViewed = function(track: any): void {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+  const product = enhancedEcommerceTrackProduct(track, this.options);
+
+  push({
+    ...userProps,
+    ecommerce: {
+      currencyCode: product.currency,
+      impressions: [product],
+    },
+  });
+};
+
 /**
  * Added product - Enhanced Ecommerce
  *
@@ -199,7 +212,7 @@ EnhancedGTM.prototype.productAdded = function(track: any): void {
     ...userProps,
     event: "addToCart",
     ecommerce: {
-      currencyCode: "USD",
+      currencyCode: product.currency,
       add: {
         products: [product],
       },
