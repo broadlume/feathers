@@ -15,17 +15,16 @@ export interface ErrorTrackingConfig {
   release: string;
   sentryDsn?: string;
   debug?: boolean;
+  ignoreErrors?: Array<string | RegExp>;
 }
 
 export function init(conf: ErrorTrackingConfig): void {
-  const { sentryDsn, release, debug, environment } = conf;
+  const { sentryDsn, ...opts } = conf;
 
   if (sentryDsn) {
     sentryInit({
       dsn: sentryDsn,
-      debug,
-      environment,
-      release,
+      ...opts,
     });
   }
 }
