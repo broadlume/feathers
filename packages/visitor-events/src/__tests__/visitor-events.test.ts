@@ -83,7 +83,7 @@ describe("VisitorEvents", () => {
   });
 
   describe("after loading", () => {
-    beforeEach(done => {
+    beforeEach((done) => {
       analytics.once("ready", done);
       // @ts-ignore
       window._visitor_events_postJSON = mockFetch({});

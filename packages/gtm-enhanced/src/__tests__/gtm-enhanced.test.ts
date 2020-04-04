@@ -18,7 +18,7 @@ describe("GTM Enhanced", () => {
     loadTag: false,
   };
 
-  beforeEach(done => {
+  beforeEach((done) => {
     window["dataLayer"] = [];
     window["google_tag_manager"] = true;
     analytics = new Analytics();

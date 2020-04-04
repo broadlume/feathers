@@ -10,7 +10,7 @@ config.moduleNameMapper = {
 
 config.testPathIgnorePatterns = glob
   .sync("packages/*/package.json")
-  .map(path => {
+  .map((path) => {
     if (!require("./" + path).unpkg) {
       return path.replace("package.json", "");
     }

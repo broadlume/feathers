@@ -4,7 +4,7 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import { TrackedLink } from "@adhawk/react-tracked-link";
 
 function wait() {
-  return new Promise(resolve => setTimeout(resolve, 10));
+  return new Promise((resolve) => setTimeout(resolve, 10));
 }
 
 describe("TrackedLink", () => {
