@@ -1,0 +1,30 @@
+{
+  "name": "@adhawk/babel-preset-compatible-typescript",
+  "description": "A highly compatible Babel config for Typescript",
+  "version": "1.0.0",
+  "author": "developers@tryadhawk.com",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "@adhawk/feathers"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "deploy": "npm publish"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/helper-plugin-utils": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/runtime-corejs3": "^7.9.6"
+  }
+}
