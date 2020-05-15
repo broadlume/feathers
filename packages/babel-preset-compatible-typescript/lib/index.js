@@ -12,11 +12,8 @@ module.exports = declare((api, _opts) => {
       "@babel/preset-typescript",
     ],
     plugins: [
-      [
-        "@babel/plugin-proposal-class-properties",
-        "@babel/plugin-transform-runtime",
-        { corejs: 3, useESModules: true },
-      ],
+      "@babel/plugin-proposal-class-properties",
+      ["@babel/plugin-transform-runtime", { corejs: 3, useESModules: true }],
     ],
   };
 });
