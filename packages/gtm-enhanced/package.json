@@ -36,7 +36,7 @@
     "@segment/clear-env": "^2.1.1",
     "@types/lodash.pick": "^4.4.6",
     "jest-environment-jsdom": "^25.1.0",
-    "typescript": "3.8.3"
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@segment/analytics.js-core": "3.10.1",

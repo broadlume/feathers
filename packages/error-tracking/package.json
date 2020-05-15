@@ -34,8 +34,8 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^7.0.0",
     "jest": "^25.1.0",
-    "rollup": "2.3.2",
-    "typescript": "3.8.3"
+    "rollup": "^2.3.2",
+    "typescript": "^3.8.3"
   },
   "gitHead": "21d4253fee28bfb703c7ca25122f230a86669d3f"
 }

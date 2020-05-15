@@ -11,3 +11,4 @@ packages/**/package-lock.json
 junit.xml
 **/*/yarn-error.log
 yarn-error.log
+lerna-debug.json

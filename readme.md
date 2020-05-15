@@ -13,16 +13,17 @@ own `README` and documentation describing usage.
 
 ### Package Index
 
-| package                                               | version                                                                                                          |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [adwords-phone-tag](packages/adwords-phone-tag)       | [![](https://img.shields.io/npm/v/@adhawk/adwords-phone-tag)](https://npmjs.com/@adhawk/adwords-phone-tag)       |
-| [dom-dataset](packages/dom-dataset)                   | [![](https://img.shields.io/npm/v/@adhawk/dom-dataset)](https://npmjs.com/@adhawk/dom-dataset)                   |
-| [error-tracking](packages/error-tracking)             | [![](https://img.shields.io/npm/v/@adhawk/error-tracking)](https://npmjs.com/@adhawk/error-tracking)             |
-| [react-error-boundary](packages/react-error-boundary) | [![](https://img.shields.io/npm/v/@adhawk/react-error-boundary)](https://npmjs.com/@adhawk/react-error-boundary) |
-| [gtm-enhanced](packages/gtm-enhanced)                 | [![](https://img.shields.io/npm/v/@adhawk/gtm-enhanced)](https://npmjs.com/@adhawk/gtm-enhanced)                 |
-| [flux-vision](packages/flux-vision)                   | [![](https://img.shields.io/npm/v/@adhawk/flux-vision)](https://npmjs.com/@adhawk/flux-vision)                   |
-| [ctm-analytics](packages/ctm-analytics)               | [![](https://img.shields.io/npm/v/@adhawk/ctm-analytics)](https://npmjs.com/@adhawk/ctm-analytics)               |
-| [react-tracked-link](packages/react-tracked-link)     | [![](https://img.shields.io/npm/v/@adhawk/react-tracked-link)](https://npmjs.com/@adhawk/react-tracked-link)     |
+| package                                                                           | version                                                                                                                                      |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [adwords-phone-tag](packages/adwords-phone-tag)                                   | [![](https://img.shields.io/npm/v/@adhawk/adwords-phone-tag)](https://npmjs.com/@adhawk/adwords-phone-tag)                                   |
+| [dom-dataset](packages/dom-dataset)                                               | [![](https://img.shields.io/npm/v/@adhawk/dom-dataset)](https://npmjs.com/@adhawk/dom-dataset)                                               |
+| [error-tracking](packages/error-tracking)                                         | [![](https://img.shields.io/npm/v/@adhawk/error-tracking)](https://npmjs.com/@adhawk/error-tracking)                                         |
+| [react-error-boundary](packages/react-error-boundary)                             | [![](https://img.shields.io/npm/v/@adhawk/react-error-boundary)](https://npmjs.com/@adhawk/react-error-boundary)                             |
+| [gtm-enhanced](packages/gtm-enhanced)                                             | [![](https://img.shields.io/npm/v/@adhawk/gtm-enhanced)](https://npmjs.com/@adhawk/gtm-enhanced)                                             |
+| [flux-vision](packages/flux-vision)                                               | [![](https://img.shields.io/npm/v/@adhawk/flux-vision)](https://npmjs.com/@adhawk/flux-vision)                                               |
+| [ctm-analytics](packages/ctm-analytics)                                           | [![](https://img.shields.io/npm/v/@adhawk/ctm-analytics)](https://npmjs.com/@adhawk/ctm-analytics)                                           |
+| [react-tracked-link](packages/react-tracked-link)                                 | [![](https://img.shields.io/npm/v/@adhawk/react-tracked-link)](https://npmjs.com/@adhawk/react-tracked-link)                                 |
+| [babel-preset-compatible-typescript](packages/babel-preset-compatible-typescript) | [![](https://img.shields.io/npm/v/@adhawk/babel-preset-compatible-typescript)](https://npmjs.com/@adhawk/babel-preset-compatible-typescript) |
 
 ## License
 
