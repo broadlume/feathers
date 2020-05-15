@@ -6,7 +6,7 @@ module.exports = declare((api, _opts) => {
   return {
     presets: [
       [
-        "@babel/preset-en@babel/preset-envv",
+        "@babel/preset-env",
         {
           useBuiltIns: false,
         },
