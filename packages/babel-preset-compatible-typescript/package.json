@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/babel-preset-compatible-typescript",
   "description": "A highly compatible Babel config for Typescript",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/index.js",
