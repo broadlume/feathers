@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/error-tracking",
   "description": "Configure error tracking for your project",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
