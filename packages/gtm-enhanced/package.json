@@ -43,6 +43,6 @@
     "@segment/analytics.js-integration": "^3.3.1",
     "global-queue": "^1.0.1",
     "lodash.pick": "^4.4.0",
-    "tslib": "^1.11.0"
+    "tslib": "^2.0.0"
   }
 }

@@ -40,6 +40,6 @@
   },
   "gitHead": "cc8d31ae35832bec2879b2f364fcb4cb60345932",
   "dependencies": {
-    "tslib": "^1.11.0"
+    "tslib": "^2.0.0"
   }
 }
