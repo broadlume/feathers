@@ -29,7 +29,7 @@
     "@segment/analytics.js-integration-tester": "^3.1.1",
     "@segment/clear-env": "^2.1.1",
     "jest-environment-jsdom": "^25.1.0",
-    "jest-environment-jsdom-global": "^1.1.0",
+    "jest-environment-jsdom-global": "^2.0.2",
     "jest-json-schema": "^2.0.1",
     "typescript": "^3.8.3"
   },
