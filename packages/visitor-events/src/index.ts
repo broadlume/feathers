@@ -110,21 +110,27 @@ VisitorEvents.prototype.initialize = function () {
   // @ts-ignore
   this.ready();
 };
+
 VisitorEvents.prototype.track = function (event: any) {
   return this.publishEvent(event, "track");
 };
+
 VisitorEvents.prototype.page = function (event: any) {
   return this.publishEvent(event, "page", ["name", "category"]);
 };
+
 VisitorEvents.prototype.identify = function (event: any) {
   return this.publishEvent(event, "identify");
 };
+
 VisitorEvents.prototype.group = function (event: any) {
   return this.publishEvent(event, "group", ["groupId"]);
 };
+
 VisitorEvents.prototype.alias = function (event: any) {
   return this.publishEvent(event, "alias", ["previousId"]);
 };
+
 VisitorEvents.prototype.publishEvent = function (
   event: any,
   type: any,
@@ -132,9 +138,11 @@ VisitorEvents.prototype.publishEvent = function (
 ) {
   return this.queue.addItem(this.normalizeEvent(event, type, argNames));
 };
+
 VisitorEvents.prototype.getQueue = function () {
   return this.queue;
 };
+
 VisitorEvents.prototype.postJSON = function (
   data: object,
   done: any,
