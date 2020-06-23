@@ -2,6 +2,7 @@ import integration from "@segment/analytics.js-integration";
 import globalQueue from "global-queue";
 import pick from "lodash.pick";
 import keys from "lodash.keys";
+import { Track } from "segmentio-facade";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -26,31 +27,45 @@ function enhancedUserInfo(analytics: any, opts: Options): object {
   return { ...customDimensions, ...userProps };
 }
 
-function extractProductDimensions(props: object, opts: Options): object {
+function extractProductDimensions(
+  track: any,
+  opts: Options,
+  analytics: any,
+): object {
   const result = {};
+  const props = track.properties();
+  const userProps = enhancedUserInfo(analytics, opts);
 
   for (const key in opts.dimensions) {
     const dimNum = opts.dimensions[key];
-    result[dimNum] = props[key];
+
+    if (props[key]) {
+      result[dimNum] = props[key];
+    } else if (userProps[key]) {
+      result[dimNum] = userProps[key];
+    }
   }
 
   return result;
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unused-vars
-function enhancedEcommerceTrackProduct(track: any, opts: Options) {
+function enhancedEcommerceTrackProduct(
+  track: any,
+  opts: Options,
+  analytics: any,
+  extraProps = {},
+) {
   const { brand, variant, position, productId, id, sku } = track.properties();
 
   const product: any = {
-    ...extractProductDimensions(track.properties(), opts),
+    ...extractProductDimensions(track, opts, analytics),
     id: productId || id || sku,
     name: track.name(),
     category: track.category(),
-    quantity: track.quantity(),
     price: track.price(),
     brand,
     variant,
-    currency: track.currency(),
   };
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#product-data
@@ -61,10 +76,84 @@ function enhancedEcommerceTrackProduct(track: any, opts: Options) {
 
   // append coupon if it set
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#measuring-transactions
-  const coupon = track.proxy("properties.coupon");
-  if (coupon) product.coupon = coupon;
+  if (extraProps["coupon"]) {
+    const coupon = track.proxy("properties.coupon");
+    if (coupon) product.coupon = coupon;
+  }
+
+  if (extraProps["quantity"]) {
+    product.quantity = track.quantity();
+  }
+
+  if (extraProps["currency"]) {
+    product["currency"] = track.currency();
+  }
 
   return product;
+}
+
+function getProductPosition(item: any, products: any): number {
+  const position = item.properties().position;
+
+  if (
+    typeof position !== "undefined" &&
+    !isNaN(Number(position)) &&
+    Number(position) > -1
+  ) {
+    // If position passed and is valid positive number.
+    return position;
+  }
+  return (
+    products
+      .map(function (x) {
+        return x.product_id;
+      })
+      .indexOf(item.productId()) + 1
+  );
+}
+
+function enhancedEcommerceTrackProducts(
+  track: any,
+  opts: Options,
+  analytics: any,
+  extraProps = {},
+): object[] {
+  const products = track.products();
+
+  const result = [];
+
+  for (const unmappedProduct of products) {
+    const item = new Track({ properties: unmappedProduct });
+    const props = item.properties();
+
+    const impressionObj = {
+      ...extractProductDimensions(track, opts, analytics),
+      id: item.productId() || item.id() || item.sku(),
+      name: item.name(),
+      category: item.category() || track.category(),
+      brand: item.properties().brand,
+      price: item.price(),
+      variant: props.variant,
+      position: getProductPosition(item, products),
+    };
+
+    if (extraProps["coupon"]) {
+      const coupon = item.proxy("properties.coupon");
+      if (coupon) impressionObj["coupon"] = coupon;
+    }
+
+    if (extraProps["quantity"]) {
+      impressionObj["quantity"] = item.quantity();
+    }
+
+    if (extraProps["currency"]) {
+      impressionObj["currency"] = item.currency();
+    }
+
+    result.push(impressionObj);
+  }
+
+  return result;
 }
 
 /**
@@ -184,7 +273,12 @@ EnhancedGTM.prototype.track = function (track: any): void {
  */
 EnhancedGTM.prototype.productClicked = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
-  const product = enhancedEcommerceTrackProduct(track, this.options);
+  const product = enhancedEcommerceTrackProduct(
+    track,
+    this.options,
+    this.analytics,
+    { coupon: true, currency: true, quantity: true },
+  );
 
   push({
     ...userProps,
@@ -199,7 +293,12 @@ EnhancedGTM.prototype.productClicked = function (track: any): void {
 
 EnhancedGTM.prototype.productViewed = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
-  const product = enhancedEcommerceTrackProduct(track, this.options);
+  const product = enhancedEcommerceTrackProduct(
+    track,
+    this.options,
+    this.analytics,
+    { coupon: true, currency: true, quantity: true },
+  );
 
   push({
     ...userProps,
@@ -208,6 +307,58 @@ EnhancedGTM.prototype.productViewed = function (track: any): void {
         actionField: {},
         products: [product],
       },
+    },
+  });
+};
+
+EnhancedGTM.prototype.productListViewed = function (track: any): void {
+  const props = track.properties();
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+
+  const impressions = enhancedEcommerceTrackProducts(
+    track,
+    this.options,
+    this.analytics,
+    { coupon: false, currency: false, quantity: false },
+  );
+
+  for (const impression of impressions) {
+    impression["list"] = props.list_id || track.category() || "search results";
+  }
+
+  push({
+    ...userProps,
+    ecommerce: {
+      impressions,
+    },
+  });
+};
+
+EnhancedGTM.prototype.productListFiltered = function (track: any): void {
+  const userProps = enhancedUserInfo(this.analytics, this.options);
+
+  const impressions = enhancedEcommerceTrackProducts(
+    track,
+    this.options,
+    this.analytics,
+    { coupon: false, currency: false, quantity: false },
+  );
+
+  const props = track.properties();
+  props.filters = props.filters || [];
+  props.sorters = props.sorters || [];
+  const filters = props.filters.map((obj) => obj.type + ":" + obj.value).join();
+  const sorts = props.sorts.map((obj) => obj.type + ":" + obj.value).join();
+
+  for (const impression of impressions) {
+    impression["variant"] = `${filters}::${sorts}`;
+    impression["list"] = props.list_id || track.category() || "search results";
+  }
+
+  push({
+    ...userProps,
+    ecommerce: {
+      impressions,
     },
   });
 };
@@ -222,7 +373,12 @@ EnhancedGTM.prototype.productViewed = function (track: any): void {
 
 EnhancedGTM.prototype.productAdded = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
-  const product = enhancedEcommerceTrackProduct(track, this.options);
+  const product = enhancedEcommerceTrackProduct(
+    track,
+    this.options,
+    this.analytics,
+    { coupon: true, currency: true, quantity: true },
+  );
 
   push({
     ...userProps,
@@ -253,7 +409,12 @@ EnhancedGTM.prototype.checkoutStarted = function (track: any): void {
     ecommerce: {
       checkout: {
         actionField: { step: 1 },
-        products: track.products(),
+        products: enhancedEcommerceTrackProducts(
+          track,
+          this.options,
+          this.analytics,
+          { coupon: true, currency: true, quantity: true },
+        ),
       },
     },
   });
@@ -277,7 +438,12 @@ EnhancedGTM.prototype.checkoutStepViewed = function (track): void {
     ecommerce: {
       checkout: {
         actionField: { step: step },
-        products: track.products(),
+        products: enhancedEcommerceTrackProducts(
+          track,
+          this.options,
+          this.analytics,
+          { coupon: true, currency: true, quantity: true },
+        ),
       },
     },
   });
@@ -307,7 +473,12 @@ EnhancedGTM.prototype.orderCompleted = function (track): void {
           tax: track.tax(),
           shipping: track.shipping(),
         },
-        products: track.products(),
+        products: enhancedEcommerceTrackProducts(
+          track,
+          this.options,
+          this.analytics,
+          { coupon: true, currency: true, quantity: true },
+        ),
       },
     },
   });

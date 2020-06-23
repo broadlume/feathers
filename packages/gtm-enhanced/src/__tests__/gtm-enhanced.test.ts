@@ -272,7 +272,20 @@ describe("GTM Enhanced", () => {
             ecommerce: {
               checkout: {
                 actionField: { step: 2 },
-                products: [{ ...productData }],
+                products: [
+                  {
+                    brand: "Hasbro",
+                    category: "Games",
+                    coupon: "MAYDEALS",
+                    currency: "USD",
+                    quantity: 1,
+                    variant: "200 pieces",
+                    id: "G-32",
+                    name: "Monopoly: 3rd jEdition",
+                    position: 3,
+                    price: 18.99,
+                  },
+                ],
               },
             },
           }),
@@ -326,7 +339,20 @@ describe("GTM Enhanced", () => {
                   tax: 2,
                   shipping: 3,
                 },
-                products: products,
+                products: [
+                  {
+                    brand: "Hasbro",
+                    category: "Games",
+                    currency: "USD",
+                    id: "G-32",
+                    name: "Monopoly: 3rd jEdition",
+                    quantity: 1,
+                    position: 3,
+                    coupon: "MAYDEALS",
+                    price: 18.99,
+                    variant: "200 pieces",
+                  },
+                ],
               },
             },
           }),
@@ -373,6 +399,95 @@ describe("GTM Enhanced", () => {
                   },
                 ],
               },
+            },
+          }),
+        ]);
+      });
+    });
+
+    describe("#productListFiltered", () => {
+      it("maps to Enhanced Ecommerce spec", () => {
+        const anonId = analytics.user().anonymousId();
+
+        analytics.track("Product List Filtered", {
+          filters: [{ type: "department", value: "games" }],
+          sorts: [{ type: "price", value: "desc" }],
+          list_id: "Old",
+          products: [
+            {
+              name: "Monopoly: 3rd jEdition",
+              sku: "G-32",
+              price: 18.99,
+              category: "Games",
+              brand: "Hasbro",
+              variant: "200 pieces",
+              position: 3,
+              url: "https://www.example.com/product/path",
+              image_url: "https://www.example.com/product/path.jpg",
+            },
+          ],
+        });
+
+        expect(window["dataLayer"]).toEqual([
+          expect.objectContaining({
+            segmentAnonymousId: anonId,
+            ecommerce: {
+              impressions: [
+                {
+                  id: "G-32",
+                  name: "Monopoly: 3rd jEdition",
+                  brand: "Hasbro",
+                  list: "Old",
+                  category: "Games",
+                  variant: "department:games::price:desc",
+                  price: 18.99,
+                  position: 3,
+                },
+              ],
+            },
+          }),
+        ]);
+      });
+    });
+
+    describe("#productListViewed", () => {
+      it("maps to Enhanced Ecommerce spec", () => {
+        const anonId = analytics.user().anonymousId();
+
+        analytics.track("Product List Viewed", {
+          list_id: "Test List Id",
+          products: [
+            {
+              name: "Monopoly: 3rd jEdition",
+              sku: "G-32",
+              price: 18.99,
+              category: "Games",
+              list: "Test List Id",
+              brand: "Hasbro",
+              variant: "200 pieces",
+              position: 3,
+              url: "https://www.example.com/product/path",
+              image_url: "https://www.example.com/product/path.jpg",
+            },
+          ],
+        });
+
+        expect(window["dataLayer"]).toEqual([
+          expect.objectContaining({
+            segmentAnonymousId: anonId,
+            ecommerce: {
+              impressions: [
+                {
+                  id: "G-32",
+                  name: "Monopoly: 3rd jEdition",
+                  brand: "Hasbro",
+                  list: "Test List Id",
+                  category: "Games",
+                  variant: "200 pieces",
+                  price: 18.99,
+                  position: 3,
+                },
+              ],
             },
           }),
         ]);
