@@ -4,6 +4,7 @@ import invariantPlugin from "rollup-plugin-invariant";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser as minify } from "rollup-plugin-terser";
 import babel from "rollup-plugin-babel";
+import path from "path";
 
 export function rollup({
   name,
@@ -63,6 +64,13 @@ export function rollup({
         }),
         babel({
           runtimeHelpers: true,
+          exclude: "node_modules/**",
+          presets: [
+            path.resolve(
+              __dirname,
+              "./../babel-preset-compatible-typescript/lib/index.js",
+            ),
+          ],
         }),
         ...opts.plugins,
       ],
