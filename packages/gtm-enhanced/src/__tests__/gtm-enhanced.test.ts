@@ -14,7 +14,7 @@ describe("GTM Enhanced", () => {
     trackAllPages: true,
     containerId: "GTM-M8M29T",
     environment: "",
-    extraDimensions: ["retailer-id"],
+    dimensions: { application: "dimension1" },
     loadTag: false,
   };
 
@@ -51,14 +51,14 @@ describe("GTM Enhanced", () => {
     });
 
     it("tracks custom dimensions", () => {
-      analytics.identify(1, { "retailer-id": "123" });
+      analytics.identify(1, { application: "ffviz" });
 
       analytics.track("test");
 
       expect(window["dataLayer"][1]).toEqual(
         expect.objectContaining({
           userId: 1,
-          "retailer-id": "123",
+          application: "ffviz",
         }),
       );
     });
@@ -112,6 +112,7 @@ describe("GTM Enhanced", () => {
         sku: "G-32",
         price: 18.99,
         category: "Games",
+        application: "ffviz",
         brand: "Hasbro",
         variant: "200 pieces",
         quantity: 1,
@@ -139,6 +140,7 @@ describe("GTM Enhanced", () => {
                   quantity: 1,
                   coupon: "MAYDEALS",
                   position: 3,
+                  dimension1: "ffviz",
                 },
               ]),
             },
@@ -378,7 +380,7 @@ describe("GTM Enhanced", () => {
     });
 
     it("tracks custom dimensions", () => {
-      analytics.identify(1, { "retailer-id": "123" });
+      analytics.identify(1, { application: "ffviz" });
 
       analytics.track("Product Clicked", {
         sku: "G-32",
@@ -387,7 +389,7 @@ describe("GTM Enhanced", () => {
       expect(window["dataLayer"][1]).toEqual(
         expect.objectContaining({
           userId: 1,
-          "retailer-id": "123",
+          application: "ffviz",
         }),
       );
     });

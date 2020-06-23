@@ -1,12 +1,13 @@
 import integration from "@segment/analytics.js-integration";
 import globalQueue from "global-queue";
 import pick from "lodash.pick";
+import keys from "lodash.keys";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 const push = globalQueue("dataLayer", { wrap: false }); // eslint-disable-line
 interface Options {
-  extraDimensions: string[];
+  dimensions: { [key: string]: string };
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,7 +17,7 @@ function enhancedUserInfo(analytics: any, opts: Options): object {
   const userProps: any = {};
   const customDimensions = pick(
     analytics.user().traits(),
-    opts.extraDimensions,
+    keys(opts.dimensions),
   );
 
   if (userId) userProps.userId = userId;
@@ -25,24 +26,37 @@ function enhancedUserInfo(analytics: any, opts: Options): object {
   return { ...customDimensions, ...userProps };
 }
 
+function extractProductDimensions(props: object, opts: Options): object {
+  const result = {};
+
+  for (const key in opts.dimensions) {
+    const dimNum = opts.dimensions[key];
+    result[dimNum] = props[key];
+  }
+
+  return result;
+}
+
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unused-vars
-function enhancedEcommerceTrackProduct(track: any, _opts: Options) {
-  const props = track.properties();
+function enhancedEcommerceTrackProduct(track: any, opts: Options) {
+  const { brand, variant, position, productId, id, sku } = track.properties();
+
   const product: any = {
-    id: track.productId() || track.id() || track.sku(),
+    ...extractProductDimensions(track.properties(), opts),
+    id: productId || id || sku,
     name: track.name(),
     category: track.category(),
     quantity: track.quantity(),
     price: track.price(),
-    brand: props.brand,
-    variant: props.variant,
+    brand,
+    variant,
     currency: track.currency(),
   };
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/enhanced-ecommerce#product-data
   // GA requires an integer but our specs says "Number", so it could be a float.
-  if (props.position != null) {
-    product.position = Math.round(props.position);
+  if (position != null) {
+    product.position = Math.round(position);
   }
 
   // append coupon if it set
@@ -82,7 +96,7 @@ const EnhancedGTM = integration("GTM Enhanced")
  * @api public
  */
 
-EnhancedGTM.prototype.initialize = function(): void {
+EnhancedGTM.prototype.initialize = function (): void {
   if (this.options.loadTag === false) {
     this.ready();
     return;
@@ -103,7 +117,7 @@ EnhancedGTM.prototype.initialize = function(): void {
  * @api private
  * @return {boolean}
  */
-EnhancedGTM.prototype.loaded = function(): boolean {
+EnhancedGTM.prototype.loaded = function (): boolean {
   return !!(
     window["dataLayer"] && Array.prototype.push !== window["dataLayer"].push
   );
@@ -116,7 +130,7 @@ EnhancedGTM.prototype.loaded = function(): boolean {
  * @param {Page} page
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-EnhancedGTM.prototype.page = function(page: any): void {
+EnhancedGTM.prototype.page = function (page: any): void {
   const opts = this.options;
 
   // all
@@ -136,7 +150,7 @@ EnhancedGTM.prototype.page = function(page: any): void {
  * @param {Page} identify
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-EnhancedGTM.prototype.identify = function(identify: any): void {
+EnhancedGTM.prototype.identify = function (identify: any): void {
   const opts = this.options;
 
   push({
@@ -153,7 +167,7 @@ EnhancedGTM.prototype.identify = function(identify: any): void {
  * @api public
  * @param {Track} track
  */
-EnhancedGTM.prototype.track = function(track: any): void {
+EnhancedGTM.prototype.track = function (track: any): void {
   const props = track.properties();
   props.event = track.event();
 
@@ -168,7 +182,7 @@ EnhancedGTM.prototype.track = function(track: any): void {
  * @api public
  * @param {Track} track
  */
-EnhancedGTM.prototype.productClicked = function(track: any): void {
+EnhancedGTM.prototype.productClicked = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const product = enhancedEcommerceTrackProduct(track, this.options);
 
@@ -183,7 +197,7 @@ EnhancedGTM.prototype.productClicked = function(track: any): void {
   });
 };
 
-EnhancedGTM.prototype.productViewed = function(track: any): void {
+EnhancedGTM.prototype.productViewed = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const product = enhancedEcommerceTrackProduct(track, this.options);
 
@@ -206,7 +220,7 @@ EnhancedGTM.prototype.productViewed = function(track: any): void {
  * @api private
  */
 
-EnhancedGTM.prototype.productAdded = function(track: any): void {
+EnhancedGTM.prototype.productAdded = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const product = enhancedEcommerceTrackProduct(track, this.options);
 
@@ -230,7 +244,7 @@ EnhancedGTM.prototype.productAdded = function(track: any): void {
  * @api private
  */
 
-EnhancedGTM.prototype.checkoutStarted = function(track: any): void {
+EnhancedGTM.prototype.checkoutStarted = function (track: any): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
 
   push({
@@ -253,7 +267,7 @@ EnhancedGTM.prototype.checkoutStarted = function(track: any): void {
  * @api private
  */
 
-EnhancedGTM.prototype.checkoutStepViewed = function(track): void {
+EnhancedGTM.prototype.checkoutStepViewed = function (track): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const step = track.properties().step;
 
@@ -276,7 +290,7 @@ EnhancedGTM.prototype.checkoutStepViewed = function(track): void {
  * @api private
  */
 
-EnhancedGTM.prototype.orderCompleted = function(track): void {
+EnhancedGTM.prototype.orderCompleted = function (track): void {
   const userProps = enhancedUserInfo(this.analytics, this.options);
   const total = track.total() || track.revenue() || 0;
   const props = track.properties();
