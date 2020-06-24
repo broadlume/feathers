@@ -346,7 +346,7 @@ EnhancedGTM.prototype.productListFiltered = function (track: any): void {
 
   const props = track.properties();
   props.filters = props.filters || [];
-  props.sorters = props.sorters || [];
+  props.sorts = props.sorts || [];
   const filters = props.filters.map((obj) => obj.type + ":" + obj.value).join();
   const sorts = props.sorts.map((obj) => obj.type + ":" + obj.value).join();
 
