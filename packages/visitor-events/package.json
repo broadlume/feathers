@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/visitor-events",
   "description": "Analytics.js integration for visitor events",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
