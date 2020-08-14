@@ -36,13 +36,15 @@ function buildSetupStatement(integration: IntegrationConfig): string {
   return `analytics.use(${importName});`;
 }
 
-export default function(source: string): string {
+export default function (source: string): string {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const options = getOptions(this);
 
   validateOptions(schema, options, { name: "Analytics Pixel Loader" });
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
   const analyticsConfig: IntegrationConfig[] = safeLoad(source);
 
   const imports = [];

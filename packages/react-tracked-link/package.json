@@ -34,7 +34,7 @@
     "@types/react": "^16.9.22",
     "@types/react-dom": "^16.9.5",
     "@types/segment-analytics": "^0.0.32",
-    "jest": "^25.1.0",
+    "jest": "^26.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "typescript": "^3.8.3"

@@ -3,7 +3,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import invariantPlugin from "rollup-plugin-invariant";
 import commonjs from "@rollup/plugin-commonjs";
 import { terser as minify } from "rollup-plugin-terser";
-import babel from "rollup-plugin-babel";
+import babel from "@rollup/plugin-babel";
 import path from "path";
 
 export function rollup({
@@ -63,7 +63,7 @@ export function rollup({
           errorCodes: true,
         }),
         babel({
-          runtimeHelpers: true,
+          babelHelpers: "runtime",
           exclude: "node_modules/**",
           presets: [
             path.resolve(

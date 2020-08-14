@@ -30,7 +30,7 @@ export function init(conf: ErrorTrackingConfig): void {
 }
 
 export function identify<T extends User>(user: T): void {
-  sentryConfigureScope(scope => {
+  sentryConfigureScope((scope) => {
     scope.setUser(user);
   });
 }

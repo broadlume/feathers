@@ -14,7 +14,9 @@ export class ErrorBoundary extends React.Component<{}, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: object): void {
-    withScope(scope => {
+    withScope((scope) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // @ts-ignore
       scope.setExtras(errorInfo);
       const eventId = captureException(error);
       this.setState({ eventId });
