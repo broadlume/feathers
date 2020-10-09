@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/react-error-boundary",
   "description": "A React component for catching and reporting errors",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
@@ -21,7 +21,7 @@
     "test": "jest --config ../../jest.config.js --testPathPattern packages/react-error-boundary"
   },
   "dependencies": {
-    "@adhawk/error-tracking": "^1.3.10",
+    "@adhawk/error-tracking": "^1.3.11",
     "tslib": "^2.0.0"
   },
   "files": [
