@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ErrorInfo } from "react";
 import { withScope, captureException, showReportDialog } from "@sentry/browser";
 
 interface State {

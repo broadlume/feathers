@@ -13,10 +13,10 @@ describe("Analytics Pixel Loader", () => {
 
     expect(compiled).toMatchInlineSnapshot(`
       "import GoogleAnalytics from \\"@segment/analytics.js-integration-google-analytics\\";
-      import Analytics from '@segment/analytics.js-core/lib/analytics';
+      import Analytics from '@segment/analytics.js-core/build/analytics';
 
       var analytics = new Analytics();
-      analytics.VERSION = \\"3.10.1\\";
+      analytics.VERSION = \\"4.1.5\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
 
@@ -45,10 +45,10 @@ describe("Analytics Pixel Loader", () => {
 
     expect(compiled).toMatchInlineSnapshot(`
       "import GoogleAnalytics from \\"@segment/foo-bar\\";
-      import Analytics from '@segment/analytics.js-core/lib/analytics';
+      import Analytics from '@segment/analytics.js-core/build/analytics';
 
       var analytics = new Analytics();
-      analytics.VERSION = \\"3.10.1\\";
+      analytics.VERSION = \\"4.1.5\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
 

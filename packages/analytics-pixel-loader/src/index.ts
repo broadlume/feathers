@@ -2,9 +2,7 @@ import { getOptions } from "loader-utils";
 import { JSONSchema7 } from "json-schema";
 import { safeLoad } from "js-yaml";
 import kebabCase from "lodash.kebabcase";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const validateOptions = require("schema-utils");
+import { validate as validateOptions } from "schema-utils";
 
 const schema: JSONSchema7 = {
   // type: "object",
@@ -40,7 +38,6 @@ export default function (source: string): string {
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
   const options = getOptions(this);
-
   validateOptions(schema, options, { name: "Analytics Pixel Loader" });
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -61,7 +58,7 @@ export default function (source: string): string {
     .version;
 
   const outputSource = `${imports.join("\n")}
-import Analytics from '@segment/analytics.js-core/lib/analytics';
+import Analytics from '@segment/analytics.js-core/build/analytics';
 
 var analytics = new Analytics();
 analytics.VERSION = ${JSON.stringify(analyticsVersion)};
