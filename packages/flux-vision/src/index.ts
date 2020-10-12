@@ -3,7 +3,7 @@ import FluxVision from "./flux-vision";
 declare global {
   interface Window {
     Shopify: { Checkout: { page: unknown; step: number } };
-    analytics: any;
+    analytics: SegmentAnalytics.AnalyticsJS;
   }
 }
 

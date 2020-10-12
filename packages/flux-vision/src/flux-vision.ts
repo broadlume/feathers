@@ -3,7 +3,7 @@ export default class FluxVision {
   checkoutDataset: DOMStringMap;
   productData: DOMStringMap[];
   Shopify: { Checkout: { page: unknown; step: unknown } };
-  analytics: any;
+  analytics: SegmentAnalytics.AnalyticsJS;
   liquidDivSelector: string;
 
   constructor({
