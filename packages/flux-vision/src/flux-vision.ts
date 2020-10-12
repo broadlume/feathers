@@ -33,7 +33,9 @@ export default class FluxVision {
     try {
       const liquidElement = document.querySelector(liquidDivSelector);
       if (!liquidElement) {
-        throw `no liquid element found with selector ${liquidDivSelector}. Learn more at https://github.com/broadlume/feathers/tree/master/packages/flux-vision`;
+        throw new Error(
+          `No liquid element found with selector ${liquidDivSelector}. Learn more at https://github.com/broadlume/feathers/tree/master/packages/flux-vision`,
+        );
       }
     } catch (error) {
       throw new Error(error);

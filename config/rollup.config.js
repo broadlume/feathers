@@ -38,14 +38,7 @@ export function rollup({
         commonjs(),
         babel({
           babelHelpers: "bundled",
-          exclude: "node_modules/**",
-          skipPreflightCheck: true,
-          presets: [
-            path.resolve(
-              __dirname,
-              "./../babel-preset-compatible-typescript/lib/index.js",
-            ),
-          ],
+          presets: [["@babel/preset-env", { targets: "cover 99.5% in US" }]],
         }),
         ...opts.plugins,
       ],
