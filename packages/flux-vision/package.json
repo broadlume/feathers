@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/flux-vision",
   "description": "Track End of Funnel Behavior in Shopify Liquid templates through Segment.io",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
