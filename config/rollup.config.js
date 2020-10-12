@@ -63,7 +63,7 @@ export function rollup({
           errorCodes: true,
         }),
         babel({
-          babelHelpers: "runtime",
+          babelHelpers: "bundled",
           exclude: "node_modules/**",
           presets: [
             path.resolve(
