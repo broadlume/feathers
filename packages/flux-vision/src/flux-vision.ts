@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/camelcase */
 export default class FluxVision {
   htmlDataElements: string;
   checkoutDataset: DOMStringMap;
   productData: DOMStringMap[];
   Shopify: { Checkout: { page: unknown; step: unknown } };
-  analytics: SegmentAnalytics.AnalyticsJS;
+  analytics: any;
   liquidDivSelector: string;
 
   constructor({
