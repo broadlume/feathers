@@ -65,6 +65,7 @@ export function rollup({
         babel({
           babelHelpers: "bundled",
           exclude: "node_modules/**",
+          skipPreflightCheck: true,
           presets: [
             path.resolve(
               __dirname,
