@@ -3,6 +3,7 @@ import { JSONSchema7 } from "json-schema";
 import { safeLoad } from "js-yaml";
 import kebabCase from "lodash.kebabcase";
 import { validate as validateOptions } from "schema-utils";
+import { InitOptions } from "@segment/analytics.js-core/lib/types";
 
 const schema: JSONSchema7 = {
   // type: "object",
@@ -13,6 +14,10 @@ interface IntegrationConfig {
   name: string;
   package?: string;
   opts: object;
+}
+
+interface AnalyticsConfig extends Omit<InitOptions, "integrations"> {
+  integrations: IntegrationConfig[];
 }
 
 function generateImportName(name: string): string {
@@ -42,13 +47,15 @@ export default function (source: string): string {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
-  const analyticsConfig: IntegrationConfig[] = safeLoad(source);
+  const { integrations, ...analyticsOpts } = safeLoad(
+    source
+  ) as AnalyticsConfig;
 
   const imports = [];
   const setups = [];
   const mappedAnalyticsConfig: { [k: string]: object } = {};
 
-  for (const integration of analyticsConfig) {
+  for (const integration of integrations) {
     imports.push(buildImportStatement(integration));
     setups.push(buildSetupStatement(integration));
     mappedAnalyticsConfig[integration.name] = integration.opts;
@@ -72,7 +79,7 @@ if (typeof document !== 'undefined') {
   }
 }
 
-analytics.initialize(analyticsConfig);
+analytics.initialize(analyticsConfig, ${JSON.stringify(analyticsOpts)});
 export default analytics;`;
 
   return outputSource;

@@ -224,7 +224,7 @@ describe("Flux Vision Errors", () => {
       flux.init();
     }).toThrowError(
       new Error(
-        "Flux Vision Error: no liquid element found with selector #FLUX_VISION_DATASETS. Learn more at https://github.com/adHawk/feathers/tree/master/packages/flux-vision",
+        "No liquid element found with selector #FLUX_VISION_DATASETS. Learn more at https://github.com/broadlume/feathers/tree/master/packages/flux-vision",
       ),
     );
   });
