@@ -13,7 +13,7 @@ const schema: JSONSchema7 = {
 interface IntegrationConfig {
   name: string;
   package?: string;
-  opts: object;
+  opts: { [k: string]: unknown };
 }
 
 interface AnalyticsConfig extends Omit<InitOptions, "integrations"> {
@@ -40,15 +40,15 @@ function buildSetupStatement(integration: IntegrationConfig): string {
 }
 
 export default function (source: string): string {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const options = getOptions(this);
   validateOptions(schema, options, { name: "Analytics Pixel Loader" });
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { integrations, ...analyticsOpts } = safeLoad(
-    source
+    source,
   ) as AnalyticsConfig;
 
   const imports = [];
@@ -61,6 +61,7 @@ export default function (source: string): string {
     mappedAnalyticsConfig[integration.name] = integration.opts;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const analyticsVersion = require("@segment/analytics.js-core/package.json")
     .version;
 
@@ -71,15 +72,21 @@ var analytics = new Analytics();
 analytics.VERSION = ${JSON.stringify(analyticsVersion)};
 ${setups.join("\n")}
 var analyticsConfig = ${JSON.stringify(mappedAnalyticsConfig)};
+var analyticsOptions = ${JSON.stringify(analyticsOpts)};
 
 if (typeof document !== 'undefined') {
   var analyticsConfigMeta = document.querySelector('meta[name="analytics-config"]');
   if (analyticsConfigMeta) {
     analyticsConfig = JSON.parse(analyticsConfigMeta.content);
   }
+
+  var analyticsOptionsMeta = document.querySelector('meta[name="analytics-options"]');
+  if (analyticsOptionsMeta) {
+    analyticsConfig = JSON.parse(analyticsOptionsMeta.content);
+  }
 }
 
-analytics.initialize(analyticsConfig, ${JSON.stringify(analyticsOpts)});
+analytics.initialize(analyticsConfig, analyticsOptions);
 export default analytics;`;
 
   return outputSource;

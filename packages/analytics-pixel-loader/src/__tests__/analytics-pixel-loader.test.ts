@@ -20,15 +20,21 @@ integrations:
       analytics.VERSION = \\"4.1.5\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
+      var analyticsOptions = {};
 
       if (typeof document !== 'undefined') {
         var analyticsConfigMeta = document.querySelector('meta[name=\\"analytics-config\\"]');
         if (analyticsConfigMeta) {
           analyticsConfig = JSON.parse(analyticsConfigMeta.content);
         }
+
+        var analyticsOptionsMeta = document.querySelector('meta[name=\\"analytics-options\\"]');
+        if (analyticsOptionsMeta) {
+          analyticsConfig = JSON.parse(analyticsOptionsMeta.content);
+        }
       }
 
-      analytics.initialize(analyticsConfig, {});
+      analytics.initialize(analyticsConfig, analyticsOptions);
       export default analytics;"
     `);
   });
@@ -53,15 +59,21 @@ integrations:
       analytics.VERSION = \\"4.1.5\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
+      var analyticsOptions = {};
 
       if (typeof document !== 'undefined') {
         var analyticsConfigMeta = document.querySelector('meta[name=\\"analytics-config\\"]');
         if (analyticsConfigMeta) {
           analyticsConfig = JSON.parse(analyticsConfigMeta.content);
         }
+
+        var analyticsOptionsMeta = document.querySelector('meta[name=\\"analytics-options\\"]');
+        if (analyticsOptionsMeta) {
+          analyticsConfig = JSON.parse(analyticsOptionsMeta.content);
+        }
       }
 
-      analytics.initialize(analyticsConfig, {});
+      analytics.initialize(analyticsConfig, analyticsOptions);
       export default analytics;"
     `);
   });
@@ -88,15 +100,21 @@ integrations:
       analytics.VERSION = \\"4.1.5\\";
       analytics.use(GoogleAnalytics);
       var analyticsConfig = {\\"Google Analytics\\":{\\"trackingId\\":\\"UA-123\\"}};
+      var analyticsOptions = {\\"cookie\\":{\\"path\\":\\"/retailer\\"}};
 
       if (typeof document !== 'undefined') {
         var analyticsConfigMeta = document.querySelector('meta[name=\\"analytics-config\\"]');
         if (analyticsConfigMeta) {
           analyticsConfig = JSON.parse(analyticsConfigMeta.content);
         }
+
+        var analyticsOptionsMeta = document.querySelector('meta[name=\\"analytics-options\\"]');
+        if (analyticsOptionsMeta) {
+          analyticsConfig = JSON.parse(analyticsOptionsMeta.content);
+        }
       }
 
-      analytics.initialize(analyticsConfig, {\\"cookie\\":{\\"path\\":\\"/retailer\\"}});
+      analytics.initialize(analyticsConfig, analyticsOptions);
       export default analytics;"
     `);
   });
