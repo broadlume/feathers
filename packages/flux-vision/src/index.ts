@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-export default (function(): void {
+export default (function (): void {
   const flux = new FluxVision({
     Shopify: window.Shopify,
     analytics: window.analytics,

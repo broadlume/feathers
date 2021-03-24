@@ -39,7 +39,7 @@ export class TrackedLink extends React.Component<TrackedLinkProps, {}> {
     }
   }
 
-  handleClick: React.MouseEventHandler = event => {
+  handleClick: React.MouseEventHandler = (event) => {
     const { target, eventName, eventProperties, href, onClick } = this.props;
     const sameTarget = target !== NEWTAB;
 

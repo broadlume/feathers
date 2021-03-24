@@ -8,7 +8,7 @@ const CTMAnalytics = integration("CTM Analytics")
   .global("__ctm_cvars");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-CTMAnalytics.prototype.identify = function(identify: any): void {
+CTMAnalytics.prototype.identify = function (identify: any): void {
   const traits: { [k: string]: number | string } = { ...identify.traits() };
   delete traits.id;
 
@@ -21,7 +21,7 @@ CTMAnalytics.prototype.identify = function(identify: any): void {
   pushVars(traits);
 };
 
-CTMAnalytics.prototype.loaded = function(): boolean {
+CTMAnalytics.prototype.loaded = function (): boolean {
   return !!window["__ctm_loaded"];
 };
 
