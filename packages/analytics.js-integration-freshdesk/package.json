@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/analytics.js-integration-freshdesk",
   "description": "Analytics.js integration for Freshdesk",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "developers@broadlume.com",
   "license": "MIT",
   "main": "./lib/index.js",
