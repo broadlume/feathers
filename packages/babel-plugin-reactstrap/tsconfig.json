@@ -1,0 +1,17 @@
+{
+  "extends": "./../../config/tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "types": ["node", "jest"],
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "outDir": "./lib/cjs",
+    "importHelpers": false,
+    "noEmitHelpers": false,
+    "target": "ES6",
+    "moduleResolution": "Node",
+    "module": "CommonJS"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["./src/**/__tests__/**/*", "./src/**/__mocks__/**/*"]
+}

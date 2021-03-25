@@ -1,0 +1,663 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Alert" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_alert.scss\\");
+}
+
+import { Alert } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Badge" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_badge.scss\\");
+}
+
+import { Badge } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Breadcrumb" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_breadcrumb.scss\\");
+}
+
+import { Breadcrumb } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "BreadcrumbItem" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_breadcrumb.scss\\");
+}
+
+import { BreadcrumbItem } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Button" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_buttons.scss\\");
+}
+
+import { Button } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ButtonDropdown" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_buttons.scss\\");
+}
+
+import { ButtonDropdown } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ButtonGroup" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_button-group.scss\\");
+}
+
+import { ButtonGroup } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ButtonToggle" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_buttons.scss\\");
+}
+
+import { ButtonToggle } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ButtonToolbar" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_buttons.scss\\");
+}
+
+import { ButtonToolbar } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Card" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { Card } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardBody" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardBody } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardColumns" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardColumns } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardDeck" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardDeck } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardFooter" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardFooter } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardGroup" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardGroup } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardHeader" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardHeader } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardImg" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardImg } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardImgOverlay" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardImgOverlay } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardLink" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardLink } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardSubtitle" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardSubtitle } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardText" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardText } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CardTitle" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_card.scss\\");
+}
+
+import { CardTitle } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Carousel" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_carousel.scss\\");
+}
+
+import { Carousel } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CarouselCaption" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_carousel.scss\\");
+}
+
+import { CarouselCaption } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CarouselControl" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_carousel.scss\\");
+}
+
+import { CarouselControl } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CarouselIndicators" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_carousel.scss\\");
+}
+
+import { CarouselIndicators } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CarouselItem" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_carousel.scss\\");
+}
+
+import { CarouselItem } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Col" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_grid.scss\\");
+}
+
+import { Col } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Collapse" 1`] = `"import { Collapse } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Container" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_grid.scss\\");
+}
+
+import { Container } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CustomFileInput" 1`] = `"import { CustomFileInput } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "CustomInput" 1`] = `"import { CustomInput } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Dropdown" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_dropdown.scss\\");
+}
+
+import { Dropdown } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "DropdownContext" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_dropdown.scss\\");
+}
+
+import { DropdownContext } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "DropdownItem" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_dropdown.scss\\");
+}
+
+import { DropdownItem } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "DropdownMenu" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_dropdown.scss\\");
+}
+
+import { DropdownMenu } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "DropdownToggle" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_dropdown.scss\\");
+}
+
+import { DropdownToggle } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Fade" 1`] = `"import { Fade } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Form" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_forms.scss\\");
+}
+
+import { Form } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "FormFeedback" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_forms.scss\\");
+}
+
+import { FormFeedback } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "FormGroup" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_forms.scss\\");
+}
+
+import { FormGroup } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "FormText" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_forms.scss\\");
+}
+
+import { FormText } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Input" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_forms.scss\\");
+}
+
+import { Input } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "InputGroup" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_input-group.scss\\");
+}
+
+import { InputGroup } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "InputGroupAddon" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_input-group.scss\\");
+}
+
+import { InputGroupAddon } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "InputGroupButtonDropdown" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_input-group.scss\\");
+}
+
+import { InputGroupButtonDropdown } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "InputGroupText" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_input-group.scss\\");
+}
+
+import { InputGroupText } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Jumbotron" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_jumbotron.scss\\");
+}
+
+import { Jumbotron } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Label" 1`] = `"import { Label } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "List" 1`] = `"import { List } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ListGroup" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_list-group.scss\\");
+}
+
+import { ListGroup } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ListGroupItem" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_list-group.scss\\");
+}
+
+import { ListGroupItem } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ListGroupItemHeading" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_list-group.scss\\");
+}
+
+import { ListGroupItemHeading } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ListGroupItemText" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_list-group.scss\\");
+}
+
+import { ListGroupItemText } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ListInlineItem" 1`] = `"import { ListInlineItem } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Media" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_media.scss\\");
+}
+
+import { Media } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Modal" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_modal.scss\\");
+}
+
+import { Modal } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ModalBody" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_modal.scss\\");
+}
+
+import { ModalBody } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ModalFooter" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_modal.scss\\");
+}
+
+import { ModalFooter } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ModalHeader" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_modal.scss\\");
+}
+
+import { ModalHeader } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Nav" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_nav.scss\\");
+}
+
+import { Nav } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "NavItem" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_nav.scss\\");
+}
+
+import { NavItem } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "NavLink" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_nav.scss\\");
+}
+
+import { NavLink } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Navbar" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_navbar.scss\\");
+}
+
+import { Navbar } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "NavbarBrand" 1`] = `"import { NavbarBrand } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "NavbarText" 1`] = `"import { NavbarText } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "NavbarToggler" 1`] = `"import { NavbarToggler } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Pagination" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_pagination.scss\\");
+}
+
+import { Pagination } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "PaginationItem" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_pagination.scss\\");
+}
+
+import { PaginationItem } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "PaginationLink" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_pagination.scss\\");
+}
+
+import { PaginationLink } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Polyfill" 1`] = `"import { Polyfill } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Popover" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_popover.scss\\");
+}
+
+import { Popover } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "PopoverBody" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_popover.scss\\");
+}
+
+import { PopoverBody } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "PopoverHeader" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_popover.scss\\");
+}
+
+import { PopoverHeader } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "PopperContent" 1`] = `"import { PopperContent } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "PopperTargetHelper" 1`] = `"import { PopperTargetHelper } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Progress" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_progress.scss\\");
+}
+
+import { Progress } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Row" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_grid.scss\\");
+}
+
+import { Row } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Spinner" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_spinners.scss\\");
+}
+
+import { Spinner } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "TabContent" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_nav.scss\\");
+}
+
+import { TabContent } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "TabPane" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_nav.scss\\");
+}
+
+import { TabPane } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Table" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_tables.scss\\");
+}
+
+import { Table } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Toast" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_toasts.scss\\");
+}
+
+import { Toast } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ToastBody" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_toasts.scss\\");
+}
+
+import { ToastBody } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "ToastHeader" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_toasts.scss\\");
+}
+
+import { ToastHeader } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Tooltip" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_tooltip.scss\\");
+}
+
+import { Tooltip } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledAlert" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_alert.scss\\");
+}
+
+import { UncontrolledAlert } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledButtonDropdown" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_buttons.scss\\");
+}
+
+import { UncontrolledButtonDropdown } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledCarousel" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_carousel.scss\\");
+}
+
+import { UncontrolledCarousel } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledCollapse" 1`] = `"import { UncontrolledCollapse } from 'reactstrap';"`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledDropdown" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_dropdown.scss\\");
+}
+
+import { UncontrolledDropdown } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledPopover" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_popover.scss\\");
+}
+
+import { UncontrolledPopover } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "UncontrolledTooltip" 1`] = `
+"if (typeof window !== \\"undefined\\") {
+  require(\\"bootstrap/scss/_tooltip.scss\\");
+}
+
+import { UncontrolledTooltip } from 'reactstrap';"
+`;
+
+exports[`babel-plugin-reactstrap importing components generates correct CSS imports for "Util" 1`] = `"import { Util } from 'reactstrap';"`;
