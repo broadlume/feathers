@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/babel-plugin-reactstrap",
   "description": "A plugin for reactstrap which automatically imports css",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
