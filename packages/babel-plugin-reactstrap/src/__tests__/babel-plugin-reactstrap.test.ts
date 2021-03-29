@@ -88,16 +88,114 @@ describe("babel-plugin-reactstrap", () => {
     it("can add custom import mappings", () => {
       const code = transform(
         `
-        import { Popover } from 'reactstrap';
+        import { Card, Button } from 'reactstrap';
         `,
         {
           customImportMappings: {
-            Popover: ["test.scss"],
+            Card: "@franchises/bootstrap-theme/scss/_card.scss",
+            Button: "@franchises/bootstrap-theme/scss/_buttons.scss",
+            Navbar: "@franchises/bootstrap-theme/scss/_navbar.scss",
+            Input: "@franchises/bootstrap-theme/scss/_forms.scss",
+            Form: "@franchises/bootstrap-theme/scss/_forms.scss",
           },
         }
       );
 
-      expect(code).toContain('require("test.scss")');
+      expect(code).toMatchInlineSnapshot(`
+        "if (typeof window !== \\"undefined\\") {
+          require(\\"bootstrap/scss/_card.scss\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"@\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"f\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"r\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"a\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"n\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"c\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"h\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"i\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"s\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"e\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"/\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"b\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"o\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"t\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"p\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"-\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"m\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"_\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"d\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\".\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"bootstrap/scss/_buttons.scss\\");
+        }
+
+        if (typeof window !== \\"undefined\\") {
+          require(\\"u\\");
+        }
+
+        import { Card, Button } from 'reactstrap';"
+      `);
     });
   });
 });
