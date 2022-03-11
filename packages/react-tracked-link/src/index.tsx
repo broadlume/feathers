@@ -13,12 +13,12 @@ function warnNoAnalytics(): void {
   );
 }
 
-export interface TrackedLinkProps extends React.AnchorHTMLAttributes<{}> {
+export interface TrackedLinkProps extends React.AnchorHTMLAttributes<unknown> {
   eventName: string;
-  eventProperties: object;
+  eventProperties: unknown;
 }
 
-export class TrackedLink extends React.Component<TrackedLinkProps, {}> {
+export class TrackedLink extends React.Component<TrackedLinkProps, unknown> {
   static defaultProps = {
     target: null,
     to: null,
@@ -28,7 +28,7 @@ export class TrackedLink extends React.Component<TrackedLinkProps, {}> {
 
   static trackEvent(
     eventName: string,
-    properties: object,
+    properties: unknown,
     cb?: () => void,
   ): void {
     if (!isAnalyticsActive()) {
