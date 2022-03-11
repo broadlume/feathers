@@ -29,7 +29,7 @@
     "deploy": " lerna publish",
     "clean": "rm -Rf ./node_modules ./meta &&  lerna exec -- npm run clean",
     "circleci": "/usr/bin/ruby -ryaml -e \"puts YAML.load_file('.circleci/config.yml').dig('workflows', 'verify', 'jobs')\" | xargs -o -L 1 circleci local execute --job",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx "
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",

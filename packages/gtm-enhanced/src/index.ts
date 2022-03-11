@@ -12,7 +12,7 @@ interface Options {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function enhancedUserInfo(analytics: any, opts: Options): object {
+function enhancedUserInfo(analytics: any, opts: Options): any {
   const userId = analytics.user().id();
   const anonymousId = analytics.user().anonymousId();
   const userProps: any = {};
@@ -31,7 +31,7 @@ function extractProductDimensions(
   track: any,
   opts: Options,
   analytics: any,
-): object {
+): any {
   const result = {};
   const props = track.properties();
   const userProps = enhancedUserInfo(analytics, opts);
@@ -117,7 +117,7 @@ function enhancedEcommerceTrackProducts(
   opts: Options,
   analytics: any,
   extraProps = {},
-): object[] {
+): any[] {
   const products = track.products();
 
   const result = [];

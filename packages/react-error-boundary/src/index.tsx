@@ -1,4 +1,4 @@
-import React, { ErrorInfo } from "react";
+import React from "react";
 import { withScope, captureException, showReportDialog } from "@sentry/browser";
 
 interface State {
@@ -6,14 +6,14 @@ interface State {
   eventId?: string;
 }
 
-export class ErrorBoundary extends React.Component<{}, State> {
+export class ErrorBoundary extends React.Component<Record<string, unknown>, State> {
   state = { hasError: undefined, eventId: undefined };
 
   static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: object): void {
+  componentDidCatch(error: Error, errorInfo: unknown): void {
     withScope((scope) => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 export default class FluxVision {
   htmlDataElements: string;
   checkoutDataset: DOMStringMap;
