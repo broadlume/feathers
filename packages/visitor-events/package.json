@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/visitor-events",
   "description": "Analytics.js integration for visitor events",
-  "version": "1.2.7",
+  "version": "1.2.9",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
@@ -31,10 +31,10 @@
     "jest-environment-jsdom": "^26.3.0",
     "jest-environment-jsdom-global": "^2.0.2",
     "jest-json-schema": "^2.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^4.0.3"
   },
   "dependencies": {
-    "@segment/analytics.js-core": "3.10.1",
+    "@segment/analytics.js-core": "4.1.5",
     "@segment/analytics.js-integration": "^3.3.1",
     "@segment/localstorage-retry": "^1.2.2",
     "@segment/utm-params": "^2.0.0",

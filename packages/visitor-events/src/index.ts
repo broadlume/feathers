@@ -3,8 +3,10 @@ import Queue from "@segment/localstorage-retry";
 import utm from "@segment/utm-params";
 
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/prefer-as-const */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export function postJSON(url: string, options: any, done: any) {
@@ -144,7 +146,7 @@ VisitorEvents.prototype.getQueue = function () {
 };
 
 VisitorEvents.prototype.postJSON = function (
-  data: object,
+  data: unknown,
   done: any,
 ): Promise<Response> {
   const request = {

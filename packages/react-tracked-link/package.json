@@ -1,7 +1,7 @@
 {
   "name": "@adhawk/react-tracked-link",
   "description": "A React component for catching and reporting errors",
-  "version": "1.2.6",
+  "version": "1.2.9",
   "author": "developers@tryadhawk.com",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
@@ -30,14 +30,14 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.0",
+    "@testing-library/react": "^11.0.4",
     "@types/react": "^16.9.22",
     "@types/react-dom": "^16.9.5",
     "@types/segment-analytics": "^0.0.32",
     "jest": "^26.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "typescript": "^3.8.3"
+    "typescript": "^4.0.3"
   },
   "peerDependencies": {
     "react": "^16.12.0"

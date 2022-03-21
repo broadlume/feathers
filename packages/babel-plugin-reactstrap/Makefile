@@ -3,7 +3,7 @@ default: build
 
 TSC=./node_modules/.bin/tsc
 
-build: 
+build:
 	$(TSC) -b tsconfig.*
 
 clean:

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 export default class FluxVision {
   htmlDataElements: string;
   checkoutDataset: DOMStringMap;
@@ -19,24 +18,18 @@ export default class FluxVision {
   }
 
   public init(): void {
-    try {
-      this.checkDomForSelector();
-      this.pullDataFromDOM();
-      this.sendAnalytics();
-    } catch (error) {
-      throw new Error(`Flux Vision ${error}`);
-    }
+    this.checkDomForSelector();
+    this.pullDataFromDOM();
+    this.sendAnalytics();
   }
 
   private checkDomForSelector(): void {
     const { liquidDivSelector } = this;
-    try {
-      const liquidElement = document.querySelector(liquidDivSelector);
-      if (!liquidElement) {
-        throw `no liquid element found with selector ${liquidDivSelector}. Learn more at https://github.com/adHawk/feathers/tree/master/packages/flux-vision`;
-      }
-    } catch (error) {
-      throw new Error(error);
+    const liquidElement = document.querySelector(liquidDivSelector);
+    if (!liquidElement) {
+      throw new Error(
+        `No liquid element found with selector ${liquidDivSelector}. Learn more at https://github.com/broadlume/feathers/tree/master/packages/flux-vision`,
+      );
     }
   }
 

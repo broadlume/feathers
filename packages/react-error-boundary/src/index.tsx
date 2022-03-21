@@ -6,16 +6,16 @@ interface State {
   eventId?: string;
 }
 
-export class ErrorBoundary extends React.Component<{}, State> {
+export class ErrorBoundary extends React.Component<Record<string, unknown>, State> {
   state = { hasError: undefined, eventId: undefined };
 
   static getDerivedStateFromError(): State {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: object): void {
+  componentDidCatch(error: Error, errorInfo: unknown): void {
     withScope((scope) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       scope.setExtras(errorInfo);
       const eventId = captureException(error);
