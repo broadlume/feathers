@@ -1,13 +1,13 @@
 pull_request_rules:
   - name: Automatic merge on approval
     conditions:
-      - "approved-reviews-by=@broadlume/active-tatami-contributors"
+      - "approved-reviews-by=@active-tatami-contributors"
       - "#approved-reviews-by>=1"
       - "status-success=verify"
     actions:
       merge:
         method: merge
-        
+
   - name: Request review from tatami devs
     conditions:
       - -merged
