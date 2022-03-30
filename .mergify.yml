@@ -1,0 +1,17 @@
+pull_request_rules:
+  - name: Automatic merge on approval
+    conditions:
+      - "approved-reviews-by=@dealerhq-team"
+      - "#approved-reviews-by>=1"
+      - "status-success=verify"
+    actions:
+      merge:
+        method: merge
+
+  - name: Request review from tatami devs
+    conditions:
+      - -merged
+    actions:
+      request_reviews:
+        teams:
+          - "@broadlume/active-tatami-contributors"

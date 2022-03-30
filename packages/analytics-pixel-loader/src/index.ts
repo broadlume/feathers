@@ -5,10 +5,7 @@ import kebabCase from "lodash.kebabcase";
 import { validate as validateOptions } from "schema-utils";
 import { InitOptions } from "@segment/analytics.js-core/lib/types";
 
-const schema: JSONSchema7 = {
-  // type: "object",
-  // properties: {},
-};
+const schema: JSONSchema7 = {};
 
 interface IntegrationConfig {
   name: string;
@@ -53,7 +50,7 @@ export default function (source: string): string {
 
   const imports = [];
   const setups = [];
-  const mappedAnalyticsConfig: { [k: string]: object } = {};
+  const mappedAnalyticsConfig: { [k: string]: unknown } = {};
 
   for (const integration of integrations) {
     imports.push(buildImportStatement(integration));
